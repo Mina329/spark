@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:spark/core/utils/size_config.dart';
+
+abstract class StylesManager {
+  static TextStyle styleLatoRegular18() =>
+      Get.theme.brightness == Brightness.dark
+          ? TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(18),
+              fontWeight: FontWeight.w400,
+            )
+          : TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(18),
+              fontWeight: FontWeight.w400,
+            );
+
+  static TextStyle styleLatoBold34() => Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(34),
+          fontWeight: FontWeight.w700,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(34),
+          fontWeight: FontWeight.w700,
+        );
+  static TextStyle styleLatoBold16() => Get.theme.brightness == Brightness.dark
+      ? TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(20),
+          fontWeight: FontWeight.w700,
+        )
+      : TextStyle(
+          fontFamily: 'Lato',
+          fontSize: getResponsiveFontSize(20),
+          fontWeight: FontWeight.w700,
+        );
+}
+
+double getResponsiveFontSize(double fontSize) {
+  double scaleFactor = getScaleFactor();
+  double responsiveFontSize = fontSize * scaleFactor;
+
+  double lowerLimit = fontSize * .8;
+  double upperLimit = fontSize * 1.2;
+
+  return responsiveFontSize.clamp(lowerLimit, upperLimit);
+}
+
+double getScaleFactor() {
+  // var dispatcher = PlatformDispatcher.instance;
+  // var physicalWidth = dispatcher.views.first.physicalSize.width;
+  // var devicePixelRatio = dispatcher.views.first.devicePixelRatio;
+  // double width = physicalWidth / devicePixelRatio;
+
+  double width = Get.size.width;
+  if (width < SizeConfig.tablet) {
+    return width / 550;
+  } else {
+    return width / 1000;
+  }
+}
