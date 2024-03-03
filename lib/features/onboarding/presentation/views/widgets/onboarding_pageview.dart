@@ -23,7 +23,7 @@ class OnboardingPageView extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: SizedBox(
-                height: Get.size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.5,
                 child: Image.asset(
                   onboardingImages[index],
                   fit: BoxFit.scaleDown,
@@ -40,7 +40,7 @@ class OnboardingPageView extends StatelessWidget {
             ),
             child: Text(
               onboardingTitles[index],
-              style: StylesManager.styleLatoBold34(),
+              style: StylesManager.styleLatoBold34(context),
             ),
           ),
           const SizedBox(
@@ -52,7 +52,7 @@ class OnboardingPageView extends StatelessWidget {
             ),
             child: Text(
               onboardingDescriptions[index],
-              style: StylesManager.styleLatoRegular18(),
+              style: StylesManager.styleLatoRegular18(context),
             ),
           ),
         ],

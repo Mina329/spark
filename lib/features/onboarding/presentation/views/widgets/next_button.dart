@@ -16,7 +16,7 @@ class NextButton extends StatelessWidget {
         Get.find<OnboardingController>();
     return SizedBox(
       height: 54,
-      width: Get.size.width * 0.4,
+      width: MediaQuery.of(context).size.width * 0.4,
       child: ElevatedButton(
         onPressed: onboardingController.onPressedNext,
         child: Obx(
@@ -24,7 +24,7 @@ class NextButton extends StatelessWidget {
             onboardingController.pageIndex.value == onboardingImages.length - 1
                 ? StringsManager.getStarted
                 : StringsManager.next,
-            style: StylesManager.styleLatoBold16().copyWith(
+            style: StylesManager.styleLatoBold16(context).copyWith(
               color: Colors.black,
             ),
           ),

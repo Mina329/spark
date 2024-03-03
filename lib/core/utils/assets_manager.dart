@@ -1,6 +1,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesFacebook
+  /// assets/images/facebook.svg
+  static const String assetsImagesFacebook = "assets/images/facebook.svg";
+
+  /// Assets for assetsImagesGoogle
+  /// assets/images/google.svg
+  static const String assetsImagesGoogle = "assets/images/google.svg";
+
   /// Assets for assetsImagesOnboarding1
   /// assets/images/onboarding1.png
   static const String assetsImagesOnboarding1 = "assets/images/onboarding1.png";
@@ -20,5 +28,9 @@ class Assets {
   /// Assets for assetsImagesSparkLogo
   /// assets/images/spark_logo.png
   static const String assetsImagesSparkLogo = "assets/images/spark_logo.png";
+
+  /// Assets for assetsImagesTwitter
+  /// assets/images/twitter.svg
+  static const String assetsImagesTwitter = "assets/images/twitter.svg";
 }
 

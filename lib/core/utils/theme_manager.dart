@@ -37,6 +37,14 @@ abstract class ThemeManager {
             ),
           ),
         ),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorManager.primaryColor,
+            ),
+          ),
+        ),
       );
   static ThemeData get darkThemeData => ThemeData.dark().copyWith(
         colorScheme: ColorScheme.fromSwatch(
@@ -61,5 +69,13 @@ abstract class ThemeManager {
           ),
         ),
         scaffoldBackgroundColor: ColorManager.darkScaffoldColor,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorManager.primaryColor,
+            ),
+          ),
+        ),
       );
 }

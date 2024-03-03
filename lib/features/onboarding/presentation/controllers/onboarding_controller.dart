@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
+import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/features/onboarding/data/data_sources/static.dart';
 
 class OnboardingController extends GetxController {
@@ -9,9 +10,7 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    for (var imagePath in onboardingImages) {
-      precacheImage(AssetImage(imagePath), Get.context!);
-    }
+    loadImages();
     controller = PageController(initialPage: pageIndex.value);
     controller.addListener(
       () {
@@ -21,6 +20,13 @@ class OnboardingController extends GetxController {
         }
       },
     );
+  }
+
+  void loadImages() {
+    for (var imagePath in onboardingImages) {
+      precacheImage(AssetImage(imagePath), Get.context!);
+    }
+    precacheImage(const AssetImage(Assets.assetsImagesShade), Get.context!);
   }
 
   @override
