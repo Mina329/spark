@@ -40,4 +40,8 @@ abstract class StringsManager {
   static const passwordSpace = "Password must not contain spaces.";
   static const pleaseEnterValidName = "Please enter a valid name";
   static const passwordMatch = "Passwords do not match";
+  static const sendPasswordResendEmail = 'Send Password Reset Email';
+  static const send = 'Send';
+  static const resendIn = 'Resend In ';
+  static const seconds = ' Seconds';
 }

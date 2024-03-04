@@ -21,14 +21,20 @@ abstract class ThemeManager {
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: customPrimarySwatch,
         ),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor:
-                MaterialStatePropertyAll(ColorManager.primaryColor),
-            overlayColor: MaterialStatePropertyAll(
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return Colors.grey;
+                }
+                return ColorManager.primaryColor;
+              },
+            ),
+            overlayColor: const MaterialStatePropertyAll(
               Color(0xFFF7DA80),
             ),
-            shape: MaterialStatePropertyAll(
+            shape: const MaterialStatePropertyAll(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
@@ -41,7 +47,7 @@ abstract class ThemeManager {
           border: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorManager.primaryColor,
+              color: Colors.black,
             ),
           ),
         ),
@@ -52,14 +58,20 @@ abstract class ThemeManager {
         ).copyWith(
           brightness: Brightness.dark,
         ),
-        elevatedButtonTheme: const ElevatedButtonThemeData(
+        elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor:
-                MaterialStatePropertyAll(ColorManager.primaryColor),
-            overlayColor: MaterialStatePropertyAll(
+            backgroundColor: MaterialStateProperty.resolveWith<Color>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return ColorManager.geryColor;
+                }
+                return ColorManager.primaryColor;
+              },
+            ),
+            overlayColor: const MaterialStatePropertyAll(
               Color(0xFFF7DA80),
             ),
-            shape: MaterialStatePropertyAll(
+            shape: const MaterialStatePropertyAll(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
@@ -73,7 +85,7 @@ abstract class ThemeManager {
           border: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: ColorManager.primaryColor,
+              color: Colors.white,
             ),
           ),
         ),

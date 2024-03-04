@@ -5,7 +5,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 
-import '../../controllers/auth_controller.dart';
+import '../../../controllers/auth_controller.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({
@@ -89,10 +89,13 @@ class SignInForm extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.centerRight,
-            child: Text(
-              StringsManager.forgetPassword,
-              style: StylesManager.styleRobotoRegular16(context)
-                  .copyWith(color: ColorManager.primaryColor),
+            child: GestureDetector(
+              onTap: authController.forgetPasswordOnTap,
+              child: Text(
+                StringsManager.forgetPassword,
+                style: StylesManager.styleRobotoRegular16(context)
+                    .copyWith(color: ColorManager.primaryColor),
+              ),
             ),
           )
         ],

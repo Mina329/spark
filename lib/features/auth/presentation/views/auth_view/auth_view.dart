@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spark/features/auth/presentation/views/widgets/auth_view_body.dart';
+import 'package:spark/features/auth/presentation/views/auth_view/widgets/auth_view_body.dart';
 
 class AuthView extends StatelessWidget {
   const AuthView({super.key});

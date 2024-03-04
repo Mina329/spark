@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/views/widgets/register_button.dart';
-import 'package:spark/features/auth/presentation/views/widgets/sign_up_form.dart';
+import 'package:spark/features/auth/presentation/views/auth_view/widgets/register_button.dart';
+import 'package:spark/features/auth/presentation/views/auth_view/widgets/sign_up_form.dart';
 
 class SignUpWidget extends StatelessWidget {
   const SignUpWidget({super.key});

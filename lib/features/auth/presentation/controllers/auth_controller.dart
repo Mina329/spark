@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 
 class AuthController extends GetxController {
@@ -113,6 +114,11 @@ class AuthController extends GetxController {
     if (password.contains(RegExp(r'\s'))) {
       return StringsManager.passwordSpace;
     }
+    return null;
+  }
+
+  void Function()? forgetPasswordOnTap() {
+    Get.toNamed(AppRouter.kForgetPasswordView);
     return null;
   }
 }
