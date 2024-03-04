@@ -45,4 +45,8 @@ abstract class StringsManager {
   static const resendIn = 'Resend In ';
   static const seconds = ' Seconds';
   static const sendVerificationEmail = 'Send Verification Email';
+  static const improveYourFeed = 'Improve your feed';
+  static const improveYourFeedDescription =
+      'Let’s get to know you a little bit better. Choose the topics and tags you are interested in.';
+  static const allSet = 'All set';
 }
