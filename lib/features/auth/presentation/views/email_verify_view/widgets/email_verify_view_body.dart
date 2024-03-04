@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/back_button.dart';
-import 'package:spark/features/auth/presentation/views/forget_password_view/widgets/password_reset_text_form_field.dart';
-import 'package:spark/features/auth/presentation/views/forget_password_view/widgets/forget_password_send_button.dart';
+import 'package:spark/features/auth/presentation/views/email_verify_view/widgets/email_verification_send_button.dart';
 
-class ForgetPasswordViewBody extends StatelessWidget {
-  const ForgetPasswordViewBody({super.key});
+class EmailVerifyViewBody extends StatelessWidget {
+  const EmailVerifyViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +28,8 @@ class ForgetPasswordViewBody extends StatelessWidget {
             StringsManager.sendPasswordResendEmail,
             style: StylesManager.styleLatoBold25(context),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          const PasswordResetTextFormField(),
           const Spacer(),
-          const ForgetPasswordSendButton(),
+          const EmailVerificationSendButton(),
           const SizedBox(
             height: 50,
           ),

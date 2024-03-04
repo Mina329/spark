@@ -44,4 +44,5 @@ abstract class StringsManager {
   static const send = 'Send';
   static const resendIn = 'Resend In ';
   static const seconds = ' Seconds';
+  static const sendVerificationEmail = 'Send Verification Email';
 }

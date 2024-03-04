@@ -5,8 +5,8 @@ import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/auth/presentation/controllers/forget_password_controller.dart';
 
-class SendButton extends StatelessWidget {
-  const SendButton({
+class ForgetPasswordSendButton extends StatelessWidget {
+  const ForgetPasswordSendButton({
     super.key,
   });
 
