@@ -49,4 +49,8 @@ abstract class StringsManager {
   static const improveYourFeedDescription =
       'Let’s get to know you a little bit better. Choose the topics and tags you are interested in.';
   static const allSet = 'All set';
+  static const home = 'Home';
+  static const lists = 'Lists';
+  static const explore = 'Explore';
+  static const profile = 'Profile';
 }
