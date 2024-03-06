@@ -15,6 +15,42 @@ abstract class StylesManager {
               fontSize: getResponsiveFontSize(context, fontSize: 18),
               fontWeight: FontWeight.w400,
             );
+  static TextStyle styleLatoRegular14(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+          ? TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 14),
+              fontWeight: FontWeight.w400,
+            )
+          : TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 14),
+              fontWeight: FontWeight.w400,
+            );
+  static TextStyle styleLatoRegular16(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+          ? TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 16),
+              fontWeight: FontWeight.w400,
+            )
+          : TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 16),
+              fontWeight: FontWeight.w400,
+            );
+  static TextStyle styleLatoRegular10(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+          ? TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 10),
+              fontWeight: FontWeight.w400,
+            )
+          : TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 10),
+              fontWeight: FontWeight.w400,
+            );
   static TextStyle styleLatoSemiBold16(BuildContext context) =>
       Get.theme.brightness == Brightness.dark
           ? TextStyle(
@@ -26,6 +62,18 @@ abstract class StylesManager {
               fontFamily: 'Lato',
               fontSize: getResponsiveFontSize(context, fontSize: 16),
               fontWeight: FontWeight.w600,
+            );
+  static TextStyle styleLatoLight20(BuildContext context) =>
+      Get.theme.brightness == Brightness.dark
+          ? TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 20),
+              fontWeight: FontWeight.w300,
+            )
+          : TextStyle(
+              fontFamily: 'Lato',
+              fontSize: getResponsiveFontSize(context, fontSize: 20),
+              fontWeight: FontWeight.w300,
             );
   static TextStyle styleLatoBold34(BuildContext context) =>
       Get.theme.brightness == Brightness.dark
