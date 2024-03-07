@@ -1,8 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/circular_image.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 
 class PeopleOfTheWeekWidget extends StatelessWidget {
@@ -23,7 +26,13 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () {},
+                onTap: () => Get.toNamed(
+                  AppRouter.kShowsSectionView,
+                  arguments: {
+                    'title': StringsManager.peopleOfTheWeek,
+                    'showType': ShowType.Person
+                  },
+                ),
                 child: Text(
                   StringsManager.showAll,
                   style: StylesManager.styleLatoRegular16(context)
@@ -46,19 +55,7 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 15),
                 child: Column(
                   children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      height: MediaQuery.of(context).size.width * 0.3,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: CachedNetworkImageProvider(
-                            peoplesImages[index],
-                          ),
-                        ),
-                      ),
-                    ),
+                    CircularImage(index: index),
                     const SizedBox(
                       height: 10,
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_details.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_image.dart';
 
@@ -14,7 +15,10 @@ class CustomShowListViewItem extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.2,
       child: Row(
         children: [
-          ShowImage(index: index),
+          ShowImage(
+            index: index,
+            images: showsImages,
+          ),
           const SizedBox(
             width: 10,
           ),

@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 
 class ShowImage extends StatelessWidget {
   const ShowImage({
     super.key,
-    required this.index,
+    required this.index, required this.images,
   });
   final int index;
+  final List<String> images;
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -16,7 +16,7 @@ class ShowImage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: CachedNetworkImageProvider(
-              showsImages[index],
+              images[index],
             ),
             fit: BoxFit.fill,
           ),
