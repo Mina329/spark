@@ -21,6 +21,7 @@ List<String> showsTitle = [
   'Daniel Brühl: Breaking Bad',
 ];
 List<String> showsRating = ['8.9', '6.9', '0', '8.4', '0'];
+List<String> showsRatingCount = ['13213', '4609', '0', '108', '0'];
 List<String> showsYear = ['2008', '2019', '2016', '2013', '2023'];
 List<String> trailers = [
   'Sy6eNs3EW3E',

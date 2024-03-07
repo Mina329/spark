@@ -10,6 +10,7 @@ import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart'
 import 'package:spark/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
 import 'package:spark/features/auth/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:spark/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
+import 'package:spark/features/home/presentation/views/section_view/section_view.dart';
 import 'package:spark/features/main/presentation/view/main_view.dart';
 import 'package:spark/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:spark/features/splash/presentation/views/splash_view.dart';
@@ -22,6 +23,7 @@ class AppRouter {
   static const kEmailVerifyView = '/emailverify';
   static const kImproveYourFeedsView = '/improveyourfeeds';
   static const kMainView = '/main';
+  static const kShowsSectionView = '/showssection';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -58,6 +60,10 @@ class AppRouter {
       name: kMainView,
       page: () => const MainView(),
       binding: MainBinding(),
+    ),
+    GetPage(
+      name: kShowsSectionView,
+      page: () => const ShowsSectionView(),
     ),
   ];
 }

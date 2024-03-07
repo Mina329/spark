@@ -30,6 +30,7 @@ class TrailersListView extends StatelessWidget {
           SizedBox(
             height: (MediaQuery.of(context).size.width) * 180 / 374,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: ClipRRect(

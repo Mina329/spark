@@ -41,6 +41,7 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.width * 0.3 + 30,
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: Column(

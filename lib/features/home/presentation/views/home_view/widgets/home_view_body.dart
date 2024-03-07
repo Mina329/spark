@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/presentation/views/widgets/custom_home_appbar.dart';
-import 'package:spark/features/home/presentation/views/widgets/home_trending_shows.dart';
-import 'package:spark/features/home/presentation/views/widgets/people_of_the_week_widget.dart';
-import 'package:spark/features/home/presentation/views/widgets/show_section.dart';
-import 'package:spark/features/home/presentation/views/widgets/trailers_list_view.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/custom_home_appbar.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/people_of_the_week_widget.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/show_section.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -49,7 +52,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.trendingMovies,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRouter.kShowsSectionView,
+              arguments: StringsManager.trendingMovies,
+            ),
           ),
         ),
         const SliverToBoxAdapter(
@@ -60,7 +66,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.trendingTvShows,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRouter.kShowsSectionView,
+              arguments: StringsManager.trendingTvShows,
+            ),
           ),
         ),
         const SliverToBoxAdapter(
@@ -79,7 +88,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.picksForYour,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRouter.kShowsSectionView,
+              arguments: StringsManager.picksForYour,
+            ),
           ),
         ),
         const SliverToBoxAdapter(
@@ -98,7 +110,10 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: ShowSection(
             sectionTitle: StringsManager.fromYourLists,
-            showAllOnTap: () {},
+            showAllOnTap: () => Get.toNamed(
+              AppRouter.kShowsSectionView,
+              arguments: StringsManager.fromYourLists,
+            ),
           ),
         ),
         const SliverToBoxAdapter(

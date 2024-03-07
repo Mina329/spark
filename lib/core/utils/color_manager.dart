@@ -5,4 +5,5 @@ abstract class ColorManager {
   static const primaryColor = Color(0xFFD89D07);
   static const geryColor = Color(0xFF393939);
   static const genreColor = Color(0xFF272727);
+  static const goldColor = Color(0xFFFFD700);
 }

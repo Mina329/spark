@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 import 'package:spark/features/home/presentation/controllers/home_controller.dart';
-import 'package:spark/features/home/presentation/views/widgets/more_info_column.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/more_info_column.dart';
 
 class HomeTrendingShows extends StatelessWidget {
   const HomeTrendingShows({super.key});
