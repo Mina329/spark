@@ -19,7 +19,7 @@ class ShowDetailsTab extends StatelessWidget {
           style: StylesManager.styleLatoBold16(context),
         ),
         const SizedBox(
-          height: 15,
+          height: 10,
         ),
         const SeasonsGuideListView(),
         const SizedBox(

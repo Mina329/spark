@@ -42,7 +42,7 @@ class ShowOverviewTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
         ),
         const SizedBox(
-          height: 10,
+          height: 15,
         ),
         Row(
           children: [

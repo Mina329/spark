@@ -51,14 +51,17 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.trendingMovies,
-            showAllOnTap: () => Get.toNamed(
-              AppRouter.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.trendingMovies,
-                'showType': ShowType.Movie
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.trendingMovies,
+              showAllOnTap: () => Get.toNamed(
+                AppRouter.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.trendingMovies,
+                  'showType': ShowType.Movie
+                },
+              ),
             ),
           ),
         ),
@@ -68,14 +71,17 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.trendingTvShows,
-            showAllOnTap: () => Get.toNamed(
-              AppRouter.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.trendingTvShows,
-                'showType': ShowType.TV
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.trendingTvShows,
+              showAllOnTap: () => Get.toNamed(
+                AppRouter.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.trendingTvShows,
+                  'showType': ShowType.TV
+                },
+              ),
             ),
           ),
         ),
@@ -93,14 +99,17 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.picksForYour,
-            showAllOnTap: () => Get.toNamed(
-              AppRouter.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.picksForYour,
-                'showType': ShowType.Movie
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.picksForYour,
+              showAllOnTap: () => Get.toNamed(
+                AppRouter.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.picksForYour,
+                  'showType': ShowType.Movie
+                },
+              ),
             ),
           ),
         ),
@@ -118,14 +127,17 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         SliverToBoxAdapter(
-          child: ShowSection(
-            sectionTitle: StringsManager.fromYourLists,
-            showAllOnTap: () => Get.toNamed(
-              AppRouter.kShowsSectionView,
-              arguments: {
-                'title': StringsManager.fromYourLists,
-                'showType': ShowType.Movie
-              },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: ShowSection(
+              sectionTitle: StringsManager.fromYourLists,
+              showAllOnTap: () => Get.toNamed(
+                AppRouter.kShowsSectionView,
+                arguments: {
+                  'title': StringsManager.fromYourLists,
+                  'showType': ShowType.Movie
+                },
+              ),
             ),
           ),
         ),

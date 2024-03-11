@@ -77,4 +77,10 @@ abstract class StringsManager {
   static const images = 'Images';
   static const videos = 'Videos';
   static const moreLikeThis = 'More Like This';
+  static const media = 'Media';
+  static const biography = 'Biography';
+  static const birth = 'Birth';
+  static const death = 'Death';
+  static const relatedMovies = 'Related Movies';
+  static const relatedTvShows = 'Related TV Shows';
 }

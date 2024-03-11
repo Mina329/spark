@@ -5,7 +5,8 @@ import 'package:spark/core/bindings/forget_password_binding.dart';
 import 'package:spark/core/bindings/improve_your_feed_binding.dart';
 import 'package:spark/core/bindings/main_binding.dart';
 import 'package:spark/core/bindings/onboarding_binding.dart';
-import 'package:spark/core/bindings/show_person_details_binding.dart';
+import 'package:spark/core/bindings/person_details_binding.dart';
+import 'package:spark/core/bindings/show_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart';
 import 'package:spark/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
@@ -80,6 +81,7 @@ class AppRouter {
     GetPage(
       name: kPersonDetailsView,
       page: () => const PersonDetailsView(),
+      binding: PersonDetailsBinding(),
     ),
     GetPage(
       name: kMediaView,
