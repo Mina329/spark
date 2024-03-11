@@ -4,6 +4,7 @@ import 'package:spark/core/bindings/email_verify_binding.dart';
 import 'package:spark/core/bindings/forget_password_binding.dart';
 import 'package:spark/core/bindings/improve_your_feed_binding.dart';
 import 'package:spark/core/bindings/main_binding.dart';
+import 'package:spark/core/bindings/media_binding.dart';
 import 'package:spark/core/bindings/onboarding_binding.dart';
 import 'package:spark/core/bindings/person_details_binding.dart';
 import 'package:spark/core/bindings/show_details_binding.dart';
@@ -86,6 +87,7 @@ class AppRouter {
     GetPage(
       name: kMediaView,
       page: () => const MediaView(),
+      binding: MediaBinding(),
     ),
   ];
 }
