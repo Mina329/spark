@@ -39,10 +39,20 @@ class TrailersListView extends StatelessWidget {
                     controller: homeController.videosControllers[index],
                     showVideoProgressIndicator: true,
                     progressIndicatorColor: ColorManager.primaryColor,
-                    progressColors: const ProgressBarColors(
-                      playedColor: ColorManager.primaryColor,
-                      handleColor: ColorManager.primaryColor,
-                    ),
+                    bottomActions: [
+                      const SizedBox(width: 14.0),
+                      CurrentPosition(),
+                      const SizedBox(width: 8.0),
+                      ProgressBar(
+                        isExpanded: true,
+                        colors: const ProgressBarColors(
+                          playedColor: ColorManager.primaryColor,
+                          handleColor: ColorManager.primaryColor,
+                        ),
+                      ),
+                      RemainingDuration(),
+                      const PlaybackSpeedButton(),
+                    ],
                     width: MediaQuery.of(context).size.width - 100,
                   ),
                 ),

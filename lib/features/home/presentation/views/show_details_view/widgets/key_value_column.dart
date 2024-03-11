@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:spark/core/utils/styles_manager.dart';
+
+class KeyValueColumn extends StatelessWidget {
+  const KeyValueColumn({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.iconColor,
+  });
+  final IconData icon;
+  final String title;
+  final String value;
+  final Color iconColor;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: iconColor,
+              size: getResponsiveFontSize(context, fontSize: 18),
+            ),
+            const SizedBox(
+              width: 5,
+            ),
+            Text(
+              value,
+              style: StylesManager.styleLatoRegular18(context),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          title,
+          style: StylesManager.styleLatoRegular14(context),
+        )
+      ],
+    );
+  }
+}

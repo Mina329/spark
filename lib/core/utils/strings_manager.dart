@@ -63,4 +63,18 @@ abstract class StringsManager {
   static const fromYourLists = 'From Your List';
   static const hotTrailers = 'Hot Trailers';
   static const peopleOfTheWeek = 'People of the Week';
+  static const rating = 'Rating';
+  static const popularity = 'Popularity';
+  static const addToMyList = 'Add to My List';
+  static const addedTo = 'Added to';
+  static const overview = 'Overview';
+  static const details = 'Details';
+  static const reviews = 'Reviews';
+  static const similar = 'Similar';
+  static const gallery = 'Gallery';
+  static const castAndCrew = 'Cast & Crew';
+  static const seasonsGuide = 'Seasons Guide';
+  static const images = 'Images';
+  static const videos = 'Videos';
+  static const moreLikeThis = 'More Like This';
 }

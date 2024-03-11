@@ -5,12 +5,16 @@ import 'package:spark/core/bindings/forget_password_binding.dart';
 import 'package:spark/core/bindings/improve_your_feed_binding.dart';
 import 'package:spark/core/bindings/main_binding.dart';
 import 'package:spark/core/bindings/onboarding_binding.dart';
+import 'package:spark/core/bindings/show_person_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart';
 import 'package:spark/features/auth/presentation/views/email_verify_view/email_verify_view.dart';
 import 'package:spark/features/auth/presentation/views/forget_password_view/forget_password_view.dart';
 import 'package:spark/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
+import 'package:spark/features/home/presentation/views/media_view/media_view.dart';
+import 'package:spark/features/home/presentation/views/person_details_view/person_details_view.dart';
 import 'package:spark/features/home/presentation/views/section_view/section_view.dart';
+import 'package:spark/features/home/presentation/views/show_details_view/show_details_view.dart';
 import 'package:spark/features/main/presentation/view/main_view.dart';
 import 'package:spark/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:spark/features/splash/presentation/views/splash_view.dart';
@@ -24,6 +28,9 @@ class AppRouter {
   static const kImproveYourFeedsView = '/improveyourfeeds';
   static const kMainView = '/main';
   static const kShowsSectionView = '/showssection';
+  static const kShowDetailsView = '/showdetails';
+  static const kPersonDetailsView = '/persondetails';
+  static const kMediaView = '/media';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -64,6 +71,19 @@ class AppRouter {
     GetPage(
       name: kShowsSectionView,
       page: () => const ShowsSectionView(),
+    ),
+    GetPage(
+      name: kShowDetailsView,
+      page: () => const ShowDetailsView(),
+      binding: ShowDetailsBinding(),
+    ),
+    GetPage(
+      name: kPersonDetailsView,
+      page: () => const PersonDetailsView(),
+    ),
+    GetPage(
+      name: kMediaView,
+      page: () => const MediaView(),
     ),
   ];
 }

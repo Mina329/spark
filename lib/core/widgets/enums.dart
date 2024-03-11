@@ -1,5 +1,11 @@
 enum ShowType {
   Movie,
   TV,
-  Person
+  Person,
+}
+
+enum MediaType {
+  Images,
+  Videos,
+  Reviews,
 }
