@@ -35,7 +35,7 @@ class ReviewCard extends StatelessWidget {
                 children: [
                   Text(
                     'Mina Emil',
-                    style: StylesManager.styleLatoBold16(context),
+                    style: StylesManager.styleLatoBold20(context),
                   ),
                   Text(
                     '@mina329',
@@ -55,7 +55,7 @@ class ReviewCard extends StatelessWidget {
               ),
               Text(
                 '6/10',
-                style: StylesManager.styleLatoBold16(context),
+                style: StylesManager.styleLatoBold20(context),
               ),
             ],
           ),

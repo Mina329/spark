@@ -21,7 +21,7 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
             children: [
               Text(
                 StringsManager.peopleOfTheWeek,
-                style: StylesManager.styleLatoBold16(context),
+                style: StylesManager.styleLatoBold20(context),
               ),
               const Spacer(),
               GestureDetector(

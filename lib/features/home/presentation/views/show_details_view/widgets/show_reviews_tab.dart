@@ -20,14 +20,14 @@ class ShowReviewsTab extends StatelessWidget {
           children: [
             Text(
               StringsManager.reviews,
-              style: StylesManager.styleLatoBold16(context),
+              style: StylesManager.styleLatoBold20(context),
             ),
             const SizedBox(
               width: 10,
             ),
             Text(
               '9',
-              style: StylesManager.styleLatoBold16(context)
+              style: StylesManager.styleLatoBold20(context)
                   .copyWith(color: Colors.grey),
             ),
             const Spacer(),

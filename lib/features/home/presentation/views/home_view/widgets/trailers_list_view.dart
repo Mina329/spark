@@ -22,7 +22,7 @@ class TrailersListView extends StatelessWidget {
         children: [
           Text(
             StringsManager.hotTrailers,
-            style: StylesManager.styleLatoBold16(context),
+            style: StylesManager.styleLatoBold20(context),
           ),
           const SizedBox(
             height: 15,

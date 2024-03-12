@@ -83,4 +83,9 @@ abstract class StringsManager {
   static const death = 'Death';
   static const relatedMovies = 'Related Movies';
   static const relatedTvShows = 'Related TV Shows';
+  static const listsDescription =
+      'Save more of your favorites to your listing!';
+  static const createNewList = 'Create New List';
+  static const listTitle = 'List Title';
+  static const create = 'Create';
 }

@@ -21,7 +21,7 @@ class ShowOverviewTab extends StatelessWidget {
       children: [
         Text(
           StringsManager.overview,
-          style: StylesManager.styleLatoBold16(context),
+          style: StylesManager.styleLatoBold20(context),
         ),
         const SizedBox(
           height: 10,
@@ -48,7 +48,7 @@ class ShowOverviewTab extends StatelessWidget {
           children: [
             Text(
               StringsManager.castAndCrew,
-              style: StylesManager.styleLatoBold16(context),
+              style: StylesManager.styleLatoBold20(context),
             ),
             const Spacer(),
             GestureDetector(

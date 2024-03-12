@@ -15,7 +15,7 @@ class PersonOverviewTab extends StatelessWidget {
       children: [
         Text(
           StringsManager.biography,
-          style: StylesManager.styleLatoBold16(context),
+          style: StylesManager.styleLatoBold20(context),
         ),
         const SizedBox(
           height: 10,
@@ -37,7 +37,7 @@ class PersonOverviewTab extends StatelessWidget {
         ),
         Text(
           StringsManager.birth,
-          style: StylesManager.styleLatoBold16(context),
+          style: StylesManager.styleLatoBold20(context),
         ),
         const SizedBox(
           height: 10,
@@ -57,7 +57,7 @@ class PersonOverviewTab extends StatelessWidget {
         ),
         Text(
           StringsManager.death,
-          style: StylesManager.styleLatoBold16(context),
+          style: StylesManager.styleLatoBold20(context),
         ),
         const SizedBox(
           height: 10,

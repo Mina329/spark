@@ -23,7 +23,7 @@ class ShowSection extends StatelessWidget {
           children: [
             Text(
               sectionTitle,
-              style: StylesManager.styleLatoBold16(context),
+              style: StylesManager.styleLatoBold20(context),
             ),
             const Spacer(),
             GestureDetector(

@@ -30,9 +30,18 @@ abstract class ThemeManager {
           border: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.black,
+              color: ColorManager.primaryColor,
             ),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorManager.primaryColor,
+            ),
+          ),
+        ),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor:
+              ColorManager.primaryColor, // Change this to your desired color
         ),
       );
   static ThemeData get darkThemeData => ThemeData.dark().copyWith(
@@ -64,9 +73,18 @@ abstract class ThemeManager {
           border: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Colors.white,
+              color: ColorManager.primaryColor,
             ),
           ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: ColorManager.primaryColor,
+            ),
+          ),
+        ),
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor:
+              ColorManager.primaryColor, // Change this to your desired color
         ),
       );
 }

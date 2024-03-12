@@ -21,7 +21,7 @@ class ShowSimilarTab extends StatelessWidget {
           children: [
             Text(
               StringsManager.moreLikeThis,
-              style: StylesManager.styleLatoBold16(context),
+              style: StylesManager.styleLatoBold20(context),
             ),
             const Spacer(),
             GestureDetector(

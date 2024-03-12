@@ -16,7 +16,7 @@ class ShowDetailsTab extends StatelessWidget {
       children: [
         Text(
           StringsManager.seasonsGuide,
-          style: StylesManager.styleLatoBold16(context),
+          style: StylesManager.styleLatoBold20(context),
         ),
         const SizedBox(
           height: 10,
