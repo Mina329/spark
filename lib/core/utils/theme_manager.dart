@@ -4,6 +4,7 @@ import 'package:spark/core/utils/color_manager.dart';
 abstract class ThemeManager {
   static ThemeData get lightThemeData => ThemeData.light().copyWith(
         primaryColor: ColorManager.primaryColor,
+        scaffoldBackgroundColor: Colors.white,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.resolveWith<Color>(

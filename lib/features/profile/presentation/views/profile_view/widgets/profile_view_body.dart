@@ -5,8 +5,8 @@ import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_section.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_section.dart';
-import 'package:spark/features/profile/presentation/views/widgets/profile_card.dart';
-import 'package:spark/features/profile/presentation/views/widgets/settings_button.dart';
+import 'package:spark/features/profile/presentation/views/profile_view/widgets/profile_card.dart';
+import 'package:spark/features/profile/presentation/views/profile_view/widgets/settings_button.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});

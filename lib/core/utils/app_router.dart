@@ -19,6 +19,7 @@ import 'package:spark/features/home/presentation/views/section_view/section_view
 import 'package:spark/features/home/presentation/views/show_details_view/show_details_view.dart';
 import 'package:spark/features/main/presentation/view/main_view.dart';
 import 'package:spark/features/onboarding/presentation/views/onboarding_view.dart';
+import 'package:spark/features/profile/presentation/views/settings_view/settings_view.dart';
 import 'package:spark/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
@@ -33,6 +34,7 @@ class AppRouter {
   static const kShowDetailsView = '/showdetails';
   static const kPersonDetailsView = '/persondetails';
   static const kMediaView = '/media';
+  static const kSettingsView = '/settings';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -88,6 +90,10 @@ class AppRouter {
       name: kMediaView,
       page: () => const MediaView(),
       binding: MediaBinding(),
+    ),
+    GetPage(
+      name: kSettingsView,
+      page: () => const SettingsView(),
     ),
   ];
 }

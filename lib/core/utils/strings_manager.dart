@@ -107,4 +107,10 @@ abstract class StringsManager {
   static const favouriteTvShows = 'Favorite TV Shows';
   static const favouriteMovies = 'Favorite Movies';
   static const favouriteCelebrities = 'Favorite Celebrities';
+  static const changeAccountName = 'Change Account Name';
+  static const newName = 'New Name';
+  static const submit = 'Submit';
+  static const changeAppTheme = 'Change App Theme';
+  static const lightTheme = 'Light Theme';
+  static const darkTheme = 'Dark Theme';
 }

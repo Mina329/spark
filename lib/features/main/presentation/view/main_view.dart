@@ -8,7 +8,7 @@ import 'package:spark/features/explore/presentation/views/explore_view.dart';
 import 'package:spark/features/home/presentation/views/home_view/home_view.dart';
 import 'package:spark/features/lists/presentation/views/lists_view.dart';
 import 'package:spark/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
-import 'package:spark/features/profile/presentation/views/profile_view.dart';
+import 'package:spark/features/profile/presentation/views/profile_view/profile_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});

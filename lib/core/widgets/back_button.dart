@@ -10,15 +10,11 @@ class Back extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(40),
-      onTap: () => Get.back(),
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Icon(
-          FontAwesomeIcons.angleLeft,
-          color: ColorManager.primaryColor,
-        ),
+    return IconButton(
+      onPressed: () => Get.back(),
+      icon: const Icon(
+        FontAwesomeIcons.angleLeft,
+        color: ColorManager.primaryColor,
       ),
     );
   }
