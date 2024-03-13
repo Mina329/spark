@@ -3,8 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
-import 'package:spark/core/utils/strings_manager.dart';
-import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_search_field.dart';
 import 'package:spark/features/home/presentation/controllers/home_controller.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
@@ -51,33 +50,9 @@ class CustomHomeAppBar extends StatelessWidget {
   }
 
   Widget _buildSearchField(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextField(
-        decoration: InputDecoration(
-          fillColor: ColorManager.geryColor,
-          filled: true,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          prefixIcon: const Icon(
-            FontAwesomeIcons.magnifyingGlass,
-            color: ColorManager.primaryColor,
-          ),
-          hintText: StringsManager.searchMore,
-          hintStyle: StylesManager.styleLatoLight20(context),
-        ),
-        cursorColor: ColorManager.primaryColor,
-      ),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: CustomSearchField(),
     );
   }
 }

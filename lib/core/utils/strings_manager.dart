@@ -88,4 +88,20 @@ abstract class StringsManager {
   static const createNewList = 'Create New List';
   static const listTitle = 'List Title';
   static const create = 'Create';
+  static const exploreDescription = 'Now what shall we watch today?';
+  static const movies = 'Movies';
+  static const nowPlaying = '🔥 Now Playing';
+  static const popularMovies = '⭐️ Popular Movies';
+  static const topRatedMovies = '💎 Top Rating Movies';
+  static const upComingMovies = '💥 UpComing Movies';
+  static const etrendingMovies = '⚡ Trending Movies';
+  static const tvShows = 'TV Shows';
+  static const airingTodayShows = '🚀 Airing Today';
+  static const onTheAirShows = '🔥 On the Air';
+  static const popularShows = '⭐️ Popular TV Shows';
+  static const topRatedShows = '💎 Top Rating TV Shows';
+  static const etrendingShows = '⚡ Trending TV Shows';
+  static const celebrities = 'Celebrities';
+  static const popularCelebrities = '⭐️ Popular Celebrities';
+  static const trendingCelebrities = '⚡ Trending Celebrities';
 }
