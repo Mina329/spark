@@ -104,4 +104,7 @@ abstract class StringsManager {
   static const celebrities = 'Celebrities';
   static const popularCelebrities = '⭐️ Popular Celebrities';
   static const trendingCelebrities = '⚡ Trending Celebrities';
+  static const favouriteTvShows = 'Favorite TV Shows';
+  static const favouriteMovies = 'Favorite Movies';
+  static const favouriteCelebrities = 'Favorite Celebrities';
 }

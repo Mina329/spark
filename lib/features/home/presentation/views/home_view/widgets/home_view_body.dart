@@ -7,7 +7,7 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/custom_home_appbar.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
-import 'package:spark/features/home/presentation/views/home_view/widgets/people_of_the_week_widget.dart';
+import 'package:spark/features/home/presentation/views/home_view/widgets/people_section.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_section.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
 
@@ -119,7 +119,9 @@ class HomeViewBody extends StatelessWidget {
           ),
         ),
         const SliverToBoxAdapter(
-          child: PeopleOfTheWeekWidget(),
+          child: PeopleSection(
+            sectionTitle: StringsManager.peopleOfTheWeek,
+          ),
         ),
         const SliverToBoxAdapter(
           child: SizedBox(

@@ -7,9 +7,9 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_list_view.dart';
 
-class PeopleOfTheWeekWidget extends StatelessWidget {
-  const PeopleOfTheWeekWidget({super.key});
-
+class PeopleSection extends StatelessWidget {
+  const PeopleSection({super.key, required this.sectionTitle});
+  final String sectionTitle;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +20,7 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                StringsManager.peopleOfTheWeek,
+                sectionTitle,
                 style: StylesManager.styleLatoBold20(context),
               ),
               const Spacer(),
@@ -28,7 +28,7 @@ class PeopleOfTheWeekWidget extends StatelessWidget {
                 onTap: () => Get.toNamed(
                   AppRouter.kShowsSectionView,
                   arguments: {
-                    'title': StringsManager.peopleOfTheWeek,
+                    'title': sectionTitle,
                     'showType': ShowType.Person
                   },
                 ),
