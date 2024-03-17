@@ -10,7 +10,10 @@ environment:
 dependencies:
   cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   expandable_text: ^2.3.0
+  firebase_auth: ^4.17.9
+  firebase_core: ^2.27.1
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.10+1

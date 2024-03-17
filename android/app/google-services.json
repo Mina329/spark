@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "581515116074",
+    "project_id": "spark-4a194",
+    "storage_bucket": "spark-4a194.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581515116074:android:1321e55c75efb1dd160d53",
+        "android_client_info": {
+          "package_name": "com.mina329.spark"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR9NuF0HKzsbS5l8PlVc7q4zeaZzyvKnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

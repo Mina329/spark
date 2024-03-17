@@ -113,4 +113,14 @@ abstract class StringsManager {
   static const changeAppTheme = 'Change App Theme';
   static const lightTheme = 'Light Theme';
   static const darkTheme = 'Dark Theme';
+  static const emailAlreadyInUse = 'Email already in use';
+  static const invalidEmail = 'Invalid Email';
+  static const operationNotAllowed = 'Operation not allowed';
+  static const weakPassword = 'Weak Password';
+  static const userDisabled = 'User disabled';
+  static const userNotRegistered = 'User not registered';
+  static const wrongPassword = 'Wrong Password';
+  static const wrongCredentials = 'Wrong Credentials';
+  static const accountExistsWithDifferentCredential =
+      'Account exists with different credential';
 }
