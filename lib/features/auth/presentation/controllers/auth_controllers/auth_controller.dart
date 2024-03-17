@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
@@ -8,11 +6,9 @@ import 'package:spark/core/utils/strings_manager.dart';
 class AuthController extends GetxController {
   bool login = true;
   bool obsecure = true;
-  final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState<String>> confirmPasswordKey =
       GlobalKey<FormFieldState<String>>();
-  String loginEmail = '';
-  String loginPassword = '';
+ 
 
   void Function()? toggleLoginState() {
     login = !login;
@@ -26,24 +22,8 @@ class AuthController extends GetxController {
     return null;
   }
 
-  void loginEmailOnSaved(String? email) {
-    loginEmail = email!;
-  }
-
-  void loginPasswordOnSaved(String? password) {
-    loginPassword = password!;
-  }
-
-  void Function()? loginOnPressed() {
-    loginEmail = '';
-    loginPassword = '';
-    if (loginKey.currentState!.validate()) {
-      loginKey.currentState!.save();
-      log('Login Email : $loginEmail');
-      log('Login Password : $loginPassword');
-    }
-    return null;
-  }
+  
+  
 
   String? emailValidator(String? value) {
     if (GetUtils.isEmail(value!)) {

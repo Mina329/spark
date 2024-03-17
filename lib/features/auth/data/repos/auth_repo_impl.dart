@@ -30,9 +30,19 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> logInUserWithEmailAndPassword(UserData user) {
-    // TODO: implement logInUserWithEmailAndPassword
-    throw UnimplementedError();
+  Future<Either<Failure, void>> logInUserWithEmailAndPassword(
+      UserData user) async {
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: user.email,
+        password: user.password,
+      );
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    }
   }
 
   @override

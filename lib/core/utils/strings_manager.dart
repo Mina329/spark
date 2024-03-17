@@ -127,4 +127,6 @@ abstract class StringsManager {
       'Account registered successfully';
   static const operationSuccess = 'Operation Successful';
   static const operationFailed = 'Operation Failed';
+  static const loggedInSuccessfully = 'Logged in successfully';
+  static const signOut = 'Sign Out';
 }

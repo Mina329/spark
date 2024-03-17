@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_user_with_email_and_password_controller.dart';
 
 import '../../../controllers/auth_controllers/auth_controller.dart';
 
@@ -15,9 +16,12 @@ class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
+    final LogInUserWithEmailAndPasswordController
+        logInUserWithEmailAndPasswordController =
+        Get.find<LogInUserWithEmailAndPasswordController>();
 
     return Form(
-      key: authController.loginKey,
+      key: logInUserWithEmailAndPasswordController.loginKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +46,7 @@ class SignInForm extends StatelessWidget {
               ),
             ),
             validator: authController.emailValidator,
-            onSaved: authController.loginEmailOnSaved,
+            onSaved: logInUserWithEmailAndPasswordController.loginEmailOnSaved,
           ),
           const SizedBox(
             height: 30,
@@ -81,7 +85,7 @@ class SignInForm extends StatelessWidget {
               ),
               obscureText: authController.obsecure,
               validator: authController.passwordValidator,
-              onSaved: authController.loginPasswordOnSaved,
+              onSaved: logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
             ),
           ),
           const SizedBox(
