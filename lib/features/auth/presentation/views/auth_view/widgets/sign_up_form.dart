@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/auth_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/sign_up_with_email_and_password_controller.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({super.key});
@@ -11,9 +12,12 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.find<AuthController>();
+    final SignUpWithEmailAndPasswordController
+        signUpWithEmailAndPasswordController =
+        Get.find<SignUpWithEmailAndPasswordController>();
 
     return Form(
-      key: authController.registerKey,
+      key: signUpWithEmailAndPasswordController.registerKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -38,7 +42,7 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             validator: authController.usernameValidator,
-            onSaved: authController.registerNameOnSaved,
+            onSaved: signUpWithEmailAndPasswordController.registerNameOnSaved,
           ),
           const SizedBox(
             height: 30,
@@ -64,7 +68,7 @@ class SignUpForm extends StatelessWidget {
               ),
             ),
             validator: authController.emailValidator,
-            onSaved: authController.registerEmailOnSaved,
+            onSaved: signUpWithEmailAndPasswordController.registerEmailOnSaved,
           ),
           const SizedBox(
             height: 30,
@@ -103,8 +107,10 @@ class SignUpForm extends StatelessWidget {
               ),
               obscureText: authController.obsecure,
               validator: authController.passwordValidator,
-             onChanged: authController.registerPasswordOnSaved,
-              onSaved: authController.registerPasswordOnSaved,
+              onChanged:
+                  signUpWithEmailAndPasswordController.registerPasswordOnSaved,
+              onSaved:
+                  signUpWithEmailAndPasswordController.registerPasswordOnSaved,
             ),
           ),
           const SizedBox(
@@ -133,7 +139,8 @@ class SignUpForm extends StatelessWidget {
                 ),
               ),
               obscureText: authController.obsecure,
-              validator: authController.confirmPasswordValidator,
+              validator:
+                  signUpWithEmailAndPasswordController.confirmPasswordValidator,
               onChanged: (value) =>
                   authController.confirmPasswordKey.currentState!.validate(),
             ),

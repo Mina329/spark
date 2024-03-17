@@ -123,4 +123,8 @@ abstract class StringsManager {
   static const wrongCredentials = 'Wrong Credentials';
   static const accountExistsWithDifferentCredential =
       'Account exists with different credential';
+  static const accountRegisteredSuccessfully =
+      'Account registered successfully';
+  static const operationSuccess = 'Operation Successful';
+  static const operationFailed = 'Operation Failed';
 }

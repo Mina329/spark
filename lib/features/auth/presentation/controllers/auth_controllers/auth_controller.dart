@@ -9,14 +9,10 @@ class AuthController extends GetxController {
   bool login = true;
   bool obsecure = true;
   final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> registerKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState<String>> confirmPasswordKey =
       GlobalKey<FormFieldState<String>>();
   String loginEmail = '';
   String loginPassword = '';
-  String registerName = '';
-  String registerEmail = '';
-  String registerPassword = '';
 
   void Function()? toggleLoginState() {
     login = !login;
@@ -28,18 +24,6 @@ class AuthController extends GetxController {
     obsecure = !obsecure;
     update();
     return null;
-  }
-
-  void registerNameOnSaved(String? name) {
-    registerName = name!;
-  }
-
-  void registerEmailOnSaved(String? email) {
-    registerEmail = email!;
-  }
-
-  void registerPasswordOnSaved(String? password) {
-    registerPassword = password!;
   }
 
   void loginEmailOnSaved(String? email) {
@@ -61,18 +45,6 @@ class AuthController extends GetxController {
     return null;
   }
 
-  void Function()? registerOnPressed() {
-    registerName = '';
-    registerEmail = '';
-    if (registerKey.currentState!.validate()) {
-      registerKey.currentState!.save();
-      log('Register Name : $registerName');
-      log('Register Email : $registerEmail');
-      log('Register Password : $registerPassword');
-    }
-    return null;
-  }
-
   String? emailValidator(String? value) {
     if (GetUtils.isEmail(value!)) {
       return null;
@@ -81,17 +53,10 @@ class AuthController extends GetxController {
   }
 
   String? usernameValidator(String? value) {
-    if (GetUtils.isUsername(value!)) {
+    if (GetUtils.isLengthGreaterOrEqual(value!, 3)) {
       return null;
     }
     return StringsManager.pleaseEnterValidName;
-  }
-
-  String? confirmPasswordValidator(String? value) {
-    if (registerPassword != value) {
-      return StringsManager.passwordMatch;
-    }
-    return null;
   }
 
   String? passwordValidator(String? pass) {

@@ -5,7 +5,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 
-import '../../../controllers/auth_controller.dart';
+import '../../../controllers/auth_controllers/auth_controller.dart';
 
 class SignInForm extends StatelessWidget {
   const SignInForm({

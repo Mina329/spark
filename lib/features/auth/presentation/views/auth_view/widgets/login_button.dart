@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/controllers/auth_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/auth_controller.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
