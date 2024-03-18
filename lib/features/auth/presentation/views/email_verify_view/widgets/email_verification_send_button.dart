@@ -3,7 +3,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/controllers/email_verify_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/email_verify_controllers/email_verify_controller.dart';
 
 class EmailVerificationSendButton extends StatelessWidget {
   const EmailVerificationSendButton({super.key});

@@ -132,4 +132,5 @@ abstract class StringsManager {
   static const noAccountSelected = 'No Account Selected';
   static const loggedInAsAnonymous = 'Logged in as Anonymous';
   static const passwordResetEmailSent = 'Password Reset Email Sent';
+  static const emailVerificationSent = 'Email Verification Sent';
 }

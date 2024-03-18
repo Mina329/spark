@@ -24,9 +24,15 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> emailVerify() {
-    // TODO: implement emailVerify
-    throw UnimplementedError();
+  Future<Either<Failure, void>> emailVerify() async {
+    try {
+      await _firebaseAuth.currentUser!.sendEmailVerification();
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    }
   }
 
   @override

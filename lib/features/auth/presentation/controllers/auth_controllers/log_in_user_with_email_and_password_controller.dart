@@ -31,7 +31,7 @@ class LogInUserWithEmailAndPasswordController extends GetxController {
         Get.snackbar(StringsManager.operationSuccess,
             StringsManager.loggedInSuccessfully,
             backgroundColor: Colors.green.withOpacity(0.5));
-        Get.offAllNamed(AppRouter.kMainView);
+        Get.offAllNamed(AppRouter.kEmailVerifyView);
       },
     );
     loading.value = false;

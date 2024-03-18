@@ -42,3 +42,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /assets/images/*_test.png
+
