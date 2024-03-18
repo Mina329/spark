@@ -16,11 +16,41 @@ class SignOutButton extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: ElevatedButton(
-        onPressed: () {
-          FirebaseAuth.instance.signOut();
-          GoogleSignIn googleSignIn = GoogleSignIn();
-          googleSignIn.signOut();
-          Get.offAllNamed(AppRouter.kAuthView);
+        onPressed: () async {
+          // Create an instance of FirebaseAuth and GoogleSignIn
+          final FirebaseAuth auth = FirebaseAuth.instance;
+          final GoogleSignIn googleSignIn = GoogleSignIn();
+
+          User? currentUser = auth.currentUser;
+
+          // Check if the user is not null
+          if (currentUser != null) {
+            // Determine if the user is signed in with Google
+            bool isGoogleUser = currentUser.providerData
+                .any((userInfo) => userInfo.providerId == 'google.com');
+
+            // Determine if the user is signed in anonymously
+            bool isAnonymous = currentUser.isAnonymous;
+
+            if (isGoogleUser) {
+              // User is signed in with Google, so sign out from Google
+              await googleSignIn.signOut();
+              // Then, sign out from Firebase Auth
+              await auth.signOut();
+              // Navigate to AuthView
+              Get.offAllNamed(AppRouter.kAuthView);
+            } else if (isAnonymous) {
+              // User is signed in anonymously, so delete the anonymous account
+              await currentUser.delete();
+              // After deletion, you may want to navigate to the AuthView or sign in the user differently
+              Get.offAllNamed(AppRouter.kAuthView);
+            } else {
+              // If signed in with a different provider or email/password, simply sign out from Firebase Auth
+              await auth.signOut();
+              // Navigate to AuthView
+              Get.offAllNamed(AppRouter.kAuthView);
+            }
+          }
         },
         style: ButtonStyle(
           backgroundColor: const MaterialStatePropertyAll(

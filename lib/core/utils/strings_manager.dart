@@ -130,4 +130,5 @@ abstract class StringsManager {
   static const loggedInSuccessfully = 'Logged in successfully';
   static const signOut = 'Sign Out';
   static const noAccountSelected = 'No Account Selected';
+  static const loggedInAsAnonymous = 'Logged in as Anonymous';
 }

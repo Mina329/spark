@@ -11,4 +11,5 @@ abstract class AuthRepo {
   Future<Either<Failure, void>> addFavouriteGenres();
   Future<Either<Failure, void>> emailVerify();
   Future<Either<Failure, void>> forgetPassword(String email);
+  Future<Either<Failure, void>> logInAnonymously();
 }

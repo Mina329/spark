@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_anonymously_controller.dart';
 
 class ContinueAsGuestButton extends StatelessWidget {
   const ContinueAsGuestButton({
@@ -12,11 +12,13 @@ class ContinueAsGuestButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LogInAnonymouslyController logInAnonymouslyController =
+        Get.find<LogInAnonymouslyController>();
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
-          Get.toNamed(AppRouter.kImproveYourFeedsView);
+          logInAnonymouslyController.logInAnonymously();
         },
         child: Text(
           StringsManager.continueAsGuest,
