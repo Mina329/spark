@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/widgets/loading_overlay.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_user_with_email_and_password_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_google_controller.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/sign_up_with_email_and_password_controller.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/auth_view_body.dart';
 
@@ -16,6 +17,8 @@ class AuthView extends StatelessWidget {
     final LogInUserWithEmailAndPasswordController
         logInUserWithEmailAndPasswordController =
         Get.find<LogInUserWithEmailAndPasswordController>();
+    final LogInWithGoogleController logInWithGoogleController =
+        Get.find<LogInWithGoogleController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -29,6 +32,13 @@ class AuthView extends StatelessWidget {
           }),
           Obx(() {
             if (logInUserWithEmailAndPasswordController.loading.isTrue) {
+              return const LoadingOverlay();
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
+          Obx(() {
+            if (logInWithGoogleController.loading.isTrue) {
               return const LoadingOverlay();
             } else {
               return const SizedBox.shrink();

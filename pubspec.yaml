@@ -19,12 +19,15 @@ dependencies:
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
+  google_sign_in: ^6.2.1
   persistent_bottom_nav_bar: ^5.0.2
   photo_view: ^0.14.0
   shared_preferences: ^2.2.2
   youtube_player_flutter: ^9.0.0
 
+
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -58,3 +61,8 @@ flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils/
   filename: assets_manager.dart
+
+flutter_launcher_icons:
+  image_path: "assets/images/spark_logo.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"

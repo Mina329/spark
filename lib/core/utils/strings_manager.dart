@@ -129,4 +129,5 @@ abstract class StringsManager {
   static const operationFailed = 'Operation Failed';
   static const loggedInSuccessfully = 'Logged in successfully';
   static const signOut = 'Sign Out';
+  static const noAccountSelected = 'No Account Selected';
 }

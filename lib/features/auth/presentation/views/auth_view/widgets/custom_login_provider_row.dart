@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/features/auth/data/data_sources/static.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_google_controller.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/custom_login_provider_button.dart';
 
 class CustomLoginProviderRow extends StatelessWidget {
@@ -11,17 +12,30 @@ class CustomLoginProviderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LogInWithGoogleController logInWithGoogleController =
+        Get.find<LogInWithGoogleController>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: List.generate(
-        customLoginProviderImages.length,
-        (index) => CustomLoginProviderButton(
-          image: customLoginProviderImages[index],
+      children: [
+        CustomLoginProviderButton(
+          image: customLoginProviderImages[0],
+          onTap: () {
+            logInWithGoogleController.logInWithGoogle();
+          },
+        ),
+        CustomLoginProviderButton(
+          image: customLoginProviderImages[1],
           onTap: () {
             Get.toNamed(AppRouter.kEmailVerifyView);
           },
         ),
-      ),
+        CustomLoginProviderButton(
+          image: customLoginProviderImages[2],
+          onTap: () {
+            Get.toNamed(AppRouter.kEmailVerifyView);
+          },
+        )
+      ],
     );
   }
 }
