@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/widgets/loading_overlay.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_anonymously_controller.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_user_with_email_and_password_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_facebook_controller.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_google_controller.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/sign_up_with_email_and_password_controller.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/auth_view_body.dart';
@@ -22,6 +23,8 @@ class AuthView extends StatelessWidget {
         Get.find<LogInWithGoogleController>();
     final LogInAnonymouslyController logInAnonymouslyController =
         Get.find<LogInAnonymouslyController>();
+    final LogInWithFacebookController logInWithFacebookController =
+        Get.find<LogInWithFacebookController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -49,6 +52,13 @@ class AuthView extends StatelessWidget {
           }),
           Obx(() {
             if (logInAnonymouslyController.loading.isTrue) {
+              return const LoadingOverlay();
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
+          Obx(() {
+            if (logInWithFacebookController.loading.isTrue) {
               return const LoadingOverlay();
             } else {
               return const SizedBox.shrink();

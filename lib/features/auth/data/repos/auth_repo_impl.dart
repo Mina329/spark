@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spark/core/errors/failure.dart';
 import 'package:spark/core/errors/firebase_auth_failure.dart';
@@ -12,6 +13,7 @@ import 'package:spark/features/auth/domain/repos/auth_repo.dart';
 class AuthRepoImpl extends AuthRepo {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FacebookAuth _facebookAuth = FacebookAuth.instance;
   AuthRepoImpl({required FirebaseAuth firebaseAuth})
       : _firebaseAuth = firebaseAuth;
 
@@ -50,9 +52,34 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> logInUserWithFacebook() {
-    // TODO: implement logInUserWithFacebook
-    throw UnimplementedError();
+  Future<Either<Failure, void>> logInUserWithFacebook() async {
+    try {
+      final LoginResult loginResult = await _facebookAuth.login();
+      if (loginResult.accessToken == null) {
+        return left(
+          Failure(
+            message: StringsManager.noAccountSelected,
+          ),
+        );
+      }
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    } catch (e) {
+      log(e.toString());
+
+      return left(
+        Failure(
+          message: e.toString(),
+        ),
+      );
+    }
   }
 
   @override
@@ -78,7 +105,6 @@ class AuthRepoImpl extends AuthRepo {
         FirebaseAuthFailure.fromFirebaseAuthException(e),
       );
     } catch (e) {
-      log(e.toString());
       return left(
         Failure(
           message: e.toString(),

@@ -47,7 +47,7 @@ class FirebaseAuthFailure extends Failure {
         );
       default:
         return FirebaseAuthFailure(
-          message: exception.code,
+          message: "Something Went Wrong",
         );
     }
   }

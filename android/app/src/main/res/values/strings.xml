@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spark</string>
+    <string name="facebook_app_id">761787552683588</string>
+    <string name="fb_login_protocol_scheme">fb07e1ce1d8909a01cb166055c7fd85565</string>
+    <string name="facebook_client_token">728db843e1f864d4522450e42a944b4b</string>
+
+</resources>
