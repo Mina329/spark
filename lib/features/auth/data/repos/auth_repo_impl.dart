@@ -30,9 +30,15 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> forgetPassword(String email) {
-    // TODO: implement forgetPassword
-    throw UnimplementedError();
+  Future<Either<Failure, void>> forgetPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return right(null);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    }
   }
 
   @override
@@ -111,12 +117,6 @@ class AuthRepoImpl extends AuthRepo {
         ),
       );
     }
-  }
-
-  @override
-  Future<Either<Failure, void>> logInUserWithX() {
-    // TODO: implement logInUserWithX
-    throw UnimplementedError();
   }
 
   @override

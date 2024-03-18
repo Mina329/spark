@@ -5,9 +5,17 @@ class Assets {
   /// assets/images/1_test.png
   static const String assetsImages1Test = "assets/images/1_test.png";
 
+  /// Assets for assetsImagesEmailVerification
+  /// assets/images/email_verification.svg
+  static const String assetsImagesEmailVerification = "assets/images/email_verification.svg";
+
   /// Assets for assetsImagesFacebook
   /// assets/images/facebook.svg
   static const String assetsImagesFacebook = "assets/images/facebook.svg";
+
+  /// Assets for assetsImagesForgetPassword
+  /// assets/images/forget_password.svg
+  static const String assetsImagesForgetPassword = "assets/images/forget_password.svg";
 
   /// Assets for assetsImagesGoogle
   /// assets/images/google.svg
@@ -32,9 +40,5 @@ class Assets {
   /// Assets for assetsImagesSparkLogo
   /// assets/images/spark_logo.png
   static const String assetsImagesSparkLogo = "assets/images/spark_logo.png";
-
-  /// Assets for assetsImagesTwitter
-  /// assets/images/twitter.svg
-  static const String assetsImagesTwitter = "assets/images/twitter.svg";
 }
 

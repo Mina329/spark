@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/features/auth/data/data_sources/static.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_facebook_controller.dart';
 import 'package:spark/features/auth/presentation/controllers/auth_controllers/log_in_with_google_controller.dart';
@@ -32,12 +31,6 @@ class CustomLoginProviderRow extends StatelessWidget {
             logInWithFacebookController.logInWithFacebook();
           },
         ),
-        CustomLoginProviderButton(
-          image: customLoginProviderImages[2],
-          onTap: () {
-            Get.toNamed(AppRouter.kEmailVerifyView);
-          },
-        )
       ],
     );
   }

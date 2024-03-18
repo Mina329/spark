@@ -4,7 +4,6 @@ import 'package:spark/core/utils/assets_manager.dart';
 List<String> customLoginProviderImages = [
   Assets.assetsImagesGoogle,
   Assets.assetsImagesFacebook,
-  Assets.assetsImagesTwitter,
 ];
 Map<String, int> genresToIds = {
   "Action": 28,

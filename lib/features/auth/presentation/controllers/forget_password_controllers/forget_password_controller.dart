@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/features/auth/domain/usecases/forget_password_usecase.dart';
 
 class ForgetPasswordController extends GetxController {
   final GlobalKey<FormFieldState<String>> emailKey =
@@ -11,7 +12,10 @@ class ForgetPasswordController extends GetxController {
   bool sendButtonEnabled = true;
   Timer? countdownTimer;
   int countdown = 120;
+  RxBool loading = false.obs;
+  final ForgetPasswordUsecase forgetPasswordUsecase;
 
+  ForgetPasswordController({required this.forgetPasswordUsecase});
   @override
   void onClose() {
     countdownTimer?.cancel();
@@ -33,6 +37,7 @@ class ForgetPasswordController extends GetxController {
     if (emailKey.currentState!.validate()) {
       emailKey.currentState!.save();
       startCountdown();
+      sendForgetPasswordEmail();
     }
     return null;
   }
@@ -53,5 +58,23 @@ class ForgetPasswordController extends GetxController {
         update();
       },
     );
+  }
+
+  void sendForgetPasswordEmail() async {
+    loading.value = true;
+    var result = await forgetPasswordUsecase.execute(email);
+    result.fold(
+      (failure) => Get.snackbar(
+        StringsManager.operationFailed,
+        failure.message,
+        backgroundColor: Colors.red.withOpacity(0.5),
+      ),
+      (success) {
+        Get.snackbar(StringsManager.operationSuccess,
+            StringsManager.passwordResetEmailSent,
+            backgroundColor: Colors.green.withOpacity(0.5));
+      },
+    );
+    loading.value = false;
   }
 }
