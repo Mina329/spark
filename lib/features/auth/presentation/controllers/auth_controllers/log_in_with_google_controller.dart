@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
-import 'package:spark/features/auth/domain/usecases/get_user_genres_usecase.dart';
+import 'package:spark/features/auth/domain/usecases/get_user_genres_flag_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_with_google_usecase.dart';
 
 class LogInWithGoogleController extends GetxController {
   final LogInWithGoogleUsecase logInWithGoogleUsecase;
-  final GetUserGenreUsecase getUserGenreUsecase;
+  final GetUserGenreFlagUsecase getUserGenreUsecase;
 
   RxBool loading = false.obs;
 
@@ -38,17 +38,16 @@ class LogInWithGoogleController extends GetxController {
     var res = await getUserGenreUsecase.execute();
     res.fold(
       (l) {
-        Get.offAllNamed(AppRouter.kMainView);
+        Get.offAllNamed(
+          AppRouter.kMainView,
+        );
       },
-      (genres) {
-        if (genres.isEmpty) {
+      (genresflag) {
+        if (!genresflag) {
           Get.offAllNamed(AppRouter.kImproveYourFeedsView);
         } else {
           Get.offAllNamed(
             AppRouter.kMainView,
-            arguments: {
-              "genres": genres,
-            },
           );
         }
       },

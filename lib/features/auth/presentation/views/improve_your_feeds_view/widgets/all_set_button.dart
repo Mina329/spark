@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/controllers/improve_your_feed_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/improve_your_feed_controllers/improve_your_feed_controller.dart';
 
 class AllSetButton extends StatelessWidget {
   const AllSetButton({

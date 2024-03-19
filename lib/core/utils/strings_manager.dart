@@ -134,4 +134,6 @@ abstract class StringsManager {
   static const passwordResetEmailSent = 'Password Reset Email Sent';
   static const emailVerificationSent = 'Email Verification Sent';
   static const somethingWentWrong = 'Something Went Wrong';
+  static const favouriteGenresAreSet = 'Favourites Genres Are Set';
+  static const pleaseSelectAnyGenresOrSkip = 'Please Select any Genres or Skip';
 }

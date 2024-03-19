@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/auth/data/models/genre_model.dart';
-import 'package:spark/features/auth/presentation/controllers/improve_your_feed_controller.dart';
+import 'package:spark/features/auth/presentation/controllers/improve_your_feed_controllers/improve_your_feed_controller.dart';
 
 class GenreItem extends StatelessWidget {
   final GenreModel genreModel;

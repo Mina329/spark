@@ -5,7 +5,7 @@ import 'package:spark/features/auth/data/data_sources/auth_remote_data_source/au
 import 'package:spark/features/auth/data/data_sources/auth_remote_data_source/auth_remote_data_source_impl.dart';
 import 'package:spark/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:spark/features/auth/domain/repos/auth_repo.dart';
-import 'package:spark/features/auth/domain/usecases/get_user_genres_usecase.dart';
+import 'package:spark/features/auth/domain/usecases/get_user_genres_flag_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_anonymously_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_with_email_and_password_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_with_facebook_usecase.dart';
@@ -64,8 +64,8 @@ class AuthBinding extends Bindings {
       () => LogInWithFacebookUsecase(authRepo: Get.find()),
       fenix: true,
     );
-    Get.lazyPut<GetUserGenreUsecase>(
-      () => GetUserGenreUsecase(authRepo: Get.find()),
+    Get.lazyPut<GetUserGenreFlagUsecase>(
+      () => GetUserGenreFlagUsecase(authRepo: Get.find()),
       fenix: true,
     );
     // Register controllers

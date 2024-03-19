@@ -8,9 +8,10 @@ abstract class AuthRepo {
   Future<Either<Failure, void>> logInUserWithEmailAndPassword(UserData user);
   Future<Either<Failure, void>> logInUserWithGoogle();
   Future<Either<Failure, void>> logInUserWithFacebook();
-  Future<Either<Failure, void>> addFavouriteGenres();
+  Future<Either<Failure, void>> addFavouriteGenres(List<GenreModel> genres);
   Future<Either<Failure, void>> emailVerify();
   Future<Either<Failure, void>> forgetPassword(String email);
   Future<Either<Failure, void>> logInAnonymously();
-  Future<Either<Failure, List<GenreModel>>> getUserGenres();
+  Future<Either<Failure, bool>> getUserGenresFlag();
+  Future<Either<Failure, void>> setUserGenresFlag();
 }

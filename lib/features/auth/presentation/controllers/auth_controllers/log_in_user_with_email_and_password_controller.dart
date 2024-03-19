@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/features/auth/domain/entities/user_data.dart';
-import 'package:spark/features/auth/domain/usecases/get_user_genres_usecase.dart';
+import 'package:spark/features/auth/domain/usecases/get_user_genres_flag_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_with_email_and_password_usecase.dart';
 
 class LogInUserWithEmailAndPasswordController extends GetxController {
   final LogInWithEmailAndPasswordUsecase usecase;
-  final GetUserGenreUsecase getUserGenreUsecase;
+  final GetUserGenreFlagUsecase getUserGenreUsecase;
 
   LogInUserWithEmailAndPasswordController(
       {required this.getUserGenreUsecase, required this.usecase});
@@ -43,16 +43,15 @@ class LogInUserWithEmailAndPasswordController extends GetxController {
   Future<void> getGenres() async {
     var res = await getUserGenreUsecase.execute();
     res.fold(
-      (l) => Get.offAllNamed(AppRouter.kMainView),
-      (genres) {
-        if (genres.isEmpty) {
+      (l) => Get.offAllNamed(
+        AppRouter.kMainView,
+      ),
+      (genresflag) {
+        if (!genresflag) {
           Get.offAllNamed(AppRouter.kImproveYourFeedsView);
         } else {
           Get.offAllNamed(
             AppRouter.kMainView,
-            arguments: {
-              "genres": genres,
-            },
           );
         }
       },

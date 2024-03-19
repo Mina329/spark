@@ -12,6 +12,23 @@ class GenreModel {
       type: parseType(json['type']),
     );
   }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'type': parseToJsonGenreType(type),
+    };
+  }
+
+  String parseToJsonGenreType(GenreModelType type) {
+    if (type == GenreModelType.Movie) {
+      return 'movie';
+    } else if (type == GenreModelType.TV_Show) {
+      return 'tv';
+    } else {
+      return 'both';
+    }
+  }
 }
 
 enum GenreModelType {
