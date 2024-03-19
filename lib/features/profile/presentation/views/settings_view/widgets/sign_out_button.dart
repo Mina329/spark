@@ -46,15 +46,14 @@ class SignOutButton extends StatelessWidget {
               // User is signed in with Facebook, so sign out from Facebook
               await facebookAuth.logOut();
             }
-
+            if (isAnonymous) {
+              await currentUser.delete();
+            }
             // For both Google and Facebook users, as well as other authentication methods:
             // Sign out from Firebase Auth
             await auth.signOut();
 
             // For anonymous users, delete the account instead of signing out
-            if (isAnonymous) {
-              await currentUser.delete();
-            }
 
             // Navigate to AuthView after sign-out or account deletion
             Get.offAllNamed(AppRouter.kAuthView);

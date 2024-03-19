@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/features/auth/data/data_sources/static.dart';
+import 'package:spark/features/auth/data/models/genre_model.dart';
 
 class ImproveYourFeedsController extends GetxController {
-  RxList<int> selectedGenres = RxList<int>();
+  RxList<GenreModel> selectedGenres = RxList<GenreModel>();
   RxMap<String, Color> genreColorsMap = RxMap<String, Color>();
 
-  void selectGenre(String genre, int value) {
-    if (!selectedGenres.contains(value)) {
-      selectedGenres.add(value);
-      genreColorsMap[genre] = genreColors[Random().nextInt(genreColors.length)];
+  void selectGenre(GenreModel genreModel) {
+    if (!selectedGenres.contains(genreModel)) {
+      selectedGenres.add(genreModel);
+      genreColorsMap[genreModel.name] =
+          genreColors[Random().nextInt(genreColors.length)];
     } else {
-      selectedGenres.remove(value);
-      genreColorsMap.remove(genre);
+      selectedGenres.remove(genreModel);
+      genreColorsMap.remove(genreModel.name);
     }
   }
 

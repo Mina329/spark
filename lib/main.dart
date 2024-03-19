@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spark/core/cache/cache_helper.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/theme_manager.dart';
 import 'package:spark/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  CacheData.casheIntialization();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

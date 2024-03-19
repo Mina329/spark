@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/features/auth/domain/usecases/get_user_genres_usecase.dart';
 import 'package:spark/features/auth/domain/usecases/log_in_with_google_usecase.dart';
 
 class LogInWithGoogleController extends GetxController {
   final LogInWithGoogleUsecase logInWithGoogleUsecase;
+  final GetUserGenreUsecase getUserGenreUsecase;
 
-  LogInWithGoogleController({required this.logInWithGoogleUsecase});
   RxBool loading = false.obs;
+
+  LogInWithGoogleController(
+      {required this.logInWithGoogleUsecase,
+      required this.getUserGenreUsecase});
 
   void logInWithGoogle() async {
     loading.value = true;
@@ -19,13 +24,34 @@ class LogInWithGoogleController extends GetxController {
         failure.message,
         backgroundColor: Colors.red.withOpacity(0.5),
       ),
-      (success) {
+      (success) async {
         Get.snackbar(StringsManager.operationSuccess,
             StringsManager.loggedInSuccessfully,
             backgroundColor: Colors.green.withOpacity(0.5));
-        Get.offAllNamed(AppRouter.kMainView);
+        await getGenres();
       },
     );
     loading.value = false;
+  }
+
+  Future<void> getGenres() async {
+    var res = await getUserGenreUsecase.execute();
+    res.fold(
+      (l) {
+        Get.offAllNamed(AppRouter.kMainView);
+      },
+      (genres) {
+        if (genres.isEmpty) {
+          Get.offAllNamed(AppRouter.kImproveYourFeedsView);
+        } else {
+          Get.offAllNamed(
+            AppRouter.kMainView,
+            arguments: {
+              "genres": genres,
+            },
+          );
+        }
+      },
+    );
   }
 }

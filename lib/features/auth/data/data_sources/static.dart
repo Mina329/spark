@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/assets_manager.dart';
+import 'package:spark/features/auth/data/models/genre_model.dart';
 
 List<String> customLoginProviderImages = [
   Assets.assetsImagesGoogle,
   Assets.assetsImagesFacebook,
 ];
-Map<String, int> genresToIds = {
-  "Action": 28,
-  "Adventure": 12,
-  "Animation": 16,
-  "Comedy": 35,
-  "Crime": 80,
-  "Documentary": 99,
-  "Drama": 18,
-  "Family": 10751,
-  "Fantasy": 14,
-  "History": 36,
-  "Horror": 27,
-  "Music": 10402,
-  "Mystery": 9648,
-  "Romance": 10749,
-  "Science Fiction": 878,
-  "TV Movie": 10770,
-  "Thriller": 53,
-  "War": 10752,
-  "Western": 37,
-  "Action & Adventure": 10759,
-  "Kids": 10762,
-  "News": 10763,
-  "Reality": 10764,
-  "Sci-Fi & Fantasy": 10765,
-  "Soap": 10766,
-  "Talk": 10767,
-  "War & Politics": 10768,
-};
 
+List<GenreModel> genres = [
+  GenreModel(id: "28", name: "Action", type: GenreModelType.Movie),
+  GenreModel(id: "12", name: "Adventure", type: GenreModelType.Movie),
+  GenreModel(id: "16", name: "Animation", type: GenreModelType.Both),
+  GenreModel(id: "35", name: "Comedy", type: GenreModelType.Both),
+  GenreModel(id: "80", name: "Crime", type: GenreModelType.Both),
+  GenreModel(id: "99", name: "Documentary", type: GenreModelType.Both),
+  GenreModel(id: "18", name: "Drama", type: GenreModelType.Both),
+  GenreModel(id: "10751", name: "Family", type: GenreModelType.Both),
+  GenreModel(id: "14", name: "Fantasy", type: GenreModelType.Movie),
+  GenreModel(id: "36", name: "History", type: GenreModelType.Movie),
+  GenreModel(id: "27", name: "Horror", type: GenreModelType.Movie),
+  GenreModel(id: "10402", name: "Music", type: GenreModelType.Movie),
+  GenreModel(id: "9648", name: "Mystery", type: GenreModelType.Both),
+  GenreModel(id: "10749", name: "Romance", type: GenreModelType.Movie),
+  GenreModel(id: "878", name: "Science Fiction", type: GenreModelType.Movie),
+  GenreModel(id: "10770", name: "TV Movie", type: GenreModelType.Movie),
+  GenreModel(id: "53", name: "Thriller", type: GenreModelType.Movie),
+  GenreModel(id: "10752", name: "War", type: GenreModelType.Movie),
+  GenreModel(id: "37", name: "Western", type: GenreModelType.Both),
+  GenreModel(
+      id: "10759", name: "Action & Adventure", type: GenreModelType.TV_Show),
+  GenreModel(id: "10762", name: "Kids", type: GenreModelType.TV_Show),
+  GenreModel(id: "10763", name: "News", type: GenreModelType.TV_Show),
+  GenreModel(id: "10764", name: "Reality", type: GenreModelType.TV_Show),
+  GenreModel(id: "10765", name: "Sci-Fi & Fantasy", type: GenreModelType.TV_Show),
+  GenreModel(id: "10766", name: "Soap", type: GenreModelType.TV_Show),
+  GenreModel(id: "10767", name: "Talk", type: GenreModelType.TV_Show),
+  GenreModel(id: "10768", name: "War & Politics", type: GenreModelType.TV_Show),
+];
 List<Color> genreColors = [
   const Color(0xFFFDD015),
   const Color(0xFFFF543E),

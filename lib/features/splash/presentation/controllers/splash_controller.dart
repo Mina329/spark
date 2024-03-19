@@ -1,12 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spark/core/cache/cache_helper.dart';
+import 'package:spark/core/cache/cache_keys_values.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/assets_manager.dart';
+import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/features/auth/domain/usecases/log_in_anonymously_usecase.dart';
 
 class SplashController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late Animation<double> textOpacityAnimation;
   late AnimationController animationController;
+  final FirebaseAuth firebase = FirebaseAuth.instance;
+  final LogInAnonymouslyUsecase logInAnonymouslyUsecase;
+
+  SplashController({required this.logInAnonymouslyUsecase});
   @override
   void onInit() {
     super.onInit();
@@ -33,28 +42,40 @@ class SplashController extends GetxController
   }
 
   void _navigateToOnBoarding() async {
-    Future.delayed(
-      const Duration(milliseconds: 2500),
-      () => Get.offNamed(AppRouter.kOnboardingView),
+    if (CacheData.getData(key: CacheKeys.kONBOARDING) == null) {
+      await Future.delayed(
+        const Duration(milliseconds: 2500),
+        () => Get.offAllNamed(AppRouter.kOnboardingView),
+      );
+    } else {
+      if (firebase.currentUser != null) {
+        await Future.delayed(
+          const Duration(milliseconds: 2500),
+          () => Get.offAllNamed(AppRouter.kMainView),
+        );
+      } else {
+        await Future.delayed(
+          const Duration(milliseconds: 2500),
+          () {
+            logInAnonymously();
+          },
+        );
+      }
+    }
+  }
+
+  void logInAnonymously() async {
+    var result = await logInAnonymouslyUsecase.execute();
+    result.fold(
+      (failure) {
+        Get.offAllNamed(AppRouter.kAuthView);
+      },
+      (success) {
+        Get.snackbar(
+            StringsManager.operationSuccess, StringsManager.loggedInAsAnonymous,
+            backgroundColor: Colors.green.withOpacity(0.5));
+        Get.offAllNamed(AppRouter.kMainView);
+      },
     );
-    // if (CacheData.getData(key: CacheKeys.kONBOARDING) == null) {
-    //   await Future.delayed(
-    //     const Duration(milliseconds: 2000),
-    //     () => GoRouter.of(context).go(AppRouter.kOnboardingView),
-    //   );
-    // } else {
-    //   if (getIt.get<FirebaseAuth>().currentUser != null) {
-    //     await Future.delayed(
-    //       const Duration(milliseconds: 2000),
-    //       () => GoRouter.of(context).go(AppRouter.kHomeView),
-    //     );
-    //   } else {
-    //     clearDataBase();
-    //     await Future.delayed(
-    //       const Duration(milliseconds: 2000),
-    //       () => GoRouter.of(context).go(AppRouter.kAuthView),
-    //     );
-    //   }
-    // }
   }
 }
