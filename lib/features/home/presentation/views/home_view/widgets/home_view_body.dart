@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/custom_home_appbar.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_section.dart';
@@ -22,6 +21,8 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrendingMoviesController trendingMoviesController =
         Get.find<TrendingMoviesController>();
+    final TrendingTvShowsController trendingTvShowsController =
+        Get.find<TrendingTvShowsController>();
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(
@@ -57,8 +58,8 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Obx(
-              () {
+            child: GetBuilder<TrendingMoviesController>(
+              builder: (context) {
                 return ShowSection(
                   sectionTitle: StringsManager.trendingMovies,
                   showAllOnTap: () => Get.toNamed(
@@ -68,9 +69,10 @@ class HomeViewBody extends StatelessWidget {
                       'showType': ShowType.Movie
                     },
                   ),
-                  trendingMovies: trendingMoviesController.movies.toList(),
+                  items: trendingMoviesController.movies,
+                  showType: ShowType.Movie,
                 );
-              },
+              }
             ),
           ),
         ),
@@ -82,16 +84,21 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ShowSection(
-              sectionTitle: StringsManager.trendingTvShows,
-              showAllOnTap: () => Get.toNamed(
-                AppRouter.kShowsSectionView,
-                arguments: {
-                  'title': StringsManager.trendingTvShows,
-                  'showType': ShowType.TV
-                },
-              ),
-              trendingMovies: [],
+            child: GetBuilder<TrendingTvShowsController>(
+              builder: (context) {
+                return ShowSection(
+                  sectionTitle: StringsManager.trendingTvShows,
+                  showAllOnTap: () => Get.toNamed(
+                    AppRouter.kShowsSectionView,
+                    arguments: {
+                      'title': StringsManager.trendingTvShows,
+                      'showType': ShowType.TV
+                    },
+                  ),
+                  items: trendingTvShowsController.tvShows,
+                  showType: ShowType.TV,
+                );
+              },
             ),
           ),
         ),
@@ -120,7 +127,8 @@ class HomeViewBody extends StatelessWidget {
                   'showType': ShowType.Movie
                 },
               ),
-              trendingMovies: [],
+              items: [],
+              showType: ShowType.Movie,
             ),
           ),
         ),
@@ -151,7 +159,8 @@ class HomeViewBody extends StatelessWidget {
                   'showType': ShowType.Movie
                 },
               ),
-              trendingMovies: [],
+              items: [],
+              showType: ShowType.Movie,
             ),
           ),
         ),

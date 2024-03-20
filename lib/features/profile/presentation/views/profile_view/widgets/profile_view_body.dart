@@ -43,7 +43,8 @@ class ProfileViewBody extends StatelessWidget {
                   'showType': ShowType.Movie
                 },
               ),
-              trendingMovies: const [],
+              items: const [],
+              showType: ShowType.Movie,
             ),
           ),
           const SliverToBoxAdapter(
@@ -61,7 +62,8 @@ class ProfileViewBody extends StatelessWidget {
                   'showType': ShowType.TV
                 },
               ),
-              trendingMovies: const [],
+              items: const [],
+              showType: ShowType.Movie,
             ),
           ),
           const SliverToBoxAdapter(

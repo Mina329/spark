@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/domain/entities/trending_movie_entity.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSection extends StatelessWidget {
@@ -10,11 +10,13 @@ class ShowSection extends StatelessWidget {
     super.key,
     required this.sectionTitle,
     this.showAllOnTap,
-    required this.trendingMovies,
+    required this.items,
+    required this.showType,
   });
   final String sectionTitle;
   final void Function()? showAllOnTap;
-  final List<TrendingMovieEntity> trendingMovies;
+  final List<dynamic> items;
+  final ShowType showType;
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +50,11 @@ class ShowSection extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(right: 15),
               child: ShowCard(
-                trendingMovieEntity: trendingMovies[index],
+                show: items[index],
+                showType: showType,
               ),
             ),
-            itemCount: trendingMovies.length,
+            itemCount: items.length,
             scrollDirection: Axis.horizontal,
           ),
         ),

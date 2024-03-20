@@ -7,8 +7,7 @@ import 'package:spark/features/home/domain/usecases/get_trending_movies_usecase.
 class TrendingMoviesController extends GetxController {
   final GetTrendingMoviesUsecase getTrendingMoviesUsecase;
 
-  // Make 'movies' an observable list from the start
-  var movies = <TrendingMovieEntity>[].obs;
+  List<TrendingMovieEntity> movies = [];
   RxBool loading = false.obs;
 
   TrendingMoviesController({required this.getTrendingMoviesUsecase});
@@ -30,7 +29,8 @@ class TrendingMoviesController extends GetxController {
         backgroundColor: Colors.red.withOpacity(0.5),
       ),
       (moviesList) {
-        movies.addAll(moviesList); // Update the observable list
+        movies.addAll(moviesList);
+        update();
       },
     );
     loading.value = false;
