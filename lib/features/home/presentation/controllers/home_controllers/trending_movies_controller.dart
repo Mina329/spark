@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
-import 'package:spark/features/home/domain/entities/trending_movie_entity.dart';
+import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/usecases/get_trending_movies_usecase.dart';
 
 class TrendingMoviesController extends GetxController {
   final GetTrendingMoviesUsecase getTrendingMoviesUsecase;
 
-  List<TrendingMovieEntity> movies = [];
+  List<MovieMiniResultEntity> movies = [];
   RxBool loading = false.obs;
 
   TrendingMoviesController({required this.getTrendingMoviesUsecase});

@@ -1,7 +1,8 @@
-import 'package:spark/features/home/domain/entities/trending_movie_entity.dart';
-import 'package:spark/features/home/domain/entities/trending_tv_show_entity.dart';
+import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<TrendingMovieEntity>> getTredingMovies(int page);
-  Future<List<TrendingTvShowEntity>> getTredingTvShows(int page);
+  Future<List<MovieMiniResultEntity>> getTredingMovies(int page);
+  Future<List<TvShowMiniResultEntity>> getTredingTvShows(int page);
+  Future<List<MovieMiniResultEntity>> getNowPlayingMovies(int page);
 }

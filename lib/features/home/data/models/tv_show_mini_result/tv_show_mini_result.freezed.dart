@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'trending_tv_show.dart';
+part of 'tv_show_mini_result.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TrendingTvShow _$TrendingTvShowFromJson(Map<String, dynamic> json) {
-  return _TrendingTvShow.fromJson(json);
+TvShowMiniResult _$TvShowMiniResultFromJson(Map<String, dynamic> json) {
+  return _TvShowMiniResult.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TrendingTvShow {
+mixin _$TvShowMiniResult {
   bool? get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath => throw _privateConstructorUsedError;
@@ -48,15 +48,15 @@ mixin _$TrendingTvShow {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrendingTvShowCopyWith<TrendingTvShow> get copyWith =>
+  $TvShowMiniResultCopyWith<TvShowMiniResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrendingTvShowCopyWith<$Res> {
-  factory $TrendingTvShowCopyWith(
-          TrendingTvShow value, $Res Function(TrendingTvShow) then) =
-      _$TrendingTvShowCopyWithImpl<$Res, TrendingTvShow>;
+abstract class $TvShowMiniResultCopyWith<$Res> {
+  factory $TvShowMiniResultCopyWith(
+          TvShowMiniResult value, $Res Function(TvShowMiniResult) then) =
+      _$TvShowMiniResultCopyWithImpl<$Res, TvShowMiniResult>;
   @useResult
   $Res call(
       {bool? adult,
@@ -77,9 +77,9 @@ abstract class $TrendingTvShowCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TrendingTvShowCopyWithImpl<$Res, $Val extends TrendingTvShow>
-    implements $TrendingTvShowCopyWith<$Res> {
-  _$TrendingTvShowCopyWithImpl(this._value, this._then);
+class _$TvShowMiniResultCopyWithImpl<$Res, $Val extends TvShowMiniResult>
+    implements $TvShowMiniResultCopyWith<$Res> {
+  _$TvShowMiniResultCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -171,11 +171,11 @@ class _$TrendingTvShowCopyWithImpl<$Res, $Val extends TrendingTvShow>
 }
 
 /// @nodoc
-abstract class _$$TrendingTvShowImplCopyWith<$Res>
-    implements $TrendingTvShowCopyWith<$Res> {
-  factory _$$TrendingTvShowImplCopyWith(_$TrendingTvShowImpl value,
-          $Res Function(_$TrendingTvShowImpl) then) =
-      __$$TrendingTvShowImplCopyWithImpl<$Res>;
+abstract class _$$TvShowMiniResultImplCopyWith<$Res>
+    implements $TvShowMiniResultCopyWith<$Res> {
+  factory _$$TvShowMiniResultImplCopyWith(_$TvShowMiniResultImpl value,
+          $Res Function(_$TvShowMiniResultImpl) then) =
+      __$$TvShowMiniResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -197,11 +197,11 @@ abstract class _$$TrendingTvShowImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TrendingTvShowImplCopyWithImpl<$Res>
-    extends _$TrendingTvShowCopyWithImpl<$Res, _$TrendingTvShowImpl>
-    implements _$$TrendingTvShowImplCopyWith<$Res> {
-  __$$TrendingTvShowImplCopyWithImpl(
-      _$TrendingTvShowImpl _value, $Res Function(_$TrendingTvShowImpl) _then)
+class __$$TvShowMiniResultImplCopyWithImpl<$Res>
+    extends _$TvShowMiniResultCopyWithImpl<$Res, _$TvShowMiniResultImpl>
+    implements _$$TvShowMiniResultImplCopyWith<$Res> {
+  __$$TvShowMiniResultImplCopyWithImpl(_$TvShowMiniResultImpl _value,
+      $Res Function(_$TvShowMiniResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -223,7 +223,7 @@ class __$$TrendingTvShowImplCopyWithImpl<$Res>
     Object? voteCount = freezed,
     Object? originCountry = freezed,
   }) {
-    return _then(_$TrendingTvShowImpl(
+    return _then(_$TvShowMiniResultImpl(
       adult: freezed == adult
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
@@ -290,8 +290,8 @@ class __$$TrendingTvShowImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TrendingTvShowImpl implements _TrendingTvShow {
-  _$TrendingTvShowImpl(
+class _$TvShowMiniResultImpl implements _TvShowMiniResult {
+  _$TvShowMiniResultImpl(
       {this.adult,
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       this.id,
@@ -310,8 +310,8 @@ class _$TrendingTvShowImpl implements _TrendingTvShow {
       : _genreIds = genreIds,
         _originCountry = originCountry;
 
-  factory _$TrendingTvShowImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TrendingTvShowImplFromJson(json);
+  factory _$TvShowMiniResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TvShowMiniResultImplFromJson(json);
 
   @override
   final bool? adult;
@@ -371,14 +371,14 @@ class _$TrendingTvShowImpl implements _TrendingTvShow {
 
   @override
   String toString() {
-    return 'TrendingTvShow(adult: $adult, backdropPath: $backdropPath, id: $id, name: $name, originalLanguage: $originalLanguage, originalName: $originalName, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, firstAirDate: $firstAirDate, voteAverage: $voteAverage, voteCount: $voteCount, originCountry: $originCountry)';
+    return 'TvShowMiniResult(adult: $adult, backdropPath: $backdropPath, id: $id, name: $name, originalLanguage: $originalLanguage, originalName: $originalName, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, firstAirDate: $firstAirDate, voteAverage: $voteAverage, voteCount: $voteCount, originCountry: $originCountry)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TrendingTvShowImpl &&
+            other is _$TvShowMiniResultImpl &&
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
@@ -430,20 +430,20 @@ class _$TrendingTvShowImpl implements _TrendingTvShow {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TrendingTvShowImplCopyWith<_$TrendingTvShowImpl> get copyWith =>
-      __$$TrendingTvShowImplCopyWithImpl<_$TrendingTvShowImpl>(
+  _$$TvShowMiniResultImplCopyWith<_$TvShowMiniResultImpl> get copyWith =>
+      __$$TvShowMiniResultImplCopyWithImpl<_$TvShowMiniResultImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TrendingTvShowImplToJson(
+    return _$$TvShowMiniResultImplToJson(
       this,
     );
   }
 }
 
-abstract class _TrendingTvShow implements TrendingTvShow {
-  factory _TrendingTvShow(
+abstract class _TvShowMiniResult implements TvShowMiniResult {
+  factory _TvShowMiniResult(
           {final bool? adult,
           @JsonKey(name: 'backdrop_path') final String? backdropPath,
           final int? id,
@@ -459,10 +459,10 @@ abstract class _TrendingTvShow implements TrendingTvShow {
           @JsonKey(name: 'vote_average') final double? voteAverage,
           @JsonKey(name: 'vote_count') final int? voteCount,
           @JsonKey(name: 'origin_country') final List<String>? originCountry}) =
-      _$TrendingTvShowImpl;
+      _$TvShowMiniResultImpl;
 
-  factory _TrendingTvShow.fromJson(Map<String, dynamic> json) =
-      _$TrendingTvShowImpl.fromJson;
+  factory _TvShowMiniResult.fromJson(Map<String, dynamic> json) =
+      _$TvShowMiniResultImpl.fromJson;
 
   @override
   bool? get adult;
@@ -506,6 +506,6 @@ abstract class _TrendingTvShow implements TrendingTvShow {
   List<String>? get originCountry;
   @override
   @JsonKey(ignore: true)
-  _$$TrendingTvShowImplCopyWith<_$TrendingTvShowImpl> get copyWith =>
+  _$$TvShowMiniResultImplCopyWith<_$TvShowMiniResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

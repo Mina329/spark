@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/features/home/data/data_sources/dummy_data.dart';
@@ -10,15 +8,13 @@ class HomeController extends GetxController
   bool search = false;
   AnimationController? animationController;
   Animation<Offset>? slideAnimation;
-  PageController pageController = PageController();
-  Timer? autoScrollTimer;
+
   List<YoutubePlayerController> videosControllers = [];
 
   @override
   void onInit() {
     super.onInit();
     _initSearchAnimation();
-    _initScrollTimer();
     _initTrailersVideos();
   }
 
@@ -35,22 +31,6 @@ class HomeController extends GetxController
         ),
       );
     }
-  }
-
-  void _initScrollTimer() {
-    final int itemCount = showsImages.length;
-
-    autoScrollTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (pageController.hasClients) {
-        int nextPage = (pageController.page!.round() + 1) % itemCount;
-
-        pageController.animateToPage(
-          nextPage,
-          duration: const Duration(seconds: 1),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
   }
 
   void _initSearchAnimation() {
@@ -79,8 +59,6 @@ class HomeController extends GetxController
   @override
   void onClose() {
     animationController?.dispose();
-    autoScrollTimer?.cancel();
-    pageController.dispose();
     for (var video in videosControllers) {
       video.dispose();
     }

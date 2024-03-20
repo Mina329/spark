@@ -4,14 +4,14 @@ import 'package:spark/core/usecase/usecase.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/repos/home_repo.dart';
 
-class GetTrendingMoviesUsecase extends UseCase<List<MovieMiniResultEntity>, int> {
+class GetNowPlayingMoviesUsecase extends UseCase<List<MovieMiniResultEntity>, int> {
   final HomeRepo homeRepo;
 
-  GetTrendingMoviesUsecase({required this.homeRepo});
+  GetNowPlayingMoviesUsecase({required this.homeRepo});
 
   @override
   Future<Either<Failure, List<MovieMiniResultEntity>>> execute(
       [int? inputs]) async {
-    return await homeRepo.getTrendingMovies(inputs!);
+    return await homeRepo.getNowPlayingMovies(inputs!);
   }
 }

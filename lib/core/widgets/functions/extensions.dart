@@ -1,25 +1,26 @@
-import 'package:spark/features/home/data/models/trending_movie/trending_movie.dart';
-import 'package:spark/features/home/data/models/trending_tv_show/trending_tv_show.dart';
-import 'package:spark/features/home/domain/entities/trending_movie_entity.dart';
-import 'package:spark/features/home/domain/entities/trending_tv_show_entity.dart';
+import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
+import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
+import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
-extension TrendingMovieX on TrendingMovie {
-  TrendingMovieEntity toEntity() {
-    return TrendingMovieEntity(
-      id: id!,
-      voteAverage: voteAverage,
-      releaseDate: DateTime.parse(releaseDate ?? '0000-00-00'),
-      posterPath: posterPath,
-    );
+extension TrendingMovieX on MovieMiniResult {
+  MovieMiniResultEntity toEntity() {
+    return MovieMiniResultEntity(
+        id: id!,
+        voteAverage: voteAverage,
+        releaseDate: DateTime.parse(releaseDate ?? '0000-00-00'),
+        posterPath: posterPath,
+        genres: genreIds);
   }
 }
-extension TrendingTvShowX on TrendingTvShow {
-  TrendingTvShowEntity toEntity() {
-    return TrendingTvShowEntity(
-      id: id!,
-      voteAverage: voteAverage,
-      releaseDate: DateTime.parse(firstAirDate ?? '0000-00-00'),
-      posterPath: posterPath,
-    );
+
+extension TrendingTvShowX on TvShowMiniResult {
+  TvShowMiniResultEntity toEntity() {
+    return TvShowMiniResultEntity(
+        id: id!,
+        voteAverage: voteAverage,
+        releaseDate: DateTime.parse(firstAirDate ?? '0000-00-00'),
+        posterPath: posterPath,
+        genres: genreIds);
   }
 }

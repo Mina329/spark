@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
-import 'package:spark/features/home/domain/entities/trending_tv_show_entity.dart';
+import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:spark/features/home/domain/usecases/get_trending_tv_shows_usecase.dart';
 
 class TrendingTvShowsController extends GetxController {
   final GetTrendingTvShowsUsecase getTrendingTvShowsUsecase;
 
-  List<TrendingTvShowEntity> tvShows = [];
+  List<TvShowMiniResultEntity> tvShows = [];
   RxBool loading = false.obs;
 
   TrendingTvShowsController({required this.getTrendingTvShowsUsecase});

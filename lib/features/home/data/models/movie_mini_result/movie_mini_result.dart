@@ -1,12 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:spark/features/home/domain/entities/trending_movie_entity.dart';
 
-part 'trending_movie.freezed.dart';
-part 'trending_movie.g.dart';
+part 'movie_mini_result.freezed.dart';
+part 'movie_mini_result.g.dart';
 
 @freezed
-class TrendingMovie with _$TrendingMovie {
-  factory TrendingMovie({
+class MovieMiniResult with _$MovieMiniResult {
+  factory MovieMiniResult({
     bool? adult,
     @JsonKey(name: 'backdrop_path') String? backdropPath,
     int? id,
@@ -22,8 +21,8 @@ class TrendingMovie with _$TrendingMovie {
     bool? video,
     @JsonKey(name: 'vote_average') double? voteAverage,
     @JsonKey(name: 'vote_count') int? voteCount,
-  }) = _TrendingMovie;
+  }) = _MovieMiniResult;
 
-  factory TrendingMovie.fromJson(Map<String, dynamic> json) =>
-      _$TrendingMovieFromJson(json);
+  factory MovieMiniResult.fromJson(Map<String, dynamic> json) =>
+      _$MovieMiniResultFromJson(json);
 }

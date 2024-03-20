@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 
 Positioned buildCoverImage(String imageUrl) {
   return Positioned(
@@ -7,13 +9,19 @@ Positioned buildCoverImage(String imageUrl) {
     left: 0,
     right: 0,
     bottom: 40,
-    child: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: CachedNetworkImageProvider(imageUrl),
-          fit: BoxFit.cover,
+    child: CachedNetworkImage(
+      imageUrl: imageUrl,
+      errorWidget: (context, url, error) => Center(
+        child: Icon(
+          FontAwesomeIcons.circleExclamation,
+          color: Colors.red,
+          size: getResponsiveFontSize(
+            context,
+            fontSize: 50,
+          ),
         ),
       ),
+      fit: BoxFit.fill,
     ),
   );
 }

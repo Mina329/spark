@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'trending_tv_show.freezed.dart';
-part 'trending_tv_show.g.dart';
+part 'tv_show_mini_result.freezed.dart';
+part 'tv_show_mini_result.g.dart';
 
 @freezed
-class TrendingTvShow with _$TrendingTvShow {
-	factory TrendingTvShow({
+class TvShowMiniResult with _$TvShowMiniResult {
+	factory TvShowMiniResult({
 		bool? adult,
 		@JsonKey(name: 'backdrop_path') String? backdropPath,
 		int? id,
@@ -21,7 +21,7 @@ class TrendingTvShow with _$TrendingTvShow {
 		@JsonKey(name: 'vote_average') double? voteAverage,
 		@JsonKey(name: 'vote_count') int? voteCount,
 		@JsonKey(name: 'origin_country') List<String>? originCountry,
-	}) = _TrendingTvShow;
+	}) = _TvShowMiniResult;
 
-	factory TrendingTvShow.fromJson(Map<String, dynamic> json) => _$TrendingTvShowFromJson(json);
+	factory TvShowMiniResult.fromJson(Map<String, dynamic> json) => _$TvShowMiniResultFromJson(json);
 }

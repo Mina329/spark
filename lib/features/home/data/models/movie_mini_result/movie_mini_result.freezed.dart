@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'trending_movie.dart';
+part of 'movie_mini_result.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TrendingMovie _$TrendingMovieFromJson(Map<String, dynamic> json) {
-  return _TrendingMovie.fromJson(json);
+MovieMiniResult _$MovieMiniResultFromJson(Map<String, dynamic> json) {
+  return _MovieMiniResult.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TrendingMovie {
+mixin _$MovieMiniResult {
   bool? get adult => throw _privateConstructorUsedError;
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath => throw _privateConstructorUsedError;
@@ -47,15 +47,15 @@ mixin _$TrendingMovie {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrendingMovieCopyWith<TrendingMovie> get copyWith =>
+  $MovieMiniResultCopyWith<MovieMiniResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrendingMovieCopyWith<$Res> {
-  factory $TrendingMovieCopyWith(
-          TrendingMovie value, $Res Function(TrendingMovie) then) =
-      _$TrendingMovieCopyWithImpl<$Res, TrendingMovie>;
+abstract class $MovieMiniResultCopyWith<$Res> {
+  factory $MovieMiniResultCopyWith(
+          MovieMiniResult value, $Res Function(MovieMiniResult) then) =
+      _$MovieMiniResultCopyWithImpl<$Res, MovieMiniResult>;
   @useResult
   $Res call(
       {bool? adult,
@@ -76,9 +76,9 @@ abstract class $TrendingMovieCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TrendingMovieCopyWithImpl<$Res, $Val extends TrendingMovie>
-    implements $TrendingMovieCopyWith<$Res> {
-  _$TrendingMovieCopyWithImpl(this._value, this._then);
+class _$MovieMiniResultCopyWithImpl<$Res, $Val extends MovieMiniResult>
+    implements $MovieMiniResultCopyWith<$Res> {
+  _$MovieMiniResultCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -170,11 +170,11 @@ class _$TrendingMovieCopyWithImpl<$Res, $Val extends TrendingMovie>
 }
 
 /// @nodoc
-abstract class _$$TrendingMovieImplCopyWith<$Res>
-    implements $TrendingMovieCopyWith<$Res> {
-  factory _$$TrendingMovieImplCopyWith(
-          _$TrendingMovieImpl value, $Res Function(_$TrendingMovieImpl) then) =
-      __$$TrendingMovieImplCopyWithImpl<$Res>;
+abstract class _$$MovieMiniResultImplCopyWith<$Res>
+    implements $MovieMiniResultCopyWith<$Res> {
+  factory _$$MovieMiniResultImplCopyWith(_$MovieMiniResultImpl value,
+          $Res Function(_$MovieMiniResultImpl) then) =
+      __$$MovieMiniResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -196,11 +196,11 @@ abstract class _$$TrendingMovieImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TrendingMovieImplCopyWithImpl<$Res>
-    extends _$TrendingMovieCopyWithImpl<$Res, _$TrendingMovieImpl>
-    implements _$$TrendingMovieImplCopyWith<$Res> {
-  __$$TrendingMovieImplCopyWithImpl(
-      _$TrendingMovieImpl _value, $Res Function(_$TrendingMovieImpl) _then)
+class __$$MovieMiniResultImplCopyWithImpl<$Res>
+    extends _$MovieMiniResultCopyWithImpl<$Res, _$MovieMiniResultImpl>
+    implements _$$MovieMiniResultImplCopyWith<$Res> {
+  __$$MovieMiniResultImplCopyWithImpl(
+      _$MovieMiniResultImpl _value, $Res Function(_$MovieMiniResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -222,7 +222,7 @@ class __$$TrendingMovieImplCopyWithImpl<$Res>
     Object? voteAverage = freezed,
     Object? voteCount = freezed,
   }) {
-    return _then(_$TrendingMovieImpl(
+    return _then(_$MovieMiniResultImpl(
       adult: freezed == adult
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
@@ -289,8 +289,8 @@ class __$$TrendingMovieImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TrendingMovieImpl implements _TrendingMovie {
-  _$TrendingMovieImpl(
+class _$MovieMiniResultImpl implements _MovieMiniResult {
+  _$MovieMiniResultImpl(
       {this.adult,
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       this.id,
@@ -308,8 +308,8 @@ class _$TrendingMovieImpl implements _TrendingMovie {
       @JsonKey(name: 'vote_count') this.voteCount})
       : _genreIds = genreIds;
 
-  factory _$TrendingMovieImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TrendingMovieImplFromJson(json);
+  factory _$MovieMiniResultImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MovieMiniResultImplFromJson(json);
 
   @override
   final bool? adult;
@@ -361,14 +361,14 @@ class _$TrendingMovieImpl implements _TrendingMovie {
 
   @override
   String toString() {
-    return 'TrendingMovie(adult: $adult, backdropPath: $backdropPath, id: $id, title: $title, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, releaseDate: $releaseDate, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'MovieMiniResult(adult: $adult, backdropPath: $backdropPath, id: $id, title: $title, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, releaseDate: $releaseDate, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TrendingMovieImpl &&
+            other is _$MovieMiniResultImpl &&
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
@@ -419,37 +419,39 @@ class _$TrendingMovieImpl implements _TrendingMovie {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TrendingMovieImplCopyWith<_$TrendingMovieImpl> get copyWith =>
-      __$$TrendingMovieImplCopyWithImpl<_$TrendingMovieImpl>(this, _$identity);
+  _$$MovieMiniResultImplCopyWith<_$MovieMiniResultImpl> get copyWith =>
+      __$$MovieMiniResultImplCopyWithImpl<_$MovieMiniResultImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TrendingMovieImplToJson(
+    return _$$MovieMiniResultImplToJson(
       this,
     );
   }
 }
 
-abstract class _TrendingMovie implements TrendingMovie {
-  factory _TrendingMovie(
-      {final bool? adult,
-      @JsonKey(name: 'backdrop_path') final String? backdropPath,
-      final int? id,
-      final String? title,
-      @JsonKey(name: 'original_language') final String? originalLanguage,
-      @JsonKey(name: 'original_title') final String? originalTitle,
-      final String? overview,
-      @JsonKey(name: 'poster_path') final String? posterPath,
-      @JsonKey(name: 'media_type') final String? mediaType,
-      @JsonKey(name: 'genre_ids') final List<int>? genreIds,
-      final double? popularity,
-      @JsonKey(name: 'release_date') final String? releaseDate,
-      final bool? video,
-      @JsonKey(name: 'vote_average') final double? voteAverage,
-      @JsonKey(name: 'vote_count') final int? voteCount}) = _$TrendingMovieImpl;
+abstract class _MovieMiniResult implements MovieMiniResult {
+  factory _MovieMiniResult(
+          {final bool? adult,
+          @JsonKey(name: 'backdrop_path') final String? backdropPath,
+          final int? id,
+          final String? title,
+          @JsonKey(name: 'original_language') final String? originalLanguage,
+          @JsonKey(name: 'original_title') final String? originalTitle,
+          final String? overview,
+          @JsonKey(name: 'poster_path') final String? posterPath,
+          @JsonKey(name: 'media_type') final String? mediaType,
+          @JsonKey(name: 'genre_ids') final List<int>? genreIds,
+          final double? popularity,
+          @JsonKey(name: 'release_date') final String? releaseDate,
+          final bool? video,
+          @JsonKey(name: 'vote_average') final double? voteAverage,
+          @JsonKey(name: 'vote_count') final int? voteCount}) =
+      _$MovieMiniResultImpl;
 
-  factory _TrendingMovie.fromJson(Map<String, dynamic> json) =
-      _$TrendingMovieImpl.fromJson;
+  factory _MovieMiniResult.fromJson(Map<String, dynamic> json) =
+      _$MovieMiniResultImpl.fromJson;
 
   @override
   bool? get adult;
@@ -492,6 +494,6 @@ abstract class _TrendingMovie implements TrendingMovie {
   int? get voteCount;
   @override
   @JsonKey(ignore: true)
-  _$$TrendingMovieImplCopyWith<_$TrendingMovieImpl> get copyWith =>
+  _$$MovieMiniResultImplCopyWith<_$MovieMiniResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
