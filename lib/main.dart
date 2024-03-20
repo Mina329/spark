@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/cache/cache_helper.dart';
 import 'package:spark/core/utils/app_router.dart';
@@ -8,6 +9,7 @@ import 'package:spark/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   CacheData.casheIntialization();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

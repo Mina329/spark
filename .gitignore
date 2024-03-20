@@ -44,3 +44,4 @@ app.*.map.json
 /assets/images/*_test.png
 
 /android/app/src/main/res/values/strings.xml
+.env

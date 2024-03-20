@@ -9,3 +9,4 @@ enum MediaType {
   Videos,
   Reviews,
 }
+

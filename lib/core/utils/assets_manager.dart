@@ -1,6 +1,38 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsAnimationsMovieLoading
+  /// assets/animations/movie_loading.json
+  static const String assetsAnimationsMovieLoading = "assets/animations/movie_loading.json";
+
+  /// Assets for assetsFontsLatoLatoBold
+  /// assets/fonts/lato/Lato-Bold.ttf
+  static const String assetsFontsLatoLatoBold = "assets/fonts/lato/Lato-Bold.ttf";
+
+  /// Assets for assetsFontsLatoLatoBoldItalic
+  /// assets/fonts/lato/Lato-BoldItalic.ttf
+  static const String assetsFontsLatoLatoBoldItalic = "assets/fonts/lato/Lato-BoldItalic.ttf";
+
+  /// Assets for assetsFontsLatoLatoLight
+  /// assets/fonts/lato/Lato-Light.ttf
+  static const String assetsFontsLatoLatoLight = "assets/fonts/lato/Lato-Light.ttf";
+
+  /// Assets for assetsFontsLatoLatoRegular
+  /// assets/fonts/lato/Lato-Regular.ttf
+  static const String assetsFontsLatoLatoRegular = "assets/fonts/lato/Lato-Regular.ttf";
+
+  /// Assets for assetsFontsRobotoRobotoBold
+  /// assets/fonts/roboto/Roboto-Bold.ttf
+  static const String assetsFontsRobotoRobotoBold = "assets/fonts/roboto/Roboto-Bold.ttf";
+
+  /// Assets for assetsFontsRobotoRobotoMedium
+  /// assets/fonts/roboto/Roboto-Medium.ttf
+  static const String assetsFontsRobotoRobotoMedium = "assets/fonts/roboto/Roboto-Medium.ttf";
+
+  /// Assets for assetsFontsRobotoRobotoRegular
+  /// assets/fonts/roboto/Roboto-Regular.ttf
+  static const String assetsFontsRobotoRobotoRegular = "assets/fonts/roboto/Roboto-Regular.ttf";
+
   /// Assets for assetsImages1Test
   /// assets/images/1_test.png
   static const String assetsImages1Test = "assets/images/1_test.png";

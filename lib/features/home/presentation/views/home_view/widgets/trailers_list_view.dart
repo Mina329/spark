@@ -5,7 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/presentation/controllers/home_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 
 class TrailersListView extends StatelessWidget {
   const TrailersListView({super.key});

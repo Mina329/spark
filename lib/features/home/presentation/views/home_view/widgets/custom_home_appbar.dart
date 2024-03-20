@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/widgets/custom_search_field.dart';
-import 'package:spark/features/home/presentation/controllers/home_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   const CustomHomeAppBar({
