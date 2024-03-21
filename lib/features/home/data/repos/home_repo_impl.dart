@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spark/core/errors/failure.dart';
@@ -68,7 +70,8 @@ class HomeRepoImpl extends HomeRepo {
   Future<Either<Failure, List<String>>> getNowPlayingMoviesTrailer(
       List<MovieMiniResultEntity> movies) async {
     try {
-      var results = await homeRemoteDataSource.getNowPlayingMoviesTrailers(movies);
+      var results =
+          await homeRemoteDataSource.getNowPlayingMoviesTrailers(movies);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
@@ -82,13 +85,32 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(int page) async{
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
+      int page) async {
     try {
       var results = await homeRemoteDataSource.getTredingPeople(page);
       return right(results);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List>> getPicksForYou() async {
+    try {
+      var results = await homeRemoteDataSource.getPicksForYou();
+      return right(results);
+    } on DioException catch (e) {
+      log(e.toString());
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log(e.toString());
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,

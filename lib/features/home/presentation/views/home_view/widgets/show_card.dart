@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -63,41 +65,36 @@ class ShowCard extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      show.releaseDate!.year.toString(),
+              Flexible(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                    Text(
+                      show.releaseDate == null
+                          ? ''
+                          : show.releaseDate.year.toString(),
                       style: StylesManager.styleLatoRegular14(context),
                     ),
-                  ),
-                  const Spacer(),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
+                    const Spacer(),
+                    Text(
                       show.voteAverage?.toStringAsFixed(1) ?? '',
                       style: StylesManager.styleLatoRegular14(context),
                     ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Icon(
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                    Icon(
                       FontAwesomeIcons.solidStar,
                       color: ColorManager.goldColor,
                       size: getResponsiveFontSize(context, fontSize: 15),
                     ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.01,
-                  ),
-                ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.01,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

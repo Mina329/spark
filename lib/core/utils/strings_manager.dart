@@ -59,7 +59,7 @@ abstract class StringsManager {
   static const trendingMovies = 'Trending Movies';
   static const trendingTvShows = 'Trending TV Shows';
   static const showAll = 'Show All';
-  static const picksForYour = 'Picks For Your';
+  static const picksForYou = 'Picks For You';
   static const fromYourLists = 'From Your List';
   static const hotTrailers = 'Hot Trailers';
   static const peopleOfTheWeek = 'People of the Week';

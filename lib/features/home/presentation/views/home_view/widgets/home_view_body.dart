@@ -4,6 +4,7 @@ import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/picks_for_you_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
@@ -20,10 +21,6 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TrendingMoviesController trendingMoviesController =
-        Get.find<TrendingMoviesController>();
-    final TrendingTvShowsController trendingTvShowsController =
-        Get.find<TrendingTvShowsController>();
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(
@@ -59,7 +56,8 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GetBuilder<TrendingMoviesController>(builder: (context) {
+            child: GetBuilder<TrendingMoviesController>(
+                builder: (trendingMoviesController) {
               return ShowSection(
                 sectionTitle: StringsManager.trendingMovies,
                 showAllOnTap: () => Get.toNamed(
@@ -84,7 +82,7 @@ class HomeViewBody extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: GetBuilder<TrendingTvShowsController>(
-              builder: (context) {
+              builder: (trendingTvShowsController) {
                 return ShowSection(
                   sectionTitle: StringsManager.trendingTvShows,
                   showAllOnTap: () => Get.toNamed(
@@ -117,17 +115,21 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ShowSection(
-              sectionTitle: StringsManager.picksForYour,
-              showAllOnTap: () => Get.toNamed(
-                AppRouter.kShowsSectionView,
-                arguments: {
-                  'title': StringsManager.picksForYour,
-                  'showType': ShowType.Movie
-                },
-              ),
-              items: [],
-              showType: ShowType.Movie,
+            child: GetBuilder<PicksForYouController>(
+              builder: (picksForYouController) {
+                return ShowSection(
+                  sectionTitle: StringsManager.picksForYou,
+                  showAllOnTap: () => Get.toNamed(
+                    AppRouter.kShowsSectionView,
+                    arguments: {
+                      'title': StringsManager.picksForYou,
+                      'showType': ShowType.Movie
+                    },
+                  ),
+                  items: picksForYouController.shows,
+                  showType: ShowType.Movie,
+                );
+              },
             ),
           ),
         ),
@@ -162,7 +164,7 @@ class HomeViewBody extends StatelessWidget {
                   'showType': ShowType.Movie
                 },
               ),
-              items: [],
+              items: const [],
               showType: ShowType.Movie,
             ),
           ),

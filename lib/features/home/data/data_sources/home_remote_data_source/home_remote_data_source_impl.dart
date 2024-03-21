@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spark/core/utils/api_service.dart';
 import 'package:spark/core/widgets/functions/extensions.dart';
+import 'package:spark/features/auth/data/models/genre_model.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:spark/features/home/data/models/movie_trailer/movie_trailer.dart';
@@ -11,8 +14,13 @@ import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.d
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   final ApiService apiService;
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firebaseFirestore;
 
-  HomeRemoteDataSourceImpl({required this.apiService});
+  HomeRemoteDataSourceImpl(
+      {required this.firebaseAuth,
+      required this.firebaseFirestore,
+      required this.apiService});
   @override
   Future<List<MovieMiniResultEntity>> getTredingMovies(int page) async {
     var data =
@@ -70,5 +78,72 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       items.add(PersonMiniResult.fromJson(item).toEntity());
     }
     return items;
+  }
+
+  @override
+  Future<List> getPicksForYou() async {
+    List<GenreModel> genres = firebaseAuth.currentUser!.isAnonymous
+        ? []
+        : await getUserFavouriteGenres();
+    List<MovieMiniResultEntity> movies = [];
+    List<TvShowMiniResultEntity> tvShows = [];
+    List result = [];
+    (List<String>, List<String>) categorizedGenres =
+        getCategorizedGenres(genres);
+
+    String genresParameterMovies =
+        categorizedGenres.$1.map((id) => id.toString()).join('%7C');
+    var moviesData = await apiService.get(
+        endPoint:
+            '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=10000${categorizedGenres.$1.isEmpty ? "" : "&with_genres=$genresParameterMovies"}');
+    for (var item in moviesData['results']) {
+      movies.add(MovieMiniResult.fromJson(item).toEntity());
+    }
+
+    String genresParameterTvShow =
+        categorizedGenres.$2.map((id) => id.toString()).join('%7C');
+    var tvShowsData = await apiService.get(
+        endPoint:
+            '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=10000${categorizedGenres.$2.isEmpty ? "" : "&with_genres=$genresParameterTvShow"}');
+    for (var item in tvShowsData['results']) {
+      tvShows.add(TvShowMiniResult.fromJson(item).toEntity());
+    }
+
+    result.addAll(movies);
+    result.addAll(tvShows);
+    result.shuffle();
+
+    return result;
+  }
+
+  Future<List<GenreModel>> getUserFavouriteGenres() async {
+    List<GenreModel> genres = [];
+    QuerySnapshot querySnapshot = await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('genres')
+        .get();
+    for (var doc in querySnapshot.docs) {
+      GenreModel genre =
+          GenreModel.fromJson(doc.data() as Map<String, dynamic>);
+      genres.add(genre);
+    }
+    return genres;
+  }
+
+  (List<String>, List<String>) getCategorizedGenres(List<GenreModel> genres) {
+    List<String> moviesGenres = [];
+    List<String> tvShowGenres = [];
+    for (var genre in genres) {
+      if (genre.type == GenreModelType.Movie) {
+        moviesGenres.add(genre.id);
+      } else if (genre.type == GenreModelType.TV_Show) {
+        tvShowGenres.add(genre.id);
+      } else if (genre.type == GenreModelType.Both) {
+        moviesGenres.add(genre.id);
+        tvShowGenres.add(genre.id);
+      }
+    }
+    return (moviesGenres, tvShowGenres);
   }
 }
