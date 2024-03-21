@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/usecases/get_now_playing_movies_usecase.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
 
 class NowPlayingMoviesController extends GetxController {
   final GetNowPlayingMoviesUsecase getNowPlayingMoviesUsecase;
@@ -13,13 +14,16 @@ class NowPlayingMoviesController extends GetxController {
   RxBool loading = false.obs;
   PageController pageController = PageController();
   Timer? autoScrollTimer;
+  final MovieTrailersController movieTrailersController =
+      Get.find<MovieTrailersController>();
   NowPlayingMoviesController({required this.getNowPlayingMoviesUsecase});
 
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     await getNowPlayingMovies();
     _initScrollTimer();
+    movieTrailersController.getTrendingMoviesTrailers(movies);
   }
 
   Future getNowPlayingMovies() async {

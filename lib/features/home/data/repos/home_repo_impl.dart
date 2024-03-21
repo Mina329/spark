@@ -62,4 +62,21 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getNowPlayingMoviesTrailer(
+      List<MovieMiniResultEntity> movies) async {
+    try {
+      var results = await homeRemoteDataSource.getNowPlayingMoviesTrailers(movies);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
 }
