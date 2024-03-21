@@ -27,7 +27,6 @@ class PersonMediaTab extends StatelessWidget {
             },
           ),
           items: [],
-          showType: ShowType.Movie,
         ),
         const SizedBox(
           height: 15,
@@ -42,7 +41,6 @@ class PersonMediaTab extends StatelessWidget {
             },
           ),
           items: [],
-          showType: ShowType.Movie,
         ),
         const SizedBox(
           height: 30,

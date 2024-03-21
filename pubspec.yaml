@@ -32,6 +32,7 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   photo_view: ^0.14.0
   shared_preferences: ^2.2.2
+  shimmer: ^3.0.0
   youtube_player_flutter: ^9.0.0
 
 dev_dependencies:

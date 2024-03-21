@@ -4,7 +4,6 @@ import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/build_genre_id_values_row.dart';
 import 'package:spark/features/home/data/data_sources/static.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
@@ -33,8 +32,7 @@ class MoreInfoColumn extends StatelessWidget {
               onPressed: () => Get.toNamed(
                 AppRouter.kShowDetailsView,
                 arguments: {
-                  'showType': ShowType.Movie,
-                  'id': movie.id,
+                  'show': movie,
                 },
               ),
               style: ButtonStyle(

@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
-import 'package:spark/core/widgets/custom_search_field.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
@@ -34,25 +33,8 @@ class CustomHomeAppBar extends StatelessWidget {
               )
             ],
           ),
-          GetBuilder<HomeController>(
-            builder: (_) {
-              return SlideTransition(
-                position: homeController.slideAnimation!,
-                child: homeController.search
-                    ? _buildSearchField(context)
-                    : const SizedBox(),
-              );
-            },
-          ),
         ],
       ),
-    );
-  }
-
-  Widget _buildSearchField(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      child: CustomSearchField(),
     );
   }
 }

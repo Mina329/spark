@@ -23,6 +23,9 @@ class PeopleListView extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             onTap: () => Get.toNamed(
               AppRouter.kPersonDetailsView,
+              arguments: {
+                'show': people[index],
+              },
             ),
             child: Column(
               children: [

@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -9,16 +7,13 @@ import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/core/widgets/enums.dart';
 
 class ShowCard extends StatelessWidget {
   const ShowCard({
     super.key,
     required this.show,
-    required this.showType,
   });
   final dynamic show;
-  final ShowType showType;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -26,7 +21,7 @@ class ShowCard extends StatelessWidget {
       onTap: () => Get.toNamed(
         AppRouter.kShowDetailsView,
         arguments: {
-          'showType': ShowType.Movie,
+          'show': show,
         },
       ),
       child: ConstrainedBox(

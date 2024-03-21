@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_list_view.dart';
 
 class PeopleSection extends StatelessWidget {
   final String sectionTitle;
   final List<PersonMiniResultEntity> people;
-
+  final Function()? showAllOnTap;
   const PeopleSection(
-      {super.key, required this.sectionTitle, required this.people});
+      {super.key,
+      required this.sectionTitle,
+      required this.people,
+      required this.showAllOnTap});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,13 +29,7 @@ class PeopleSection extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => Get.toNamed(
-                  AppRouter.kShowsSectionView,
-                  arguments: {
-                    'title': sectionTitle,
-                    'showType': ShowType.Person
-                  },
-                ),
+                onTap: () => showAllOnTap,
                 child: Text(
                   StringsManager.showAll,
                   style: StylesManager.styleLatoRegular16(context)

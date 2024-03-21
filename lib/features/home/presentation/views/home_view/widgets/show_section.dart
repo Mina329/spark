@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_card.dart';
 
 class ShowSection extends StatelessWidget {
@@ -11,12 +10,10 @@ class ShowSection extends StatelessWidget {
     required this.sectionTitle,
     this.showAllOnTap,
     required this.items,
-    required this.showType,
   });
   final String sectionTitle;
   final void Function()? showAllOnTap;
   final List<dynamic> items;
-  final ShowType showType;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +48,6 @@ class ShowSection extends StatelessWidget {
               padding: const EdgeInsets.only(right: 15),
               child: ShowCard(
                 show: items[index],
-                showType: showType,
               ),
             ),
             itemCount: items.length,

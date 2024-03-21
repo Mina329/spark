@@ -58,24 +58,29 @@ class HomeViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: GetBuilder<TrendingMoviesController>(
                 builder: (trendingMoviesController) {
-              return ShowSection(
-                sectionTitle: StringsManager.trendingMovies,
-                showAllOnTap: () => Get.toNamed(
-                  AppRouter.kShowsSectionView,
-                  arguments: {
-                    'title': StringsManager.trendingMovies,
-                    'showType': ShowType.Movie
-                  },
-                ),
-                items: trendingMoviesController.movies,
-                showType: ShowType.Movie,
-              );
+              return trendingMoviesController.movies.isEmpty
+                  ? const SizedBox.shrink()
+                  : Column(
+                      children: [
+                        ShowSection(
+                          sectionTitle: StringsManager.trendingMovies,
+                          showAllOnTap: () => Get.toNamed(
+                            AppRouter.kShowsSectionView,
+                            arguments: {
+                              'title': StringsManager.trendingMovies,
+                              'showType': ShowType.Movie,
+                              'sectionType': SectionType.TrendingMovies,
+                              'showsList': trendingMoviesController.movies
+                            },
+                          ),
+                          items: trendingMoviesController.movies,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    );
             }),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
           ),
         ),
         SliverToBoxAdapter(
@@ -83,95 +88,92 @@ class HomeViewBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: GetBuilder<TrendingTvShowsController>(
               builder: (trendingTvShowsController) {
-                return ShowSection(
-                  sectionTitle: StringsManager.trendingTvShows,
-                  showAllOnTap: () => Get.toNamed(
-                    AppRouter.kShowsSectionView,
-                    arguments: {
-                      'title': StringsManager.trendingTvShows,
-                      'showType': ShowType.TV
-                    },
-                  ),
-                  items: trendingTvShowsController.tvShows,
-                  showType: ShowType.TV,
-                );
+                return trendingTvShowsController.tvShows.isEmpty
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          ShowSection(
+                            sectionTitle: StringsManager.trendingTvShows,
+                            showAllOnTap: () => Get.toNamed(
+                              AppRouter.kShowsSectionView,
+                              arguments: {
+                                'title': StringsManager.trendingTvShows,
+                                'showType': ShowType.TV,
+                                'sectionType': SectionType.TrendingTvShows,
+                                'showsList': trendingTvShowsController.tvShows
+                              },
+                            ),
+                            items: trendingTvShowsController.tvShows,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      );
               },
             ),
           ),
         ),
         const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
-          ),
-        ),
-        const SliverToBoxAdapter(
           child: TrailersListView(),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
-          ),
         ),
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: GetBuilder<PicksForYouController>(
               builder: (picksForYouController) {
-                return ShowSection(
-                  sectionTitle: StringsManager.picksForYou,
-                  showAllOnTap: () => Get.toNamed(
-                    AppRouter.kShowsSectionView,
-                    arguments: {
-                      'title': StringsManager.picksForYou,
-                      'showType': ShowType.Movie
-                    },
-                  ),
-                  items: picksForYouController.shows,
-                  showType: ShowType.Movie,
-                );
+                return picksForYouController.shows.isEmpty
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          ShowSection(
+                            sectionTitle: StringsManager.picksForYou,
+                            showAllOnTap: () => Get.toNamed(
+                              AppRouter.kShowsSectionView,
+                              arguments: {
+                                'title': StringsManager.picksForYou,
+                                'showType': ShowType.Movies_TV,
+                                'sectionType': SectionType.PicksForYou,
+                                'showsList': picksForYouController.shows
+                              },
+                            ),
+                            items: picksForYouController.shows,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      );
               },
             ),
           ),
         ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
-          ),
-        ),
         SliverToBoxAdapter(
           child: GetBuilder<TrendingPeopleController>(
-              builder: (trendingPeopleController) {
-            return PeopleSection(
-              sectionTitle: StringsManager.peopleOfTheWeek,
-              people: trendingPeopleController.people,
-            );
-          }),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: ShowSection(
-              sectionTitle: StringsManager.fromYourLists,
-              showAllOnTap: () => Get.toNamed(
-                AppRouter.kShowsSectionView,
-                arguments: {
-                  'title': StringsManager.fromYourLists,
-                  'showType': ShowType.Movie
-                },
-              ),
-              items: const [],
-              showType: ShowType.Movie,
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: SizedBox(
-            height: 30,
+            builder: (trendingPeopleController) {
+              return trendingPeopleController.people.isEmpty
+                  ? const SizedBox.shrink()
+                  : Column(
+                      children: [
+                        PeopleSection(
+                          sectionTitle: StringsManager.peopleOfTheWeek,
+                          people: trendingPeopleController.people,
+                          showAllOnTap: () => Get.toNamed(
+                            AppRouter.kShowsSectionView,
+                            arguments: {
+                              'title': StringsManager.peopleOfTheWeek,
+                              'showType': ShowType.Person,
+                              'sectionType': SectionType.PeopleOfTheWeek,
+                              'showsList': trendingPeopleController.people,
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                      ],
+                    );
+            },
           ),
         ),
       ],
