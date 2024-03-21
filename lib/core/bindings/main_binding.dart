@@ -8,11 +8,13 @@ import 'package:spark/features/home/domain/repos/home_repo.dart';
 import 'package:spark/features/home/domain/usecases/get_now_playing_movies_trailer_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_trending_movies_usecase.dart';
+import 'package:spark/features/home/domain/usecases/get_trending_people_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_trending_tv_shows_usecase.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:spark/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
@@ -65,6 +67,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetTrendingPeopleUsecase>(
+      () => GetTrendingPeopleUsecase(
+        homeRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -94,6 +102,12 @@ class MainBinding extends Bindings {
     Get.lazyPut<NowPlayingMoviesController>(
       () => NowPlayingMoviesController(
         getNowPlayingMoviesUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<TrendingPeopleController>(
+      () => TrendingPeopleController(
+        getTrendingPeopleUsecase: Get.find(),
       ),
       fenix: true,
     );

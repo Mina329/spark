@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:spark/core/errors/failure.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class HomeRepo {
@@ -12,4 +13,6 @@ abstract class HomeRepo {
       int page);
   Future<Either<Failure, List<String>>> getNowPlayingMoviesTrailer(
       List<MovieMiniResultEntity> movies);
+  Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
+      int page);
 }

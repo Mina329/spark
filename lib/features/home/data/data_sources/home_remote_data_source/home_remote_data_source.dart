@@ -1,4 +1,5 @@
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class HomeRemoteDataSource {
@@ -7,4 +8,5 @@ abstract class HomeRemoteDataSource {
   Future<List<MovieMiniResultEntity>> getNowPlayingMovies(int page);
   Future<List<String>> getNowPlayingMoviesTrailers(
       List<MovieMiniResultEntity> movies);
+  Future<List<PersonMiniResultEntity>> getTredingPeople(int page);
 }

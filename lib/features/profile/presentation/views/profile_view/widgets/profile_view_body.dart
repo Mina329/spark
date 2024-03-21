@@ -74,6 +74,7 @@ class ProfileViewBody extends StatelessWidget {
           const SliverToBoxAdapter(
             child: PeopleSection(
               sectionTitle: StringsManager.favouriteCelebrities,
+              people: [],
             ),
           ),
           const SliverToBoxAdapter(

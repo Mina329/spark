@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/circular_image.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 
 class PeopleListView extends StatelessWidget {
   const PeopleListView({
     super.key,
+    required this.people,
   });
-
+  final List<PersonMiniResultEntity> people;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,7 +26,9 @@ class PeopleListView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CircularImage(index: index),
+                CircularImage(
+                    imageUrl:
+                        'https://image.tmdb.org/t/p/original${people[index].profilePath}'),
                 const SizedBox(
                   height: 10,
                 ),
@@ -33,7 +36,7 @@ class PeopleListView extends StatelessWidget {
                   child: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      peoplesNames[index],
+                      people[index].name ?? '',
                       style: StylesManager.styleLatoSemiBold16(context),
                     ),
                   ),
@@ -42,7 +45,7 @@ class PeopleListView extends StatelessWidget {
             ),
           ),
         ),
-        itemCount: showsImages.length,
+        itemCount: people.length,
         scrollDirection: Axis.horizontal,
       ),
     );

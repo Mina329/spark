@@ -5,11 +5,15 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_list_view.dart';
 
 class PeopleSection extends StatelessWidget {
-  const PeopleSection({super.key, required this.sectionTitle});
   final String sectionTitle;
+  final List<PersonMiniResultEntity> people;
+
+  const PeopleSection(
+      {super.key, required this.sectionTitle, required this.people});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +47,9 @@ class PeopleSection extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const PeopleListView(),
+          PeopleListView(
+            people: people,
+          ),
         ],
       ),
     );

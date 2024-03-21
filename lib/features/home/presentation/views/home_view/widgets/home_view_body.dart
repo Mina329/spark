@@ -5,6 +5,7 @@ import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/custom_home_appbar.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/home_trending_shows.dart';
@@ -58,22 +59,20 @@ class HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GetBuilder<TrendingMoviesController>(
-              builder: (context) {
-                return ShowSection(
-                  sectionTitle: StringsManager.trendingMovies,
-                  showAllOnTap: () => Get.toNamed(
-                    AppRouter.kShowsSectionView,
-                    arguments: {
-                      'title': StringsManager.trendingMovies,
-                      'showType': ShowType.Movie
-                    },
-                  ),
-                  items: trendingMoviesController.movies,
-                  showType: ShowType.Movie,
-                );
-              }
-            ),
+            child: GetBuilder<TrendingMoviesController>(builder: (context) {
+              return ShowSection(
+                sectionTitle: StringsManager.trendingMovies,
+                showAllOnTap: () => Get.toNamed(
+                  AppRouter.kShowsSectionView,
+                  arguments: {
+                    'title': StringsManager.trendingMovies,
+                    'showType': ShowType.Movie
+                  },
+                ),
+                items: trendingMoviesController.movies,
+                showType: ShowType.Movie,
+              );
+            }),
           ),
         ),
         const SliverToBoxAdapter(
@@ -137,10 +136,14 @@ class HomeViewBody extends StatelessWidget {
             height: 30,
           ),
         ),
-        const SliverToBoxAdapter(
-          child: PeopleSection(
-            sectionTitle: StringsManager.peopleOfTheWeek,
-          ),
+        SliverToBoxAdapter(
+          child: GetBuilder<TrendingPeopleController>(
+              builder: (trendingPeopleController) {
+            return PeopleSection(
+              sectionTitle: StringsManager.peopleOfTheWeek,
+              people: trendingPeopleController.people,
+            );
+          }),
         ),
         const SliverToBoxAdapter(
           child: SizedBox(

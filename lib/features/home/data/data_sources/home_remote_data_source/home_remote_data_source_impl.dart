@@ -3,8 +3,10 @@ import 'package:spark/core/widgets/functions/extensions.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:spark/features/home/data/models/movie_trailer/movie_trailer.dart';
+import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -57,5 +59,16 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       }
     }
     return youttubeKeys;
+  }
+
+  @override
+  Future<List<PersonMiniResultEntity>> getTredingPeople(int page) async {
+    var data =
+        await apiService.get(endPoint: '/trending/person/week?page=$page');
+    List<PersonMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(PersonMiniResult.fromJson(item).toEntity());
+    }
+    return items;
   }
 }
