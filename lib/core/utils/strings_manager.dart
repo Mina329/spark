@@ -136,4 +136,6 @@ abstract class StringsManager {
   static const somethingWentWrong = 'Something Went Wrong';
   static const favouriteGenresAreSet = 'Favourites Genres Are Set';
   static const pleaseSelectAnyGenresOrSkip = 'Please Select any Genres or Skip';
+  static const personAddedToFavourite = 'Person Added To Favourite';
+  static const personRemovedFromFavourite = 'Person Removed From Favourite';
 }

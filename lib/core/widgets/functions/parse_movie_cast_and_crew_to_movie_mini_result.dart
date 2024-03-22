@@ -5,42 +5,41 @@ import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dar
 
 List<MovieMiniResultEntity>? parseMovieCastAndCrewToMovieMiniResult(
     List<MovieCast>? cast, List<MovieCrew>? crew) {
-  List<MovieMiniResultEntity> movies = [];
-  for (var movie in cast!) {
-    movies.add(
-      MovieMiniResultEntity(
+  Map<int, MovieMiniResultEntity> uniqueMovies = {};
+
+  for (var movie in cast ?? []) {
+    if (!uniqueMovies.containsKey(movie.id)) {
+      uniqueMovies[movie.id!] = MovieMiniResultEntity(
         id: movie.id!,
         voteAverage: movie.voteAverage,
         releaseDate: movie.releaseDate == null || movie.releaseDate!.isEmpty
             ? null
-            : DateTime.parse(
-                movie.releaseDate!,
-              ),
+            : DateTime.parse(movie.releaseDate!),
         posterPath: movie.posterPath,
         genres: movie.genreIds,
         showType: ShowType.Movie,
         name: movie.title,
         voteCount: movie.voteCount,
-      ),
-    );
+      );
+    }
   }
-  for (var movie in crew!) {
-    movies.add(
-      MovieMiniResultEntity(
+
+  for (var movie in crew ?? []) {
+    if (!uniqueMovies.containsKey(movie.id)) {
+      uniqueMovies[movie.id!] = MovieMiniResultEntity(
         id: movie.id!,
         voteAverage: movie.voteAverage,
         releaseDate: movie.releaseDate == null || movie.releaseDate!.isEmpty
             ? null
-            : DateTime.parse(
-                movie.releaseDate!,
-              ),
+            : DateTime.parse(movie.releaseDate!),
         posterPath: movie.posterPath,
         genres: movie.genreIds,
         showType: ShowType.Movie,
         name: movie.title,
         voteCount: movie.voteCount,
-      ),
-    );
+      );
+    }
   }
-  return movies;
+
+  return uniqueMovies.values.toList();
 }

@@ -135,4 +135,53 @@ class HomeRepoImpl extends HomeRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> addFavouritePerson(
+      PersonResultEntity person) async {
+    try {
+      var results = await homeRemoteDataSource.addFavouritePerson(person);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteFavouritePerson(int id) async {
+    try {
+      var results = await homeRemoteDataSource.deleteFavouritePerson(id);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkFavouritePerson(int id) async {
+    try {
+      var results = await homeRemoteDataSource.checkFavouritePerson(id);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
 }
