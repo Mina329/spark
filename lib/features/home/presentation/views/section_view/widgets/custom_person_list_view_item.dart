@@ -14,6 +14,9 @@ class CustomPersonListViewItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(5),
       onTap: () => Get.toNamed(
         AppRouter.kPersonDetailsView,
+        arguments: {
+          'id': person.id,
+        },
       ),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.2,

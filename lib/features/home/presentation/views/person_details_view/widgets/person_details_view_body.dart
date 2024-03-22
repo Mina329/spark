@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/presentation/controllers/person_details_controller.dart';
+import 'package:spark/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
 import 'package:spark/features/home/presentation/views/person_details_view/widgets/custom_person_tab_bar.dart';
 import 'package:spark/features/home/presentation/views/person_details_view/widgets/person_image_title.dart';
 

@@ -6,6 +6,7 @@ import 'package:spark/features/home/presentation/views/person_details_view/widge
 
 class PersonDetailsController extends GetxController {
   int index = 0;
+
   final List<String> tabs = [
     StringsManager.overview,
     StringsManager.media,
@@ -15,6 +16,7 @@ class PersonDetailsController extends GetxController {
     const PersonOverviewTab(),
     const PersonMediaTab(),
   ];
+
   void changeTabs(int newIndex) {
     index = newIndex;
     update();

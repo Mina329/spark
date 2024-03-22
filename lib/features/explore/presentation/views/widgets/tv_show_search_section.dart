@@ -51,6 +51,7 @@ class TvShowSearchSection extends StatelessWidget {
                       'title': tvShowsExploreTitles[index],
                       'showType': ShowType.TV
                     },
+                    preventDuplicates: false,
                   ),
                   child: ExploreItem(
                     exploreItemTitle: tvShowsExploreTitles[index],
@@ -78,6 +79,7 @@ class TvShowSearchSection extends StatelessWidget {
                       'title': tvShowsGenres[index]['name'],
                       'showType': ShowType.TV
                     },
+                    preventDuplicates: false,
                   ),
                   child: ExploreGenreItem(
                     name: tvShowsGenres[index]['name'],

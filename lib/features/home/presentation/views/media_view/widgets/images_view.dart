@@ -42,6 +42,7 @@ class ImagesView extends StatelessWidget {
                 return GestureDetector(
                   onTap: () => Get.dialog(
                     Dialog(
+                      backgroundColor: Colors.transparent,
                       child: CachedNetworkImage(
                         imageUrl:
                             'https://image.tmdb.org/t/p/original/ApitDfnYDwFNOPfyVuhW5ElWzhe.jpg',

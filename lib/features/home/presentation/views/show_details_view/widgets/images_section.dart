@@ -5,14 +5,17 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/core/widgets/functions/show_full_screen_image.dart';
+import 'package:spark/features/home/domain/entities/image_entity.dart';
 
 import '../../../../../../core/utils/app_router.dart';
 
 class ImagesSection extends StatelessWidget {
   const ImagesSection({
     super.key,
+    required this.images,
   });
-
+  final List<ImageEntity> images;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +30,7 @@ class ImagesSection extends StatelessWidget {
               width: 10,
             ),
             Text(
-              '105',
+              '${images.length}',
               style: StylesManager.styleLatoBold20(context)
                   .copyWith(color: Colors.grey),
             ),
@@ -37,6 +40,7 @@ class ImagesSection extends StatelessWidget {
                 AppRouter.kMediaView,
                 arguments: {
                   'mediaType': MediaType.Images,
+                  'mediaList': images,
                 },
               ),
               child: Text(
@@ -55,25 +59,28 @@ class ImagesSection extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(right: 15),
-              child: AspectRatio(
-                aspectRatio: 1.7,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        'https://image.tmdb.org/t/p/original/9faGSFi5jam6pDWGNd0p8JcJgXQ.jpg',
+              child: GestureDetector(
+                onTap: () => showFullScreenImage(context, images[index]),
+                child: AspectRatio(
+                  aspectRatio: images[index].aspectRatio!,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          'https://image.tmdb.org/t/p/original${images[index].filePath}',
+                        ),
+                        fit: BoxFit.fill,
                       ),
-                      fit: BoxFit.fill,
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
             ),
-            itemCount: 5,
+            itemCount: images.length > 10 ? 10 : images.length,
             scrollDirection: Axis.horizontal,
           ),
-        ),
+        )
       ],
     );
   }

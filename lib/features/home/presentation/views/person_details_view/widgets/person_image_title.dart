@@ -5,6 +5,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/functions/build_cover_image.dart';
 import 'package:spark/core/widgets/functions/build_cover_overlay.dart';
+import 'package:spark/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 
 class PersonImageTitle extends StatelessWidget {
   const PersonImageTitle({
@@ -13,12 +14,14 @@ class PersonImageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GetPersonDetailsController getPersonDetailsController =
+        Get.find<GetPersonDetailsController>();
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: 40 * MediaQuery.of(context).size.width / 27,
       child: Stack(
         children: [
           buildCoverImage(
-              'https://image.tmdb.org/t/p/original/7Jahy5LZX2Fo8fGJltMreAI49hC.jpg'),
+              'https://image.tmdb.org/t/p/original${getPersonDetailsController.personResultEntity.profileUrl}'),
           buildCoverOverlay(context),
           Positioned(
             bottom: 0,
@@ -27,14 +30,14 @@ class PersonImageTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Bryan Cranston',
+                  getPersonDetailsController.personResultEntity.name!,
                   style: StylesManager.styleLatoBold25(context),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  'Actor',
+                  getPersonDetailsController.personResultEntity.role!,
                   style: StylesManager.styleLatoRegular16(context)
                       .copyWith(color: ColorManager.primaryColor),
                 ),

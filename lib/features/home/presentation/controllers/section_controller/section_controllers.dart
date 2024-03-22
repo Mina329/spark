@@ -10,15 +10,19 @@ import 'package:spark/features/home/domain/usecases/get_trending_tv_shows_usecas
 class SectionController extends GetxController {
   late final dynamic usecase;
   List<dynamic> shows = [];
+  late String sectionName;
+  late ShowType showType;
+  late SectionType sectionType;
   int page = 2;
-  RxBool loading = true.obs;
   RxBool loadingMore = false.obs;
   late final ScrollController scrollController;
   @override
   void onInit() {
     super.onInit();
     scrollController = ScrollController()..addListener(_onScroll);
-    final sectionType = Get.arguments['sectionType'] as SectionType;
+    sectionType = Get.arguments['sectionType'] as SectionType;
+    sectionName = Get.arguments['title'];
+    showType = Get.arguments['showType'];
     usecase = sectionTypeToUsecase[sectionType]?.call();
     getPassedShow();
   }
@@ -27,7 +31,8 @@ class SectionController extends GetxController {
     SectionType.TrendingMovies: () => Get.find<GetTrendingMoviesUsecase>(),
     SectionType.TrendingTvShows: () => Get.find<GetTrendingTvShowsUsecase>(),
     SectionType.PicksForYou: () => Get.find<GetPicksForYouUsecase>(),
-    SectionType.PeopleOfTheWeek: () => Get.find<GetTrendingPeopleUsecase>()
+    SectionType.PeopleOfTheWeek: () => Get.find<GetTrendingPeopleUsecase>(),
+    SectionType.None: () => null,
   };
   @override
   void onClose() {
@@ -39,7 +44,6 @@ class SectionController extends GetxController {
   getPassedShow() {
     shows.addAll(Get.arguments['showsList']);
     update();
-    loading.value = false;
   }
 
   void getData() async {
@@ -65,7 +69,8 @@ class SectionController extends GetxController {
   void _onScroll() {
     if (!loadingMore.value &&
         scrollController.position.pixels >=
-            scrollController.position.maxScrollExtent) {
+            scrollController.position.maxScrollExtent &&
+        sectionType != SectionType.None) {
       getData();
     }
   }

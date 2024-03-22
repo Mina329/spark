@@ -10,17 +10,15 @@ class SectionViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String sectionName = Get.arguments['title'];
-    ShowType showType = Get.arguments['showType'];
     return GetBuilder<SectionController>(
       builder: (sectionController) {
-        return showType != ShowType.Person
+        return sectionController.showType != ShowType.Person
             ? ShowsSection(
-                sectionName: sectionName,
+                sectionName: sectionController.sectionName,
                 shows: sectionController.shows,
               )
             : PeoplesSection(
-                sectionName: sectionName,
+                sectionName: sectionController.sectionName,
                 peoples: sectionController.shows,
               );
       },

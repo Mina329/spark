@@ -24,7 +24,7 @@ class PeopleListView extends StatelessWidget {
             onTap: () => Get.toNamed(
               AppRouter.kPersonDetailsView,
               arguments: {
-                'show': people[index],
+                'id': people[index].id,
               },
             ),
             child: Column(

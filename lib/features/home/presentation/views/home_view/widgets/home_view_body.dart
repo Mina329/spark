@@ -72,6 +72,7 @@ class HomeViewBody extends StatelessWidget {
                               'sectionType': SectionType.TrendingMovies,
                               'showsList': trendingMoviesController.movies
                             },
+                            preventDuplicates: false,
                           ),
                           items: trendingMoviesController.movies,
                         ),
@@ -102,6 +103,7 @@ class HomeViewBody extends StatelessWidget {
                                 'sectionType': SectionType.TrendingTvShows,
                                 'showsList': trendingTvShowsController.tvShows
                               },
+                              preventDuplicates: false,
                             ),
                             items: trendingTvShowsController.tvShows,
                           ),
@@ -136,6 +138,7 @@ class HomeViewBody extends StatelessWidget {
                                 'sectionType': SectionType.PicksForYou,
                                 'showsList': picksForYouController.shows
                               },
+                              preventDuplicates: false,
                             ),
                             items: picksForYouController.shows,
                           ),
@@ -166,6 +169,7 @@ class HomeViewBody extends StatelessWidget {
                               'sectionType': SectionType.PeopleOfTheWeek,
                               'showsList': trendingPeopleController.people,
                             },
+                            preventDuplicates: false,
                           ),
                         ),
                         const SizedBox(

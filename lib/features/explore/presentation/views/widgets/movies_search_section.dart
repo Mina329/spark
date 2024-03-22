@@ -50,6 +50,7 @@ class MoviesSearchSection extends StatelessWidget {
                       'title': moviesExploreTitles[index],
                       'showType': ShowType.Movie
                     },
+                    preventDuplicates: false,
                   ),
                   child: ExploreItem(
                     exploreItemTitle: moviesExploreTitles[index],
@@ -77,6 +78,7 @@ class MoviesSearchSection extends StatelessWidget {
                       'title': moviesGenres[index]['name'],
                       'showType': ShowType.Movie
                     },
+                    preventDuplicates: false,
                   ),
                   child: ExploreGenreItem(
                     name: moviesGenres[index]['name'],

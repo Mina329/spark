@@ -75,8 +75,9 @@ class AppRouter {
     ),
     GetPage(
       name: kShowsSectionView,
-      page: () => const SectionView(),
+      page: () => const ShowsSectionView(),
       binding: SectionBinding(),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kShowDetailsView,

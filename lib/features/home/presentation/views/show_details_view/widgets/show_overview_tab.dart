@@ -57,6 +57,7 @@ class ShowOverviewTab extends StatelessWidget {
                   'title': StringsManager.castAndCrew,
                   'showType': ShowType.Person
                 },
+                preventDuplicates: false,
               ),
               child: Text(
                 StringsManager.showAll,

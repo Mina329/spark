@@ -21,37 +21,59 @@ class ShowDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            show.name,
-            style: StylesManager.styleLatoRegular18(context),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            show.releaseDate.year.toString(),
-            style: StylesManager.styleLatoRegular16(context).copyWith(
-              color: Colors.grey,
+          if (show.name != null)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  show.name,
+                  style: StylesManager.styleLatoRegular18(context),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          buildGenreIdValuesRow(
-            ids: show.genres,
-            idToValueMap: idsToGenres,
-            context: context,
-            textColor: Colors.grey,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          RatingRow(
-            averageRating: show.voteAverage.toStringAsFixed(1),
-            ratingCount: show.voteCount.toString(),
-          ),
+          if (show.releaseDate != null)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  show.releaseDate.year.toString(),
+                  style: StylesManager.styleLatoRegular16(context).copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
+            ),
+          if (show.genres != null && show.genres.isNotEmpty)
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildGenreIdValuesRow(
+                  ids: show.genres ?? [],
+                  idToValueMap: idsToGenres,
+                  context: context,
+                  textColor: Colors.grey,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+              ],
+            ),
+          if (show.voteAverage != null && show.voteCount != null)
+            RatingRow(
+              averageRating: show.voteAverage.toStringAsFixed(1),
+              ratingCount: show.voteCount.toString(),
+            ),
         ],
       ),
     );

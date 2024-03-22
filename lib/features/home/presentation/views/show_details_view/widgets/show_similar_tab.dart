@@ -32,6 +32,7 @@ class ShowSimilarTab extends StatelessWidget {
                   'title': StringsManager.moreLikeThis,
                   'showType': ShowType.Movie
                 },
+                preventDuplicates: false,
               ),
               child: Text(
                 StringsManager.showAll,
@@ -51,7 +52,15 @@ class ShowSimilarTab extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding: const EdgeInsets.only(right: 15),
               child: ShowCard(
-                show: MovieMiniResultEntity(id: 123),
+                show: MovieMiniResultEntity(
+                    id: 123,
+                    voteAverage: null,
+                    releaseDate: null,
+                    posterPath: null,
+                    genres: null,
+                    showType: null,
+                    name: null,
+                    voteCount: null),
               ),
             ),
             itemCount: showsImages.length,

@@ -42,6 +42,7 @@ class ProfileViewBody extends StatelessWidget {
                   'title': StringsManager.favouriteMovies,
                   'showType': ShowType.Movie
                 },
+                preventDuplicates: false,
               ),
               items: const [],
             ),
@@ -60,6 +61,7 @@ class ProfileViewBody extends StatelessWidget {
                   'title': StringsManager.favouriteTvShows,
                   'showType': ShowType.TV
                 },
+                preventDuplicates: false,
               ),
               items: const [],
             ),

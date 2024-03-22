@@ -1,9 +1,4 @@
-enum ShowType {
-  Movie,
-  TV,
-  Person,
-  Movies_TV
-}
+enum ShowType { Movie, TV, Person, Movies_TV }
 
 enum MediaType {
   Images,
@@ -11,9 +6,10 @@ enum MediaType {
   Reviews,
 }
 
-enum SectionType{
+enum SectionType {
   TrendingMovies,
   TrendingTvShows,
   PicksForYou,
   PeopleOfTheWeek,
+  None,
 }

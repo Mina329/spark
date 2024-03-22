@@ -25,7 +25,9 @@ class ShowDetailsTab extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        const ImagesSection(),
+        const ImagesSection(
+          images: [],
+        ),
         const SizedBox(
           height: 15,
         ),

@@ -50,6 +50,7 @@ class PeopleSearchSection extends StatelessWidget {
                       'title': peoplesExploreTitles[index],
                       'showType': ShowType.Person
                     },
+                    preventDuplicates: false,
                   ),
                   child: ExploreItem(
                     exploreItemTitle: peoplesExploreTitles[index],
