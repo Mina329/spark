@@ -17,6 +17,7 @@ class CustomPersonListViewItem extends StatelessWidget {
         arguments: {
           'id': person.id,
         },
+        preventDuplicates: false,
       ),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.2,

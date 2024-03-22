@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
@@ -63,15 +66,26 @@ class ImagesSection extends StatelessWidget {
                 onTap: () => showFullScreenImage(context, images[index]),
                 child: AspectRatio(
                   aspectRatio: images[index].aspectRatio!,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: CachedNetworkImage(
+                      imageUrl:
                           'https://image.tmdb.org/t/p/original${images[index].filePath}',
-                        ),
-                        fit: BoxFit.fill,
+                      placeholder: (context, url) => Center(
+                        child:
+                            Lottie.asset(Assets.assetsAnimationsMovieLoading),
                       ),
-                      borderRadius: BorderRadius.circular(5),
+                      errorWidget: (context, url, error) => Center(
+                        child: Icon(
+                          FontAwesomeIcons.circleExclamation,
+                          color: Colors.red,
+                          size: getResponsiveFontSize(
+                            context,
+                            fontSize: 50,
+                          ),
+                        ),
+                      ),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

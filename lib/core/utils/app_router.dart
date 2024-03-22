@@ -88,6 +88,7 @@ class AppRouter {
       name: kPersonDetailsView,
       page: () => const PersonDetailsView(),
       binding: PersonDetailsBinding(),
+      preventDuplicates: false,
     ),
     GetPage(
       name: kMediaView,

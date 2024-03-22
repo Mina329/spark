@@ -26,6 +26,7 @@ class PeopleListView extends StatelessWidget {
               arguments: {
                 'id': people[index].id,
               },
+              preventDuplicates: false,
             ),
             child: Column(
               children: [

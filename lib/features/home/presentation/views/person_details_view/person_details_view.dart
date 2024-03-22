@@ -4,6 +4,7 @@ import 'package:spark/core/widgets/loading_overlay.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/favourite_person_controller.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 import 'package:spark/features/home/presentation/views/person_details_view/widgets/person_details_view_body.dart';
+import 'package:spark/features/home/presentation/views/person_details_view/widgets/person_details_view_shimmer.dart';
 
 class PersonDetailsView extends StatelessWidget {
   const PersonDetailsView({super.key});
@@ -22,7 +23,7 @@ class PersonDetailsView extends StatelessWidget {
             () {
               if (getPersonDetailsController.loading.isTrue ||
                   favouritePersonController.checkLoading.isTrue) {
-                return const SizedBox.shrink();
+                return PersonDetailsViewShimmer();
               } else {
                 return const PersonDetailsViewBody();
               }
