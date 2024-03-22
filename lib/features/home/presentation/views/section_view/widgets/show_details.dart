@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/functions/build_genre_id_values_row.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 import 'package:spark/features/home/data/data_sources/static.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/rating_row.dart';
 
 class ShowDetails extends StatelessWidget {
   const ShowDetails({
     super.key,
-    required this.index,
+    this.show,
   });
-  final int index;
+  final dynamic show;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,7 +22,7 @@ class ShowDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            showsTitle[index],
+            show.name,
             style: StylesManager.styleLatoRegular18(context),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
@@ -32,7 +31,7 @@ class ShowDetails extends StatelessWidget {
             height: 5,
           ),
           Text(
-            showsYear[index],
+            show.releaseDate.year.toString(),
             style: StylesManager.styleLatoRegular16(context).copyWith(
               color: Colors.grey,
             ),
@@ -41,16 +40,18 @@ class ShowDetails extends StatelessWidget {
             height: 5,
           ),
           buildGenreIdValuesRow(
-            ids: showsGenresIds[index],
+            ids: show.genres,
             idToValueMap: idsToGenres,
             context: context,
             textColor: Colors.grey,
-            mainAxisAlignment: MainAxisAlignment.start,
           ),
           const SizedBox(
             height: 5,
           ),
-          RatingRow(index: index),
+          RatingRow(
+            averageRating: show.voteAverage.toStringAsFixed(1),
+            ratingCount: show.voteCount.toString(),
+          ),
         ],
       ),
     );

@@ -25,10 +25,13 @@ mixin _$KnownFor {
   String? get backdropPath => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_language')
   String? get originalLanguage => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_title')
   String? get originalTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'original_name')
+  String? get originalName => throw _privateConstructorUsedError;
   String? get overview => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
   String? get posterPath => throw _privateConstructorUsedError;
@@ -39,6 +42,8 @@ mixin _$KnownFor {
   double? get popularity => throw _privateConstructorUsedError;
   @JsonKey(name: 'release_date')
   String? get releaseDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_air_date')
+  String? get firstAirDate => throw _privateConstructorUsedError;
   bool? get video => throw _privateConstructorUsedError;
   @JsonKey(name: 'vote_average')
   double? get voteAverage => throw _privateConstructorUsedError;
@@ -61,14 +66,17 @@ abstract class $KnownForCopyWith<$Res> {
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       int? id,
       String? title,
+      String? name,
       @JsonKey(name: 'original_language') String? originalLanguage,
       @JsonKey(name: 'original_title') String? originalTitle,
+      @JsonKey(name: 'original_name') String? originalName,
       String? overview,
       @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'media_type') String? mediaType,
       @JsonKey(name: 'genre_ids') List<int>? genreIds,
       double? popularity,
       @JsonKey(name: 'release_date') String? releaseDate,
+      @JsonKey(name: 'first_air_date') String? firstAirDate,
       bool? video,
       @JsonKey(name: 'vote_average') double? voteAverage,
       @JsonKey(name: 'vote_count') int? voteCount});
@@ -91,14 +99,17 @@ class _$KnownForCopyWithImpl<$Res, $Val extends KnownFor>
     Object? backdropPath = freezed,
     Object? id = freezed,
     Object? title = freezed,
+    Object? name = freezed,
     Object? originalLanguage = freezed,
     Object? originalTitle = freezed,
+    Object? originalName = freezed,
     Object? overview = freezed,
     Object? posterPath = freezed,
     Object? mediaType = freezed,
     Object? genreIds = freezed,
     Object? popularity = freezed,
     Object? releaseDate = freezed,
+    Object? firstAirDate = freezed,
     Object? video = freezed,
     Object? voteAverage = freezed,
     Object? voteCount = freezed,
@@ -120,6 +131,10 @@ class _$KnownForCopyWithImpl<$Res, $Val extends KnownFor>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       originalLanguage: freezed == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -127,6 +142,10 @@ class _$KnownForCopyWithImpl<$Res, $Val extends KnownFor>
       originalTitle: freezed == originalTitle
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originalName: freezed == originalName
+          ? _value.originalName
+          : originalName // ignore: cast_nullable_to_non_nullable
               as String?,
       overview: freezed == overview
           ? _value.overview
@@ -151,6 +170,10 @@ class _$KnownForCopyWithImpl<$Res, $Val extends KnownFor>
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
               as String?,
       video: freezed == video
           ? _value.video
@@ -181,14 +204,17 @@ abstract class _$$KnownForImplCopyWith<$Res>
       @JsonKey(name: 'backdrop_path') String? backdropPath,
       int? id,
       String? title,
+      String? name,
       @JsonKey(name: 'original_language') String? originalLanguage,
       @JsonKey(name: 'original_title') String? originalTitle,
+      @JsonKey(name: 'original_name') String? originalName,
       String? overview,
       @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'media_type') String? mediaType,
       @JsonKey(name: 'genre_ids') List<int>? genreIds,
       double? popularity,
       @JsonKey(name: 'release_date') String? releaseDate,
+      @JsonKey(name: 'first_air_date') String? firstAirDate,
       bool? video,
       @JsonKey(name: 'vote_average') double? voteAverage,
       @JsonKey(name: 'vote_count') int? voteCount});
@@ -209,14 +235,17 @@ class __$$KnownForImplCopyWithImpl<$Res>
     Object? backdropPath = freezed,
     Object? id = freezed,
     Object? title = freezed,
+    Object? name = freezed,
     Object? originalLanguage = freezed,
     Object? originalTitle = freezed,
+    Object? originalName = freezed,
     Object? overview = freezed,
     Object? posterPath = freezed,
     Object? mediaType = freezed,
     Object? genreIds = freezed,
     Object? popularity = freezed,
     Object? releaseDate = freezed,
+    Object? firstAirDate = freezed,
     Object? video = freezed,
     Object? voteAverage = freezed,
     Object? voteCount = freezed,
@@ -238,6 +267,10 @@ class __$$KnownForImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       originalLanguage: freezed == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
@@ -245,6 +278,10 @@ class __$$KnownForImplCopyWithImpl<$Res>
       originalTitle: freezed == originalTitle
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
+      originalName: freezed == originalName
+          ? _value.originalName
+          : originalName // ignore: cast_nullable_to_non_nullable
               as String?,
       overview: freezed == overview
           ? _value.overview
@@ -270,6 +307,10 @@ class __$$KnownForImplCopyWithImpl<$Res>
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
               as String?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
@@ -294,14 +335,17 @@ class _$KnownForImpl implements _KnownFor {
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       this.id,
       this.title,
+      this.name,
       @JsonKey(name: 'original_language') this.originalLanguage,
       @JsonKey(name: 'original_title') this.originalTitle,
+      @JsonKey(name: 'original_name') this.originalName,
       this.overview,
       @JsonKey(name: 'poster_path') this.posterPath,
       @JsonKey(name: 'media_type') this.mediaType,
       @JsonKey(name: 'genre_ids') final List<int>? genreIds,
       this.popularity,
       @JsonKey(name: 'release_date') this.releaseDate,
+      @JsonKey(name: 'first_air_date') this.firstAirDate,
       this.video,
       @JsonKey(name: 'vote_average') this.voteAverage,
       @JsonKey(name: 'vote_count') this.voteCount})
@@ -320,11 +364,16 @@ class _$KnownForImpl implements _KnownFor {
   @override
   final String? title;
   @override
+  final String? name;
+  @override
   @JsonKey(name: 'original_language')
   final String? originalLanguage;
   @override
   @JsonKey(name: 'original_title')
   final String? originalTitle;
+  @override
+  @JsonKey(name: 'original_name')
+  final String? originalName;
   @override
   final String? overview;
   @override
@@ -350,6 +399,9 @@ class _$KnownForImpl implements _KnownFor {
   @JsonKey(name: 'release_date')
   final String? releaseDate;
   @override
+  @JsonKey(name: 'first_air_date')
+  final String? firstAirDate;
+  @override
   final bool? video;
   @override
   @JsonKey(name: 'vote_average')
@@ -360,7 +412,7 @@ class _$KnownForImpl implements _KnownFor {
 
   @override
   String toString() {
-    return 'KnownFor(adult: $adult, backdropPath: $backdropPath, id: $id, title: $title, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, releaseDate: $releaseDate, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'KnownFor(adult: $adult, backdropPath: $backdropPath, id: $id, title: $title, name: $name, originalLanguage: $originalLanguage, originalTitle: $originalTitle, originalName: $originalName, overview: $overview, posterPath: $posterPath, mediaType: $mediaType, genreIds: $genreIds, popularity: $popularity, releaseDate: $releaseDate, firstAirDate: $firstAirDate, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
@@ -373,10 +425,13 @@ class _$KnownForImpl implements _KnownFor {
                 other.backdropPath == backdropPath) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.originalLanguage, originalLanguage) ||
                 other.originalLanguage == originalLanguage) &&
             (identical(other.originalTitle, originalTitle) ||
                 other.originalTitle == originalTitle) &&
+            (identical(other.originalName, originalName) ||
+                other.originalName == originalName) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
             (identical(other.posterPath, posterPath) ||
@@ -388,6 +443,8 @@ class _$KnownForImpl implements _KnownFor {
                 other.popularity == popularity) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
+            (identical(other.firstAirDate, firstAirDate) ||
+                other.firstAirDate == firstAirDate) &&
             (identical(other.video, video) || other.video == video) &&
             (identical(other.voteAverage, voteAverage) ||
                 other.voteAverage == voteAverage) &&
@@ -403,14 +460,17 @@ class _$KnownForImpl implements _KnownFor {
       backdropPath,
       id,
       title,
+      name,
       originalLanguage,
       originalTitle,
+      originalName,
       overview,
       posterPath,
       mediaType,
       const DeepCollectionEquality().hash(_genreIds),
       popularity,
       releaseDate,
+      firstAirDate,
       video,
       voteAverage,
       voteCount);
@@ -435,14 +495,17 @@ abstract class _KnownFor implements KnownFor {
       @JsonKey(name: 'backdrop_path') final String? backdropPath,
       final int? id,
       final String? title,
+      final String? name,
       @JsonKey(name: 'original_language') final String? originalLanguage,
       @JsonKey(name: 'original_title') final String? originalTitle,
+      @JsonKey(name: 'original_name') final String? originalName,
       final String? overview,
       @JsonKey(name: 'poster_path') final String? posterPath,
       @JsonKey(name: 'media_type') final String? mediaType,
       @JsonKey(name: 'genre_ids') final List<int>? genreIds,
       final double? popularity,
       @JsonKey(name: 'release_date') final String? releaseDate,
+      @JsonKey(name: 'first_air_date') final String? firstAirDate,
       final bool? video,
       @JsonKey(name: 'vote_average') final double? voteAverage,
       @JsonKey(name: 'vote_count') final int? voteCount}) = _$KnownForImpl;
@@ -460,11 +523,16 @@ abstract class _KnownFor implements KnownFor {
   @override
   String? get title;
   @override
+  String? get name;
+  @override
   @JsonKey(name: 'original_language')
   String? get originalLanguage;
   @override
   @JsonKey(name: 'original_title')
   String? get originalTitle;
+  @override
+  @JsonKey(name: 'original_name')
+  String? get originalName;
   @override
   String? get overview;
   @override
@@ -481,6 +549,9 @@ abstract class _KnownFor implements KnownFor {
   @override
   @JsonKey(name: 'release_date')
   String? get releaseDate;
+  @override
+  @JsonKey(name: 'first_air_date')
+  String? get firstAirDate;
   @override
   bool? get video;
   @override

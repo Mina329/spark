@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_image.dart';
 
 class CustomPersonListViewItem extends StatelessWidget {
-  const CustomPersonListViewItem({super.key, required this.index});
-  final int index;
+  const CustomPersonListViewItem({super.key, required this.person});
+  final PersonMiniResultEntity person;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -20,8 +20,9 @@ class CustomPersonListViewItem extends StatelessWidget {
         child: Row(
           children: [
             ShowImage(
-              index: index,
-              images: peoplesImages,
+              imgUrl: person.profilePath != null
+                  ? 'https://image.tmdb.org/t/p/original${person.profilePath}'
+                  : '',
             ),
             const SizedBox(
               width: 10,
@@ -36,7 +37,7 @@ class CustomPersonListViewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    peoplesNames[index],
+                    person.name ?? '',
                     style: StylesManager.styleLatoRegular18(context),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -45,7 +46,7 @@ class CustomPersonListViewItem extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    'Actor, Breaking Bad (2008)',
+                    '${person.role == null ? '' : "${person.role},"} ${person.mostKnownForName} ${person.mostKnownForDate == null ? "" : "( ${person.mostKnownForDate!.year.toString()} )"}',
                     style: StylesManager.styleLatoRegular16(context).copyWith(
                       color: Colors.grey,
                     ),

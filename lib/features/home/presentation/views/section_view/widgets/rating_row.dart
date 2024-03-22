@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 
 class RatingRow extends StatelessWidget {
   const RatingRow({
     super.key,
-    required this.index,
+    required this.averageRating,
+    required this.ratingCount,
   });
-  final int index;
+  final String averageRating;
+  final String ratingCount;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -23,14 +24,14 @@ class RatingRow extends StatelessWidget {
           width: 10,
         ),
         Text(
-          showsRating[index],
+          averageRating,
           style: StylesManager.styleLatoRegular16(context),
         ),
         const SizedBox(
           width: 10,
         ),
         Text(
-          '( ${showsRatingCount[index]} )',
+          '( $ratingCount )',
           style: StylesManager.styleLatoRegular16(context).copyWith(
             color: Colors.grey,
           ),

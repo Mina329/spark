@@ -3,6 +3,8 @@ import 'package:spark/core/widgets/enums.dart';
 class MovieMiniResultEntity {
   final int id;
   final double? voteAverage;
+  final String? name;
+  final int? voteCount;
   final DateTime? releaseDate;
   final String? posterPath;
   final List<int>? genres;
@@ -14,5 +16,7 @@ class MovieMiniResultEntity {
     this.posterPath,
     this.genres,
     this.showType,
+    this.name,
+    this.voteCount,
   });
 }

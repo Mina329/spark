@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/home/data/data_sources/dummy_data.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_image.dart';
 
 class SeasonsGuideListView extends StatelessWidget {
@@ -17,10 +16,9 @@ class SeasonsGuideListView extends StatelessWidget {
           padding: const EdgeInsets.only(right: 15),
           child: Column(
             children: [
-              Flexible(
+              const Flexible(
                 child: ShowImage(
-                  index: index,
-                  images: showsImages,
+                  imgUrl: '',
                 ),
               ),
               const SizedBox(

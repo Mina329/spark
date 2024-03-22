@@ -59,12 +59,14 @@ class SearchResultItem extends StatelessWidget {
                 idToValueMap: idsToGenres,
                 context: context,
                 textColor: Colors.grey,
-                mainAxisAlignment: MainAxisAlignment.start,
               ),
               const SizedBox(
                 height: 2,
               ),
-              const RatingRow(index: 0),
+              const RatingRow(
+                averageRating: '0',
+                ratingCount: '0',
+              ),
             ],
           )
         ],

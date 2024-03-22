@@ -7,6 +7,7 @@ import 'package:spark/core/bindings/main_binding.dart';
 import 'package:spark/core/bindings/media_binding.dart';
 import 'package:spark/core/bindings/onboarding_binding.dart';
 import 'package:spark/core/bindings/person_details_binding.dart';
+import 'package:spark/core/bindings/section_binding.dart';
 import 'package:spark/core/bindings/show_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart';
@@ -74,7 +75,8 @@ class AppRouter {
     ),
     GetPage(
       name: kShowsSectionView,
-      page: () => const ShowsSectionView(),
+      page: () => const SectionView(),
+      binding: SectionBinding(),
     ),
     GetPage(
       name: kShowDetailsView,

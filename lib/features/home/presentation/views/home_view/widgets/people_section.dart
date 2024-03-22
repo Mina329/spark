@@ -29,7 +29,7 @@ class PeopleSection extends StatelessWidget {
               ),
               const Spacer(),
               GestureDetector(
-                onTap: () => showAllOnTap,
+                onTap: showAllOnTap,
                 child: Text(
                   StringsManager.showAll,
                   style: StylesManager.styleLatoRegular16(context)

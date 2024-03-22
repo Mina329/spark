@@ -39,7 +39,6 @@ class ShowOverviewTab extends StatelessWidget {
           idToValueMap: idsToGenres,
           context: context,
           textColor: Colors.grey,
-          mainAxisAlignment: MainAxisAlignment.start,
         ),
         const SizedBox(
           height: 15,
