@@ -27,3 +27,4 @@ class MovieCast with _$MovieCast {
 
 	factory MovieCast.fromJson(Map<String, dynamic> json) => _$MovieCastFromJson(json);
 }
+  

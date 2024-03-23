@@ -5,10 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:spark/core/errors/failure.dart';
 import 'package:spark/core/errors/server_failure.dart';
 import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:spark/features/home/domain/repos/home_repo.dart';
 
@@ -177,6 +179,26 @@ class HomeRepoImpl extends HomeRepo {
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, ShowResultEntity>> getShowDetails(
+      int id, ShowType showType) async {
+    try {
+      var results = await homeRemoteDataSource.getShowDetails(id, showType);
+      return right(results);
+    } on DioException catch (e) {
+      log(e.toString());
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      log(e.toString());
+
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,

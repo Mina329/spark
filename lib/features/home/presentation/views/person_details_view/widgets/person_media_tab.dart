@@ -22,6 +22,7 @@ class PersonMediaTab extends StatelessWidget {
             children: [
               ImagesSection(
                 images: getPersonDetailsController.personResultEntity.images!,
+                title: StringsManager.images,
               ),
               const SizedBox(
                 height: 15,

@@ -77,7 +77,6 @@ class AppRouter {
       name: kShowsSectionView,
       page: () => const ShowsSectionView(),
       binding: SectionBinding(),
-      preventDuplicates: false,
     ),
     GetPage(
       name: kShowDetailsView,
@@ -88,7 +87,6 @@ class AppRouter {
       name: kPersonDetailsView,
       page: () => const PersonDetailsView(),
       binding: PersonDetailsBinding(),
-      preventDuplicates: false,
     ),
     GetPage(
       name: kMediaView,

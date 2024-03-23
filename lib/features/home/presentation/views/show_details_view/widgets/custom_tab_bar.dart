@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:spark/features/home/presentation/controllers/show_details_controller.dart';
+import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/tab_bar_item.dart';
 
 class CustomShowsTabBar extends StatelessWidget {

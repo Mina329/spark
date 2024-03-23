@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
-import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_details.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_image.dart';
 
@@ -19,7 +18,8 @@ class CustomShowListViewItem extends StatelessWidget {
       onTap: () => Get.toNamed(
         AppRouter.kShowDetailsView,
         arguments: {
-          'showType': ShowType.Movie,
+          'id': show.id,
+          'showType': show.showType,
         },
       ),
       child: SizedBox(

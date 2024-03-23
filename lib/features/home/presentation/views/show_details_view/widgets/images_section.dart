@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
@@ -17,8 +16,10 @@ class ImagesSection extends StatelessWidget {
   const ImagesSection({
     super.key,
     required this.images,
+    required this.title,
   });
   final List<ImageEntity> images;
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,7 +27,7 @@ class ImagesSection extends StatelessWidget {
         Row(
           children: [
             Text(
-              StringsManager.images,
+              title,
               style: StylesManager.styleLatoBold20(context),
             ),
             const SizedBox(
@@ -76,13 +77,10 @@ class ImagesSection extends StatelessWidget {
                             Lottie.asset(Assets.assetsAnimationsMovieLoading),
                       ),
                       errorWidget: (context, url, error) => Center(
-                        child: Icon(
-                          FontAwesomeIcons.circleExclamation,
-                          color: Colors.red,
-                          size: getResponsiveFontSize(
-                            context,
-                            fontSize: 50,
-                          ),
+                        child: Image.asset(
+                          Assets.assetsImagesTv,
+                          height: 80,
+                          width: 80,
                         ),
                       ),
                       fit: BoxFit.cover,

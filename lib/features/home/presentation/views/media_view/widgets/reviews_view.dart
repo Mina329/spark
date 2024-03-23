@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/widgets/custom_appbar.dart';
+import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/review_card.dart';
 
 class ReviewsView extends StatelessWidget {
@@ -28,9 +29,18 @@ class ReviewsView extends StatelessWidget {
             ),
           ),
           SliverList.builder(
-            itemBuilder: (context, index) => const Padding(
-              padding: EdgeInsets.only(bottom: 15),
-              child: ReviewCard(),
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: ReviewCard(
+                reviewEntity: ReviewEntity(
+                    id: '12',
+                    userName: null,
+                    voteAverage: null,
+                    reviewContent: null,
+                    reviewDate: null,
+                    userProfile: null,
+                    userMail: null),
+              ),
             ),
             itemCount: 10,
           ),

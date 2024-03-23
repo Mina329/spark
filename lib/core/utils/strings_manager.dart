@@ -138,4 +138,6 @@ abstract class StringsManager {
   static const pleaseSelectAnyGenresOrSkip = 'Please Select any Genres or Skip';
   static const personAddedToFavourite = 'Person Added To Favourite';
   static const personRemovedFromFavourite = 'Person Removed From Favourite';
+  static const backdrops = 'Backdrops';
+  static const posters = 'Posters';
 }

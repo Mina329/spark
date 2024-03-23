@@ -32,7 +32,8 @@ class MoreInfoColumn extends StatelessWidget {
               onPressed: () => Get.toNamed(
                 AppRouter.kShowDetailsView,
                 arguments: {
-                  'show': movie,
+                  'id': movie.id,
+                  'showType': movie.showType,
                 },
               ),
               style: ButtonStyle(

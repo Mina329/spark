@@ -21,11 +21,13 @@ class GetPersonDetailsController extends GetxController {
   getPersonDetails(int id) async {
     var result = await getPersonDetailsUsecase.execute(id);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+      },
       (personDetails) {
         personResultEntity = personDetails;
         update();

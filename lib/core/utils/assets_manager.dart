@@ -72,5 +72,9 @@ class Assets {
   /// Assets for assetsImagesSparkLogo
   /// assets/images/spark_logo.png
   static const String assetsImagesSparkLogo = "assets/images/spark_logo.png";
+
+  /// Assets for assetsImagesTv
+  /// assets/images/tv.png
+  static const String assetsImagesTv = "assets/images/tv.png";
 }
 

@@ -1,15 +1,28 @@
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/core/widgets/functions/extract_genre_ids.dart';
+import 'package:spark/core/widgets/functions/format_time.dart';
+import 'package:spark/core/widgets/functions/get_youtube_keys.dart';
+import 'package:spark/core/widgets/functions/parse_cast_and_crew_to_person_mini_result_entity.dart';
 import 'package:spark/core/widgets/functions/parse_movie_cast_and_crew_to_movie_mini_result.dart';
+import 'package:spark/core/widgets/functions/parse_movie_images_to_image_entity.dart';
+import 'package:spark/core/widgets/functions/parse_movie_similar_result_to_movie_mini_result_entity.dart';
+import 'package:spark/core/widgets/functions/parse_seasons_to_season_entity.dart';
+import 'package:spark/core/widgets/functions/parse_to_review.dart';
 import 'package:spark/core/widgets/functions/parse_tv_cast_and_crew_to_tv_show_mini_result.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_backdrop.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_poster.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/images.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
+import 'package:spark/features/home/data/models/tv_result/tv_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/image_entity.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 extension TrendingMovieX on MovieMiniResult {
@@ -24,11 +37,7 @@ extension TrendingMovieX on MovieMiniResult {
             ),
       posterPath: posterPath,
       genres: genreIds,
-      showType: mediaType == 'movie'
-          ? ShowType.Movie
-          : mediaType == 'tv'
-              ? ShowType.TV
-              : ShowType.Person,
+      showType: ShowType.Movie,
       name: title,
       voteCount: voteCount,
     );
@@ -47,11 +56,7 @@ extension TrendingTvShowX on TvShowMiniResult {
             ),
       posterPath: posterPath,
       genres: genreIds,
-      showType: mediaType == 'movie'
-          ? ShowType.Movie
-          : mediaType == 'tv'
-              ? ShowType.TV
-              : ShowType.Person,
+      showType: ShowType.TV,
       name: name,
       voteCount: voteCount,
     );
@@ -138,5 +143,80 @@ extension ImagesX on Images {
       );
     }
     return images;
+  }
+}
+
+extension MovieResultX on MovieResult {
+  ShowResultEntity toEntity() {
+    return ShowResultEntity(
+      id: id!,
+      name: title,
+      posterUrl: posterPath,
+      voteAverage: voteAverage,
+      popularity: popularity,
+      genreIds: extractGenreIds(genres),
+      overview: overview,
+      castAndCrew: parseMovieCastAndCrewToPersonMiniResultEntity(movieCredits),
+      imagesBackdrop:
+          parseMovieImagesToImageEntity(movieImages?.movieBackdrops),
+      imagesPosters: parseMovieImagesToImageEntity(movieImages?.moviePosters),
+      seasons: null,
+      youtubeKeys: getYoutubeKeys(movieVideos?.movieVideosResults),
+      review: parseToReview(movieReviews?.movieReviewsResults),
+      similarShows: parseMovieSimilarResultToMovieMiniResultEntity(
+          movieSimilar?.movieSimilarResults),
+      releaseDate: releaseDate == null || releaseDate!.isEmpty
+          ? null
+          : DateTime.parse(
+              releaseDate!,
+            ),
+      duration: formatTime(runtime ?? 0),
+    );
+  }
+}
+
+extension TVResultX on TvResult {
+  ShowResultEntity toEntity() {
+    return ShowResultEntity(
+      id: id!,
+      name: name,
+      posterUrl: posterPath,
+      voteAverage: voteAverage,
+      popularity: popularity,
+      genreIds: extractGenreIds(genres),
+      overview: overview,
+      castAndCrew: parseTvCastAndCrewToPersonMiniResultEntity(tvCredits),
+      imagesBackdrop: parseMovieImagesToImageEntity(tvImages?.tvBackdrops),
+      imagesPosters: parseMovieImagesToImageEntity(tvImages?.tvPosters),
+      seasons: parseSeasonsToSeasonEntity(seasons ?? []),
+      youtubeKeys: getYoutubeKeys(tvVideos?.tvVideosResults),
+      review: parseToReview(tvReviews?.tvReviewsResults),
+      similarShows:
+          parseTvimilarResultToTvMiniResultEntity(tvSimilar?.tvSimilarResults),
+      releaseDate: firstAirDate == null || firstAirDate!.isEmpty
+          ? null
+          : DateTime.parse(
+              firstAirDate!,
+            ),
+      duration: '${numberOfEpisodes ?? 0} eps',
+    );
+  }
+}
+
+extension MovieBackdropX on MovieBackdrop {
+  ImageEntity toEntity() {
+    return ImageEntity(
+      aspectRatio: aspectRatio,
+      filePath: filePath,
+    );
+  }
+}
+
+extension MoviePosterX on MoviePoster {
+  ImageEntity toEntity() {
+    return ImageEntity(
+      aspectRatio: aspectRatio,
+      filePath: filePath,
+    );
   }
 }

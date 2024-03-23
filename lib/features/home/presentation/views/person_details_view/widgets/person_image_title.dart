@@ -32,14 +32,14 @@ class PersonImageTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  getPersonDetailsController.personResultEntity.name!,
+                  getPersonDetailsController.personResultEntity.name ?? '',
                   style: StylesManager.styleLatoBold25(context),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  getPersonDetailsController.personResultEntity.role!,
+                  getPersonDetailsController.personResultEntity.role ?? '',
                   style: StylesManager.styleLatoRegular16(context)
                       .copyWith(color: ColorManager.primaryColor),
                 ),

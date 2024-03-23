@@ -21,7 +21,8 @@ class ShowCard extends StatelessWidget {
       onTap: () => Get.toNamed(
         AppRouter.kShowDetailsView,
         arguments: {
-          'show': show,
+          'id': show.id,
+          'showType': show.showType,
         },
       ),
       child: ConstrainedBox(
@@ -44,14 +45,11 @@ class ShowCard extends StatelessWidget {
                       child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
                     ),
                     errorWidget: (context, url, error) => Center(
-                      child: Icon(
-                        FontAwesomeIcons.circleExclamation,
-                        color: Colors.red,
-                        size: getResponsiveFontSize(
-                          context,
-                          fontSize: 50,
-                        ),
-                      ),
+                      child: Image.asset(
+              Assets.assetsImagesTv,
+              height: 80,
+              width: 80,
+            ),
                     ),
                     fit: BoxFit.cover,
                   ),

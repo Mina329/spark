@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/widgets/custom_appbar.dart';
-import 'package:spark/features/home/presentation/controllers/section_controller/section_controllers.dart';
+import 'package:spark/features/home/presentation/controllers/section_controllers/section_controllers.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/custom_show_list_view_item.dart';
 
 class ShowsSection extends StatelessWidget {

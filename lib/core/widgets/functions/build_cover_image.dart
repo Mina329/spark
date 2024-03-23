@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/utils/assets_manager.dart';
 
 Positioned buildCoverImage(String imageUrl) {
   return Positioned(
@@ -12,14 +11,11 @@ Positioned buildCoverImage(String imageUrl) {
     child: CachedNetworkImage(
       imageUrl: imageUrl,
       errorWidget: (context, url, error) => Center(
-        child: Icon(
-          FontAwesomeIcons.circleExclamation,
-          color: Colors.red,
-          size: getResponsiveFontSize(
-            context,
-            fontSize: 50,
-          ),
-        ),
+        child: Image.asset(
+              Assets.assetsImagesTv,
+              height: 80,
+              width: 80,
+            ),
       ),
       fit: BoxFit.fill,
     ),

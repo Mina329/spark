@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/widgets/enums.dart';
-import 'package:spark/features/home/presentation/controllers/section_controller/section_controllers.dart';
+import 'package:spark/features/home/presentation/controllers/section_controllers/section_controllers.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/peoples_section.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/shows_section.dart';
 

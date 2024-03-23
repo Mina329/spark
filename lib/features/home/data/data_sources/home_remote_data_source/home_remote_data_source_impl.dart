@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spark/core/utils/api_service.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/extensions.dart';
 import 'package:spark/features/auth/data/models/genre_model.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
 import 'package:spark/features/home/data/models/movie_trailer/movie_trailer.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
+import 'package:spark/features/home/data/models/tv_result/tv_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
@@ -25,8 +29,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       required this.apiService});
   @override
   Future<List<MovieMiniResultEntity>> getTredingMovies(int page) async {
-    var data =
-        await apiService.get(endPoint: '/trending/movie/week?page=$page');
+    var data = await apiService.get(endPoint: '/trending/movie/day?page=$page');
     List<MovieMiniResultEntity> items = [];
     for (var item in data['results']) {
       items.add(MovieMiniResult.fromJson(item).toEntity());
@@ -36,7 +39,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
 
   @override
   Future<List<TvShowMiniResultEntity>> getTredingTvShows(int page) async {
-    var data = await apiService.get(endPoint: '/trending/tv/week?page=$page');
+    var data = await apiService.get(endPoint: '/trending/tv/day?page=$page');
     List<TvShowMiniResultEntity> items = [];
     for (var item in data['results']) {
       items.add(TvShowMiniResult.fromJson(item).toEntity());
@@ -74,7 +77,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   @override
   Future<List<PersonMiniResultEntity>> getTredingPeople(int page) async {
     var data =
-        await apiService.get(endPoint: '/trending/person/week?page=$page');
+        await apiService.get(endPoint: '/trending/person/day?page=$page');
     List<PersonMiniResultEntity> items = [];
     for (var item in data['results']) {
       items.add(PersonMiniResult.fromJson(item).toEntity());
@@ -187,5 +190,22 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         .doc(id.toString())
         .get();
     return doc.exists;
+  }
+
+  @override
+  Future getShowDetails(int id, ShowType showType) async {
+    if (showType == ShowType.Movie) {
+      var data = await apiService.get(
+          endPoint:
+              '/movie/$id?append_to_response=credits%2Cimages%2Cvideos%2Creviews%2Csimilar');
+      ShowResultEntity movie = MovieResult.fromJson(data).toEntity();
+      return movie;
+    } else if (showType == ShowType.TV) {
+      var data = await apiService.get(
+          endPoint:
+              '/tv/$id?append_to_response=credits%2Cimages%2Cvideos%2Creviews%2Csimilar');
+      ShowResultEntity show = TvResult.fromJson(data).toEntity();
+      return show;
+    }
   }
 }
