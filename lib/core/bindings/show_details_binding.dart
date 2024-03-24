@@ -6,6 +6,8 @@ import 'package:spark/features/home/presentation/controllers/show_details_contro
 class ShowDetailsBinding extends Bindings {
   @override
   void dependencies() {
+    final String uniqueTag =
+        "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
     Get.lazyPut<GetShowDetailsUsecase>(
       () => GetShowDetailsUsecase(
         homeRepo: Get.find(),
@@ -16,6 +18,7 @@ class ShowDetailsBinding extends Bindings {
       () => ShowDetailsController(
         getShowDetailsUsecase: Get.find(),
       ),
+      tag: uniqueTag,
     );
     Get.lazyPut(
       () => FavouriteController(

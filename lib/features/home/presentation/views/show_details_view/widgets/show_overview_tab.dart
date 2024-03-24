@@ -17,14 +17,14 @@ class ShowOverviewTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
+        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (showDetailsController.showResultEntity.overview != null ||
-            (showDetailsController.showResultEntity.genreIds != null &&
-                showDetailsController.showResultEntity.genreIds!.isNotEmpty))
+        if (showDetailsController.showResultEntity?.overview != null ||
+            (showDetailsController.showResultEntity?.genreIds != null &&
+                showDetailsController.showResultEntity!.genreIds!.isNotEmpty))
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +33,7 @@ class ShowOverviewTab extends StatelessWidget {
                 StringsManager.overview,
                 style: StylesManager.styleLatoBold20(context),
               ),
-              if (showDetailsController.showResultEntity.overview != null)
+              if (showDetailsController.showResultEntity?.overview != null)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +42,7 @@ class ShowOverviewTab extends StatelessWidget {
                       height: 10,
                     ),
                     ExpandableText(
-                      showDetailsController.showResultEntity.overview ?? '',
+                      showDetailsController.showResultEntity?.overview ?? '',
                       expandText: 'show more',
                       collapseText: 'show less',
                       expandOnTextTap: true,
@@ -55,8 +55,8 @@ class ShowOverviewTab extends StatelessWidget {
                     ),
                   ],
                 ),
-              if (showDetailsController.showResultEntity.genreIds != null &&
-                  showDetailsController.showResultEntity.genreIds!.isNotEmpty)
+              if (showDetailsController.showResultEntity?.genreIds != null &&
+                  showDetailsController.showResultEntity!.genreIds!.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class ShowOverviewTab extends StatelessWidget {
                       height: 10,
                     ),
                     buildGenreIdValuesRow(
-                      ids: showDetailsController.showResultEntity.genreIds!,
+                      ids: showDetailsController.showResultEntity!.genreIds!,
                       idToValueMap: idsToGenres,
                       context: context,
                       textColor: Colors.grey,
@@ -77,8 +77,8 @@ class ShowOverviewTab extends StatelessWidget {
               ),
             ],
           ),
-        if (showDetailsController.showResultEntity.castAndCrew != null &&
-            showDetailsController.showResultEntity.castAndCrew!.isNotEmpty)
+        if (showDetailsController.showResultEntity?.castAndCrew != null &&
+            showDetailsController.showResultEntity!.castAndCrew!.isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -99,8 +99,9 @@ class ShowOverviewTab extends StatelessWidget {
                           'showType': ShowType.Person,
                           'sectionType': SectionType.None,
                           'showsList':
-                              showDetailsController.showResultEntity.castAndCrew
+                              showDetailsController.showResultEntity!.castAndCrew
                         },
+                        preventDuplicates: false,
                       );
                     },
                     child: Text(
@@ -115,7 +116,7 @@ class ShowOverviewTab extends StatelessWidget {
                 height: 15,
               ),
               PeopleListView(
-                people: showDetailsController.showResultEntity.castAndCrew
+                people: showDetailsController.showResultEntity?.castAndCrew
                         ?.take(20)
                         .toList() ??
                     [],

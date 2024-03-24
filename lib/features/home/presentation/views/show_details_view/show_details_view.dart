@@ -13,7 +13,7 @@ class ShowDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
+        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     final FavouriteController favouriteController =
         Get.find<FavouriteController>();
 

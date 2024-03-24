@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/person_details_controller.dart';
@@ -36,6 +37,8 @@ class PersonDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: GetBuilder<PersonDetailsController>(
+            tag:
+                "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
             builder: (personDetailsController) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: personDetailsController

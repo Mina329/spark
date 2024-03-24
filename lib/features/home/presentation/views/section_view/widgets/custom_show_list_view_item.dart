@@ -21,6 +21,7 @@ class CustomShowListViewItem extends StatelessWidget {
           'id': show.id,
           'showType': show.showType,
         },
+        preventDuplicates: false,
       ),
       child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.2,

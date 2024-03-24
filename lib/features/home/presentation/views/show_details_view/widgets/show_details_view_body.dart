@@ -47,6 +47,7 @@ class ShowDetailsViewBody extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: GetBuilder<ShowDetailsController>(
+          tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
             builder: (showDetailsController) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: showDetailsController

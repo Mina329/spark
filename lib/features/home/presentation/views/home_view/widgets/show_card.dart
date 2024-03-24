@@ -24,6 +24,7 @@ class ShowCard extends StatelessWidget {
           'id': show.id,
           'showType': show.showType,
         },
+        preventDuplicates: false,
       ),
       child: ConstrainedBox(
         constraints: BoxConstraints(
@@ -46,10 +47,10 @@ class ShowCard extends StatelessWidget {
                     ),
                     errorWidget: (context, url, error) => Center(
                       child: Image.asset(
-              Assets.assetsImagesTv,
-              height: 80,
-              width: 80,
-            ),
+                        Assets.assetsImagesTv,
+                        height: 80,
+                        width: 80,
+                      ),
                     ),
                     fit: BoxFit.cover,
                   ),

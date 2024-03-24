@@ -15,10 +15,14 @@ class SearchResultList extends StatelessWidget {
         (index) => Column(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(AppRouter.kShowDetailsView, arguments: {
-                'id': 123,
-                'showType': ShowType.Movie,
-              }),
+              onTap: () => Get.toNamed(
+                AppRouter.kShowDetailsView,
+                arguments: {
+                  'id': 123,
+                  'showType': ShowType.Movie,
+                },
+                preventDuplicates: false,
+              ),
               borderRadius: BorderRadius.circular(5),
               child: const SearchResultItem(),
             ),

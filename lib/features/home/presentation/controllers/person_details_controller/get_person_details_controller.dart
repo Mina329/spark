@@ -6,7 +6,7 @@ import 'package:spark/features/home/domain/usecases/get_person_details_usecase.d
 
 class GetPersonDetailsController extends GetxController {
   final GetPersonDetailsUsecase getPersonDetailsUsecase;
-  late PersonResultEntity personResultEntity;
+  PersonResultEntity? personResultEntity;
   RxBool loading = true.obs;
 
   GetPersonDetailsController({required this.getPersonDetailsUsecase});

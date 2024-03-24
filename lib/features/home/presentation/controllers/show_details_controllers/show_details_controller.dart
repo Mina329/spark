@@ -25,7 +25,7 @@ class ShowDetailsController extends GetxController {
     const ShowSimilarTab(),
   ];
   final GetShowDetailsUsecase getShowDetailsUsecase;
-  late ShowResultEntity showResultEntity;
+  ShowResultEntity? showResultEntity;
   List<YoutubePlayerController> videosControllers = [];
   RxBool loading = true.obs;
 
@@ -41,7 +41,7 @@ class ShowDetailsController extends GetxController {
 
   void _initVideos() {
     for (var videoUrl
-        in showResultEntity.youtubeKeys?.take(10).toList() ?? []) {
+        in showResultEntity?.youtubeKeys?.take(10).toList() ?? []) {
       videosControllers.add(
         YoutubePlayerController(
           initialVideoId: videoUrl,

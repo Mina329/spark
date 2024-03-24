@@ -13,13 +13,17 @@ class PersonOverviewTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GetPersonDetailsController getPersonDetailsController =
-        Get.find<GetPersonDetailsController>();
+        Get.find<GetPersonDetailsController>(
+      tag:
+          "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+    );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (getPersonDetailsController.personResultEntity.biography != null &&
-            getPersonDetailsController.personResultEntity.biography!.isNotEmpty)
+        if (getPersonDetailsController.personResultEntity?.biography != null &&
+            getPersonDetailsController
+                .personResultEntity!.biography!.isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -32,7 +36,7 @@ class PersonOverviewTab extends StatelessWidget {
                 height: 10,
               ),
               ExpandableText(
-                getPersonDetailsController.personResultEntity.biography ?? '',
+                getPersonDetailsController.personResultEntity?.biography ?? '',
                 expandText: 'show more',
                 collapseText: 'show less',
                 expandOnTextTap: true,
@@ -48,8 +52,9 @@ class PersonOverviewTab extends StatelessWidget {
               ),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.birthDate != null ||
-            getPersonDetailsController.personResultEntity.birthLocation != null)
+        if (getPersonDetailsController.personResultEntity?.birthDate != null ||
+            getPersonDetailsController.personResultEntity?.birthLocation !=
+                null)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -61,18 +66,19 @@ class PersonOverviewTab extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              if (getPersonDetailsController.personResultEntity.birthDate !=
+              if (getPersonDetailsController.personResultEntity?.birthDate !=
                   null)
                 Text(
-                  DateFormat('MMMM d, yyyy').format(
-                      getPersonDetailsController.personResultEntity.birthDate!),
+                  DateFormat('MMMM d, yyyy').format(getPersonDetailsController
+                      .personResultEntity!.birthDate!),
                   style: StylesManager.styleLatoRegular16(context)
                       .copyWith(color: Colors.grey),
                 ),
-              if (getPersonDetailsController.personResultEntity.birthLocation !=
+              if (getPersonDetailsController
+                      .personResultEntity?.birthLocation !=
                   null)
                 Text(
-                  getPersonDetailsController.personResultEntity.birthLocation!,
+                  getPersonDetailsController.personResultEntity!.birthLocation!,
                   style: StylesManager.styleLatoRegular16(context)
                       .copyWith(color: Colors.grey),
                 ),
@@ -81,7 +87,7 @@ class PersonOverviewTab extends StatelessWidget {
               ),
             ],
           ),
-        if (getPersonDetailsController.personResultEntity.deathDate != null)
+        if (getPersonDetailsController.personResultEntity?.deathDate != null)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -95,7 +101,7 @@ class PersonOverviewTab extends StatelessWidget {
               ),
               Text(
                 DateFormat('MMMM d, yyyy').format(
-                    getPersonDetailsController.personResultEntity.deathDate!),
+                    getPersonDetailsController.personResultEntity!.deathDate!),
                 style: StylesManager.styleLatoRegular16(context)
                     .copyWith(color: Colors.grey),
               ),

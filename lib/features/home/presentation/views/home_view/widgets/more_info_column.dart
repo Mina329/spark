@@ -35,6 +35,7 @@ class MoreInfoColumn extends StatelessWidget {
                   'id': movie.id,
                   'showType': movie.showType,
                 },
+                preventDuplicates: false,
               ),
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(

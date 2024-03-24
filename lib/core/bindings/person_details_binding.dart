@@ -7,6 +7,9 @@ import 'package:spark/features/home/presentation/controllers/person_details_cont
 class PersonDetailsBinding extends Bindings {
   @override
   void dependencies() {
+    final String uniqueTag =
+        "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}";
+
     Get.lazyPut<GetPersonDetailsUsecase>(
       () => GetPersonDetailsUsecase(
         homeRepo: Get.find(),
@@ -16,12 +19,14 @@ class PersonDetailsBinding extends Bindings {
     Get.lazyPut(
       () => PersonDetailsController(),
       fenix: true,
+      tag: uniqueTag,
     );
     Get.lazyPut(
       () => GetPersonDetailsController(
         getPersonDetailsUsecase: Get.find(),
       ),
       fenix: true,
+      tag: uniqueTag,
     );
     Get.lazyPut(
       () => FavouriteController(

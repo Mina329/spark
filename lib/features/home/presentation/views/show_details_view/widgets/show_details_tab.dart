@@ -13,13 +13,13 @@ class ShowDetailsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>();
+        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (showDetailsController.showResultEntity.seasons != null &&
-            showDetailsController.showResultEntity.seasons!.isNotEmpty)
+        if (showDetailsController.showResultEntity?.seasons != null &&
+            showDetailsController.showResultEntity!.seasons!.isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -32,21 +32,21 @@ class ShowDetailsTab extends StatelessWidget {
                 height: 10,
               ),
               SeasonsGuideListView(
-                seasons: showDetailsController.showResultEntity.seasons ?? [],
+                seasons: showDetailsController.showResultEntity?.seasons ?? [],
               ),
               const SizedBox(
                 height: 15,
               ),
             ],
           ),
-        if (showDetailsController.showResultEntity.imagesBackdrop != null &&
-            showDetailsController.showResultEntity.imagesBackdrop!.isNotEmpty)
+        if (showDetailsController.showResultEntity?.imagesBackdrop != null &&
+            showDetailsController.showResultEntity!.imagesBackdrop!.isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ImagesSection(
-                images: showDetailsController.showResultEntity.imagesBackdrop!,
+                images: showDetailsController.showResultEntity!.imagesBackdrop!,
                 title: StringsManager.backdrops,
               ),
               const SizedBox(
@@ -54,14 +54,14 @@ class ShowDetailsTab extends StatelessWidget {
               ),
             ],
           ),
-        if (showDetailsController.showResultEntity.imagesPosters != null &&
-            showDetailsController.showResultEntity.imagesPosters!.isNotEmpty)
+        if (showDetailsController.showResultEntity?.imagesPosters != null &&
+            showDetailsController.showResultEntity!.imagesPosters!.isNotEmpty)
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               ImagesSection(
-                images: showDetailsController.showResultEntity.imagesPosters!,
+                images: showDetailsController.showResultEntity!.imagesPosters!,
                 title: StringsManager.posters,
               ),
               const SizedBox(
