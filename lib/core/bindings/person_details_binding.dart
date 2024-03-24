@@ -35,6 +35,7 @@ class PersonDetailsBinding extends Bindings {
         checkFavourritePersonUsecase: Get.find(),
       ),
       fenix: true,
+      tag: uniqueTag,
     );
   }
 }

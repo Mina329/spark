@@ -18,6 +18,7 @@ import 'package:spark/features/auth/presentation/views/forget_password_view/forg
 import 'package:spark/features/auth/presentation/views/improve_your_feeds_view/improve_your_feeds_view.dart';
 import 'package:spark/features/home/presentation/views/media_view/media_view.dart';
 import 'package:spark/features/home/presentation/views/person_details_view/person_details_view.dart';
+import 'package:spark/features/home/presentation/views/season_details_view/season_details_view.dart';
 import 'package:spark/features/home/presentation/views/section_view/section_view.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/show_details_view.dart';
 import 'package:spark/features/main/presentation/view/main_view.dart';
@@ -38,6 +39,7 @@ class AppRouter {
   static const kPersonDetailsView = '/persondetails';
   static const kMediaView = '/media';
   static const kSettingsView = '/settings';
+  static const kSeasonDetailsView = '/seasondetails';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -134,6 +136,13 @@ class AppRouter {
     GetPage(
       name: kSettingsView,
       page: () => const SettingsView(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: kSeasonDetailsView,
+      page: () => const SeasonDetailsView(),
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),

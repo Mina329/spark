@@ -12,8 +12,10 @@ class ShowDetailsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -33,6 +35,7 @@ class ShowDetailsTab extends StatelessWidget {
               ),
               SeasonsGuideListView(
                 seasons: showDetailsController.showResultEntity?.seasons ?? [],
+                id: showDetailsController.showResultEntity!.id,
               ),
               const SizedBox(
                 height: 15,

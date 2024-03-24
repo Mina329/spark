@@ -16,8 +16,10 @@ class ShowImageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return SizedBox(
       height: 40 * MediaQuery.of(context).size.width / 27,
       child: Stack(
@@ -58,6 +60,8 @@ class ShowImageTitle extends StatelessWidget {
                   color: ColorManager.primaryColor,
                 ),
                 GetBuilder<FavouriteController>(
+                  tag:
+                      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
                   builder: (favouriteController) {
                     return IconButton(
                       onPressed: () {

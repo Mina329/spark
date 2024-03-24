@@ -27,6 +27,7 @@ class ShowDetailsBinding extends Bindings {
         checkFavourritePersonUsecase: Get.find(),
       ),
       fenix: true,
+      tag: uniqueTag,
     );
   }
 }

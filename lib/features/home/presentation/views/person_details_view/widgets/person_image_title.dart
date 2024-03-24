@@ -62,22 +62,26 @@ class PersonImageTitle extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.angleLeft),
                   color: ColorManager.primaryColor,
                 ),
-                GetBuilder<FavouriteController>(builder: (favouriteController) {
-                  return IconButton(
-                    onPressed: () {
-                      favouriteController.favouriteOnPressed(
-                        getPersonDetailsController.personResultEntity,
-                        ShowType.Person,
-                      );
-                    },
-                    icon: Icon(
-                      favouriteController.favourite
-                          ? FontAwesomeIcons.solidHeart
-                          : FontAwesomeIcons.heart,
-                      color: ColorManager.primaryColor,
-                    ),
-                  );
-                }),
+                GetBuilder<FavouriteController>(
+                  tag:
+                      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
+                  builder: (favouriteController) {
+                    return IconButton(
+                      onPressed: () {
+                        favouriteController.favouriteOnPressed(
+                          getPersonDetailsController.personResultEntity,
+                          ShowType.Person,
+                        );
+                      },
+                      icon: Icon(
+                        favouriteController.favourite
+                            ? FontAwesomeIcons.solidHeart
+                            : FontAwesomeIcons.heart,
+                        color: ColorManager.primaryColor,
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           )

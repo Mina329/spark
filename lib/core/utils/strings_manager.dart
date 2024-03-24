@@ -144,4 +144,5 @@ abstract class StringsManager {
   static const movieRemovedFromFavourite = 'Movie Removed From Favourite';
   static const tvShowAddedToFavourite = 'TV Show Added To Favourite';
   static const tvShowRemovedFromFavourite = 'TV Show Removed From Favorite';
+  static const episodesGuide = 'Episodes Guide';
 }
