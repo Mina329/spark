@@ -10,11 +10,13 @@ import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
 import 'package:spark/features/home/data/models/movie_trailer/movie_trailer.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
+import 'package:spark/features/home/data/models/season_result/season_result.dart';
 import 'package:spark/features/home/data/models/tv_result/tv_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
@@ -222,5 +224,14 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       ShowResultEntity show = TvResult.fromJson(data).toEntity();
       return show;
     }
+  }
+
+  @override
+  Future<SeasonResultEntity> getSeasonDetails(
+      int showId, int seasonNumber) async {
+    var data = await apiService.get(
+        endPoint: '/tv/$showId/season/$seasonNumber?language=en-US');
+    SeasonResultEntity season = SeasonResult.fromJson(data).toEntity(showId);
+    return season;
   }
 }

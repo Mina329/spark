@@ -9,6 +9,7 @@ import 'package:spark/core/bindings/main_binding.dart';
 import 'package:spark/core/bindings/media_binding.dart';
 import 'package:spark/core/bindings/onboarding_binding.dart';
 import 'package:spark/core/bindings/person_details_binding.dart';
+import 'package:spark/core/bindings/season_details_binding.dart';
 import 'package:spark/core/bindings/section_binding.dart';
 import 'package:spark/core/bindings/show_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
@@ -146,6 +147,7 @@ class AppRouter {
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),
+      binding: SeasonDetailsBinding(),
     ),
   ];
 }

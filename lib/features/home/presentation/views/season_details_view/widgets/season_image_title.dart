@@ -5,6 +5,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/functions/build_cover_image.dart';
 import 'package:spark/core/widgets/functions/build_cover_overlay.dart';
+import 'package:spark/features/home/presentation/controllers/season_details_controllers.dart/season_details_controller.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/key_value_column.dart';
 
 class SeasonImageTitle extends StatelessWidget {
@@ -12,12 +13,14 @@ class SeasonImageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SeasonDetailsController seasonDetailsController =
+        Get.find<SeasonDetailsController>();
     return SizedBox(
       height: 40 * MediaQuery.of(context).size.width / 27,
       child: Stack(
         children: [
           buildCoverImage(
-              'https://image.tmdb.org/t/p/original/kKN1Klhdxhbiwe8TBXIs6NYPr4C.jpg'),
+              'https://image.tmdb.org/t/p/original/${seasonDetailsController.seasonResultEntity?.posterUrl}'),
           buildCoverOverlay(context),
           Positioned(
             bottom: 0,
@@ -26,23 +29,24 @@ class SeasonImageTitle extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Season 1",
+                  seasonDetailsController.seasonResultEntity?.seasonName ?? '',
                   style: StylesManager.styleLatoBold25(context),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  '2010 | 10 eps',
+                  '${seasonDetailsController.seasonResultEntity?.seasonDate?.year ?? ''} ${seasonDetailsController.seasonResultEntity?.seasonDate == null || seasonDetailsController.seasonResultEntity?.seasonEpisodeNumber == null ? '' : '|'} ${seasonDetailsController.seasonResultEntity?.seasonEpisodeNumber == null ? '' : '${seasonDetailsController.seasonResultEntity?.seasonEpisodeNumber} eps'}',
                   style: StylesManager.styleLatoRegular16(context),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                const KeyValueColumn(
+                KeyValueColumn(
                   icon: FontAwesomeIcons.solidStar,
                   title: '',
-                  value: '9.5',
+                  value:
+                      '${seasonDetailsController.seasonResultEntity?.seasonVoteAverage ?? ''}',
                   iconColor: ColorManager.goldColor,
                 ),
               ],

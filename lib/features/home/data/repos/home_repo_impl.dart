@@ -10,6 +10,7 @@ import 'package:spark/features/home/data/data_sources/home_remote_data_source/ho
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:spark/features/home/domain/repos/home_repo.dart';
@@ -105,7 +106,7 @@ class HomeRepoImpl extends HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List>> getPicksForYou( int page) async {
+  Future<Either<Failure, List>> getPicksForYou(int page) async {
     try {
       var results = await homeRemoteDataSource.getPicksForYou(page);
       return right(results);
@@ -201,6 +202,24 @@ class HomeRepoImpl extends HomeRepo {
     } catch (e) {
       log(e.toString());
 
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, SeasonResultEntity>> getSeasonDetails(
+      int showId, int seasonNumber) async {
+    try {
+      var results =
+          await homeRemoteDataSource.getSeasonDetails(showId, seasonNumber);
+      return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,

@@ -3,6 +3,7 @@ import 'package:spark/core/widgets/functions/extract_genre_ids.dart';
 import 'package:spark/core/widgets/functions/format_time.dart';
 import 'package:spark/core/widgets/functions/get_youtube_keys.dart';
 import 'package:spark/core/widgets/functions/parse_cast_and_crew_to_person_mini_result_entity.dart';
+import 'package:spark/core/widgets/functions/parse_episodes.dart';
 import 'package:spark/core/widgets/functions/parse_movie_cast_and_crew_to_movie_mini_result.dart';
 import 'package:spark/core/widgets/functions/parse_movie_images_to_image_entity.dart';
 import 'package:spark/core/widgets/functions/parse_movie_similar_result_to_movie_mini_result_entity.dart';
@@ -16,12 +17,14 @@ import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/images.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
+import 'package:spark/features/home/data/models/season_result/season_result.dart';
 import 'package:spark/features/home/data/models/tv_result/tv_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/image_entity.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
@@ -201,6 +204,21 @@ extension TVResultX on TvResult {
               ),
         duration: '${numberOfEpisodes ?? 0} eps',
         showType: ShowType.TV);
+  }
+}
+
+extension SeasonResultX on SeasonResult {
+  SeasonResultEntity toEntity(int showId) {
+    return SeasonResultEntity(
+      showId: showId,
+      posterUrl: posterPath,
+      seasonName: name,
+      seasonDate: DateTime.tryParse(airDate ?? ''),
+      seasonEpisodeNumber: episodes?.length.toString(),
+      seasonVoteAverage: voteAverage,
+      seasonOverview: overview,
+      episodes: parseEpisodes(episodes ?? []),
+    );
   }
 }
 
