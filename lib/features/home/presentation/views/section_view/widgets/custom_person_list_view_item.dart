@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/presentation/views/section_view/widgets/show_image.dart';
 
@@ -16,6 +17,7 @@ class CustomPersonListViewItem extends StatelessWidget {
         AppRouter.kPersonDetailsView,
         arguments: {
           'id': person.id,
+          'showType': ShowType.Person,
         },
         preventDuplicates: false,
       ),

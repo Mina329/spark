@@ -86,7 +86,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   }
 
   @override
-  Future<List> getPicksForYou() async {
+  Future<List> getPicksForYou(int page) async {
     List<GenreModel> genres = firebaseAuth.currentUser!.isAnonymous
         ? []
         : await getUserFavouriteGenres();
@@ -100,7 +100,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         categorizedGenres.$1.map((id) => id.toString()).join('%7C');
     var moviesData = await apiService.get(
         endPoint:
-            '/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=10000${categorizedGenres.$1.isEmpty ? "" : "&with_genres=$genresParameterMovies"}');
+            '/discover/movie?include_adult=false&include_video=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=3000${categorizedGenres.$1.isEmpty ? "" : "&with_genres=$genresParameterMovies"}');
     for (var item in moviesData['results']) {
       movies.add(MovieMiniResult.fromJson(item).toEntity());
     }
@@ -109,14 +109,14 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         categorizedGenres.$2.map((id) => id.toString()).join('%7C');
     var tvShowsData = await apiService.get(
         endPoint:
-            '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=10000${categorizedGenres.$2.isEmpty ? "" : "&with_genres=$genresParameterTvShow"}');
+            '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=3000${categorizedGenres.$2.isEmpty ? "" : "&with_genres=$genresParameterTvShow"}&page=$page');
     for (var item in tvShowsData['results']) {
       tvShows.add(TvShowMiniResult.fromJson(item).toEntity());
     }
 
     result.addAll(movies);
     result.addAll(tvShows);
-    result.shuffle();
+    //result.shuffle();
 
     return result;
   }
@@ -162,31 +162,46 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   }
 
   @override
-  Future<void> addFavouritePerson(PersonResultEntity person) async {
+  Future<void> addFavourite(dynamic show, ShowType showType) async {
+    final showTypeText = showType == ShowType.Person
+        ? 'favourite_people'
+        : showType == ShowType.Movie
+            ? 'favourite_movies'
+            : 'favourite_tv_shows';
     await firebaseFirestore
         .collection('users')
         .doc(firebaseAuth.currentUser!.uid)
-        .collection('favourite_people')
-        .doc(person.id.toString())
-        .set(person.toJson());
+        .collection(showTypeText)
+        .doc(show.id.toString())
+        .set(show.toJson());
   }
 
   @override
-  Future<void> deleteFavouritePerson(int id) async {
+  Future<void> deleteFavourite(int id, ShowType showType) async {
+    final showTypeText = showType == ShowType.Person
+        ? 'favourite_people'
+        : showType == ShowType.Movie
+            ? 'favourite_movies'
+            : 'favourite_tv_shows';
     await firebaseFirestore
         .collection('users')
         .doc(firebaseAuth.currentUser!.uid)
-        .collection('favourite_people')
+        .collection(showTypeText)
         .doc(id.toString())
         .delete();
   }
 
   @override
-  Future<bool> checkFavouritePerson(int id) async {
+  Future<bool> checkFavourite(int id, ShowType showType) async {
+    final showTypeText = showType == ShowType.Person
+        ? 'favourite_people'
+        : showType == ShowType.Movie
+            ? 'favourite_movies'
+            : 'favourite_tv_shows';
     final doc = await firebaseFirestore
         .collection('users')
         .doc(firebaseAuth.currentUser!.uid)
-        .collection('favourite_people')
+        .collection(showTypeText)
         .doc(id.toString())
         .get();
     return doc.exists;

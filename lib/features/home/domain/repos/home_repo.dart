@@ -18,11 +18,11 @@ abstract class HomeRepo {
       List<MovieMiniResultEntity> movies);
   Future<Either<Failure, List<PersonMiniResultEntity>>> getTrendingPeople(
       int page);
-  Future<Either<Failure, List<dynamic>>> getPicksForYou();
+  Future<Either<Failure, List<dynamic>>> getPicksForYou(int page);
   Future<Either<Failure, PersonResultEntity>> getPersonDetails(int id);
-  Future<Either<Failure, void>> addFavouritePerson(PersonResultEntity person);
-  Future<Either<Failure, void>> deleteFavouritePerson(int id);
-  Future<Either<Failure, bool>> checkFavouritePerson(int id);
+  Future<Either<Failure, void>> addFavourite(dynamic show, ShowType showType);
+  Future<Either<Failure, void>> deleteFavourite(int id, ShowType showType);
+  Future<Either<Failure, bool>> checkFavourite(int id, ShowType showType);
   Future<Either<Failure, ShowResultEntity>> getShowDetails(
       int id, ShowType showType);
 }

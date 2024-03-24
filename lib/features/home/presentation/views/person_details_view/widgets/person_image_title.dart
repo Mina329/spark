@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/build_cover_image.dart';
 import 'package:spark/core/widgets/functions/build_cover_overlay.dart';
-import 'package:spark/features/home/presentation/controllers/person_details_controller/favourite_person_controller.dart';
+import 'package:spark/features/home/presentation/controllers/favourite_controller.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 
 class PersonImageTitle extends StatelessWidget {
@@ -58,12 +59,17 @@ class PersonImageTitle extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.angleLeft),
                   color: ColorManager.primaryColor,
                 ),
-                GetBuilder<FavouritePersonController>(
-                    builder: (favouritePersonController) {
+                GetBuilder<FavouriteController>(
+                    builder: (favouriteController) {
                   return IconButton(
-                    onPressed: favouritePersonController.favouriteOnPressed,
+                    onPressed: () {
+                      favouriteController.favouriteOnPressed(
+                        getPersonDetailsController.personResultEntity,
+                        ShowType.Person,
+                      );
+                    },
                     icon: Icon(
-                      favouritePersonController.favourite
+                      favouriteController.favourite
                           ? FontAwesomeIcons.solidHeart
                           : FontAwesomeIcons.heart,
                       color: ColorManager.primaryColor,

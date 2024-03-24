@@ -3,8 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/build_cover_image.dart';
 import 'package:spark/core/widgets/functions/build_cover_overlay.dart';
+import 'package:spark/features/home/presentation/controllers/favourite_controller.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 
 class ShowImageTitle extends StatelessWidget {
@@ -55,12 +57,24 @@ class ShowImageTitle extends StatelessWidget {
                   icon: const Icon(FontAwesomeIcons.angleLeft),
                   color: ColorManager.primaryColor,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    FontAwesomeIcons.heart,
-                    color: ColorManager.primaryColor,
-                  ),
+                GetBuilder<FavouriteController>(
+                  builder: (favouriteController) {
+                    return IconButton(
+                      onPressed: () {
+                        favouriteController.favouriteOnPressed(
+                          showDetailsController.showResultEntity,
+                          showDetailsController.showResultEntity.showType ??
+                              ShowType.Movie,
+                        );
+                      },
+                      icon: Icon(
+                        favouriteController.favourite
+                            ? FontAwesomeIcons.solidHeart
+                            : FontAwesomeIcons.heart,
+                        color: ColorManager.primaryColor,
+                      ),
+                    );
+                  },
                 )
               ],
             ),

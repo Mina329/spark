@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:spark/core/utils/env.dart';
 
@@ -9,6 +11,7 @@ class ApiService {
   ApiService({required Dio dio}) : _dio = dio;
 
   Future<Map<String, dynamic>> get({required String endPoint}) async {
+    log(endPoint);
     var response = await _dio.get(
       "${Env.BASE_URL}$endPoint",
       options: Options(

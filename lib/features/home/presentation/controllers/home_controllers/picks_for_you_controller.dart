@@ -20,7 +20,7 @@ class PicksForYouController extends GetxController {
   Future getPicksForYou() async {
     loading.value = true;
 
-    var result = await getPicksForYouUsecase.execute();
+    var result = await getPicksForYouUsecase.execute(1);
     result.fold(
       (failure) => Get.snackbar(
         StringsManager.operationFailed,

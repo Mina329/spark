@@ -7,6 +7,9 @@ import 'package:spark/features/home/data/data_sources/home_remote_data_source/ho
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source_impl.dart';
 import 'package:spark/features/home/data/repos/home_repo_impl.dart';
 import 'package:spark/features/home/domain/repos/home_repo.dart';
+import 'package:spark/features/home/domain/usecases/add_favourite_usecase.dart';
+import 'package:spark/features/home/domain/usecases/check_favourite_usecase.dart';
+import 'package:spark/features/home/domain/usecases/delete_favourite_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_now_playing_movies_trailer_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:spark/features/home/domain/usecases/get_picks_for_you_usecase.dart';
@@ -85,6 +88,24 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<GetPicksForYouUsecase>(
       () => GetPicksForYouUsecase(
+        homeRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<AddFavouriteUsecase>(
+      () => AddFavouriteUsecase(
+        homeRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<DeleteFavourriteUsecase>(
+      () => DeleteFavourriteUsecase(
+        homeRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<CheckFavouriteUsecase>(
+      () => CheckFavouriteUsecase(
         homeRepo: Get.find(),
       ),
       fenix: true,

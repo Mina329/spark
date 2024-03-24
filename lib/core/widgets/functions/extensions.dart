@@ -171,6 +171,7 @@ extension MovieResultX on MovieResult {
               releaseDate!,
             ),
       duration: formatTime(runtime ?? 0),
+      showType: ShowType.Movie,
     );
   }
 }
@@ -178,28 +179,28 @@ extension MovieResultX on MovieResult {
 extension TVResultX on TvResult {
   ShowResultEntity toEntity() {
     return ShowResultEntity(
-      id: id!,
-      name: name,
-      posterUrl: posterPath,
-      voteAverage: voteAverage,
-      popularity: popularity,
-      genreIds: extractGenreIds(genres),
-      overview: overview,
-      castAndCrew: parseTvCastAndCrewToPersonMiniResultEntity(tvCredits),
-      imagesBackdrop: parseMovieImagesToImageEntity(tvImages?.tvBackdrops),
-      imagesPosters: parseMovieImagesToImageEntity(tvImages?.tvPosters),
-      seasons: parseSeasonsToSeasonEntity(seasons ?? []),
-      youtubeKeys: getYoutubeKeys(tvVideos?.tvVideosResults),
-      review: parseToReview(tvReviews?.tvReviewsResults),
-      similarShows:
-          parseTvimilarResultToTvMiniResultEntity(tvSimilar?.tvSimilarResults),
-      releaseDate: firstAirDate == null || firstAirDate!.isEmpty
-          ? null
-          : DateTime.parse(
-              firstAirDate!,
-            ),
-      duration: '${numberOfEpisodes ?? 0} eps',
-    );
+        id: id!,
+        name: name,
+        posterUrl: posterPath,
+        voteAverage: voteAverage,
+        popularity: popularity,
+        genreIds: extractGenreIds(genres),
+        overview: overview,
+        castAndCrew: parseTvCastAndCrewToPersonMiniResultEntity(tvCredits),
+        imagesBackdrop: parseMovieImagesToImageEntity(tvImages?.tvBackdrops),
+        imagesPosters: parseMovieImagesToImageEntity(tvImages?.tvPosters),
+        seasons: parseSeasonsToSeasonEntity(seasons ?? []),
+        youtubeKeys: getYoutubeKeys(tvVideos?.tvVideosResults),
+        review: parseToReview(tvReviews?.tvReviewsResults),
+        similarShows: parseTvimilarResultToTvMiniResultEntity(
+            tvSimilar?.tvSimilarResults),
+        releaseDate: firstAirDate == null || firstAirDate!.isEmpty
+            ? null
+            : DateTime.parse(
+                firstAirDate!,
+              ),
+        duration: '${numberOfEpisodes ?? 0} eps',
+        showType: ShowType.TV);
   }
 }
 

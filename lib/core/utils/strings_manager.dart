@@ -140,4 +140,8 @@ abstract class StringsManager {
   static const personRemovedFromFavourite = 'Person Removed From Favourite';
   static const backdrops = 'Backdrops';
   static const posters = 'Posters';
+  static const movieAddedToFavourite = 'Movie Added To Favourite';
+  static const movieRemovedFromFavourite = 'Movie Removed From Favourite';
+  static const tvShowAddedToFavourite = 'TV Show Added To Favourite';
+  static const tvShowRemovedFromFavourite = 'TV Show Removed From Favorite';
 }

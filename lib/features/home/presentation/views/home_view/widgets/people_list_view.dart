@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/circular_image.dart';
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 
 class PeopleListView extends StatelessWidget {
@@ -25,6 +26,7 @@ class PeopleListView extends StatelessWidget {
               AppRouter.kPersonDetailsView,
               arguments: {
                 'id': people[index].id,
+                'showType': ShowType.Person,
               },
               preventDuplicates: false,
             ),

@@ -7,4 +7,20 @@ class SeasonEntity {
       {required this.seasonPoster,
       required this.seasonNumber,
       required this.id});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'seasonPoster': seasonPoster,
+      'seasonNumber': seasonNumber,
+      'id': id,
+    };
+  }
+
+  factory SeasonEntity.fromJson(Map<String, dynamic> json) {
+    return SeasonEntity(
+      seasonPoster: json['seasonPoster'],
+      seasonNumber: json['seasonNumber'] as int?,
+      id: json['id'],
+    );
+  }
 }
