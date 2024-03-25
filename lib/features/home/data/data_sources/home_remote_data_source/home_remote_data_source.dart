@@ -2,6 +2,7 @@ import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
@@ -19,4 +20,6 @@ abstract class HomeRemoteDataSource {
   Future<bool> checkFavourite(int id, ShowType showType);
   Future<dynamic> getShowDetails(int id, ShowType showType);
   Future<SeasonResultEntity> getSeasonDetails(int showId, int seasonNumber);
+  Future<List<ReviewEntity>> getReviews(
+      int page, int showId, ShowType showType);
 }

@@ -14,6 +14,7 @@ import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_res
 import 'package:spark/features/home/data/models/movie_result/movie_backdrop.dart';
 import 'package:spark/features/home/data/models/movie_result/movie_poster.dart';
 import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_reviews_result.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/images.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
@@ -24,6 +25,7 @@ import 'package:spark/features/home/domain/entities/image_entity.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
@@ -175,6 +177,7 @@ extension MovieResultX on MovieResult {
             ),
       duration: formatTime(runtime ?? 0),
       showType: ShowType.Movie,
+      totalReviewsNumber: movieReviews?.totalResults,
     );
   }
 }
@@ -182,28 +185,30 @@ extension MovieResultX on MovieResult {
 extension TVResultX on TvResult {
   ShowResultEntity toEntity() {
     return ShowResultEntity(
-        id: id!,
-        name: name,
-        posterUrl: posterPath,
-        voteAverage: voteAverage,
-        popularity: popularity,
-        genreIds: extractGenreIds(genres),
-        overview: overview,
-        castAndCrew: parseTvCastAndCrewToPersonMiniResultEntity(tvCredits),
-        imagesBackdrop: parseMovieImagesToImageEntity(tvImages?.tvBackdrops),
-        imagesPosters: parseMovieImagesToImageEntity(tvImages?.tvPosters),
-        seasons: parseSeasonsToSeasonEntity(seasons ?? []),
-        youtubeKeys: getYoutubeKeys(tvVideos?.tvVideosResults),
-        review: parseToReview(tvReviews?.tvReviewsResults),
-        similarShows: parseTvimilarResultToTvMiniResultEntity(
-            tvSimilar?.tvSimilarResults),
-        releaseDate: firstAirDate == null || firstAirDate!.isEmpty
-            ? null
-            : DateTime.parse(
-                firstAirDate!,
-              ),
-        duration: '${numberOfEpisodes ?? 0} eps',
-        showType: ShowType.TV);
+      id: id!,
+      name: name,
+      posterUrl: posterPath,
+      voteAverage: voteAverage,
+      popularity: popularity,
+      genreIds: extractGenreIds(genres),
+      overview: overview,
+      castAndCrew: parseTvCastAndCrewToPersonMiniResultEntity(tvCredits),
+      imagesBackdrop: parseMovieImagesToImageEntity(tvImages?.tvBackdrops),
+      imagesPosters: parseMovieImagesToImageEntity(tvImages?.tvPosters),
+      seasons: parseSeasonsToSeasonEntity(seasons ?? []),
+      youtubeKeys: getYoutubeKeys(tvVideos?.tvVideosResults),
+      review: parseToReview(tvReviews?.tvReviewsResults),
+      similarShows:
+          parseTvimilarResultToTvMiniResultEntity(tvSimilar?.tvSimilarResults),
+      releaseDate: firstAirDate == null || firstAirDate!.isEmpty
+          ? null
+          : DateTime.parse(
+              firstAirDate!,
+            ),
+      duration: '${numberOfEpisodes ?? 0} eps',
+      showType: ShowType.TV,
+      totalReviewsNumber: tvReviews?.totalResults,
+    );
   }
 }
 
@@ -236,6 +241,20 @@ extension MoviePosterX on MoviePoster {
     return ImageEntity(
       aspectRatio: aspectRatio,
       filePath: filePath,
+    );
+  }
+}
+
+extension MovieReviewsResultX on MovieReviewsResult {
+  ReviewEntity toEntity() {
+    return ReviewEntity(
+      id: id ?? '',
+      userName: authorDetails?.name,
+      voteAverage: authorDetails?.rating?.toDouble(),
+      reviewContent: content,
+      reviewDate: createdAt,
+      userProfile: authorDetails?.avatarPath,
+      userMail: authorDetails?.username,
     );
   }
 }

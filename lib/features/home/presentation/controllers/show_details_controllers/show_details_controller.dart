@@ -56,6 +56,10 @@ class ShowDetailsController extends GetxController {
     }
   }
 
+  get getYoutubeKeysCount {
+    return showResultEntity?.youtubeKeys?.length ?? 0;
+  }
+
   Future getShowDetails(int id, ShowType showType) async {
     var result = await getShowDetailsUsecase.execute((id, showType));
     result.fold(

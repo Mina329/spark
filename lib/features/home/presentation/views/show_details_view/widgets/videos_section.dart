@@ -15,8 +15,10 @@ class VideosSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       children: [
         Row(
@@ -29,7 +31,7 @@ class VideosSection extends StatelessWidget {
               width: 10,
             ),
             Text(
-              showDetailsController.videosControllers.length.toString(),
+              showDetailsController.getYoutubeKeysCount.toString(),
               style: StylesManager.styleLatoBold20(context)
                   .copyWith(color: Colors.grey),
             ),
@@ -39,6 +41,8 @@ class VideosSection extends StatelessWidget {
                 AppRouter.kMediaView,
                 arguments: {
                   'mediaType': MediaType.Videos,
+                  'mediaList':
+                      showDetailsController.showResultEntity!.youtubeKeys,
                 },
               ),
               child: Text(

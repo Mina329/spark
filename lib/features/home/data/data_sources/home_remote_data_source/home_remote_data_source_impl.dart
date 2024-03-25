@@ -7,6 +7,7 @@ import 'package:spark/features/auth/data/models/genre_model.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:spark/features/home/data/models/movie_result/movie_result.dart';
+import 'package:spark/features/home/data/models/movie_result/movie_reviews_result.dart';
 import 'package:spark/features/home/data/models/movie_trailer/movie_trailer.dart';
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/person_result/person_result.dart';
@@ -16,6 +17,7 @@ import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/person_result_entity.dart';
+import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
@@ -233,5 +235,18 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         endPoint: '/tv/$showId/season/$seasonNumber?language=en-US');
     SeasonResultEntity season = SeasonResult.fromJson(data).toEntity(showId);
     return season;
+  }
+
+  @override
+  Future<List<ReviewEntity>> getReviews(
+      int page, int showId, ShowType showType) async {
+    var data = await apiService.get(
+        endPoint:
+            '/${showType == ShowType.Movie ? 'movie' : 'tv'}/$showId/reviews?language=en-US&page=$page');
+    List<ReviewEntity> items = [];
+    for (var item in data['results']) {
+      items.add(MovieReviewsResult.fromJson(item).toEntity());
+    }
+    return items;
   }
 }

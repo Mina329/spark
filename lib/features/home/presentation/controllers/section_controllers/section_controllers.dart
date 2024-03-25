@@ -65,7 +65,6 @@ class SectionController extends GetxController {
     );
     loadingMore.value = false;
   }
-
   void _onScroll() {
     if (!loadingMore.value &&
         scrollController.position.pixels >=
