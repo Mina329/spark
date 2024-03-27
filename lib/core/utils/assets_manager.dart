@@ -37,6 +37,10 @@ class Assets {
   /// assets/images/1_test.png
   static const String assetsImages1Test = "assets/images/1_test.png";
 
+  /// Assets for assetsImagesAddMovie
+  /// assets/images/add_movie.svg
+  static const String assetsImagesAddMovie = "assets/images/add_movie.svg";
+
   /// Assets for assetsImagesEmailVerification
   /// assets/images/email_verification.svg
   static const String assetsImagesEmailVerification = "assets/images/email_verification.svg";

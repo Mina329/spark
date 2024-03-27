@@ -23,6 +23,12 @@ import 'package:spark/features/home/presentation/controllers/home_controllers/pi
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
+import 'package:spark/features/lists/data/data_sources/lists_remote_data_sources/lists_remote_data_source.dart';
+import 'package:spark/features/lists/data/data_sources/lists_remote_data_sources/lists_remote_data_source_impl.dart';
+import 'package:spark/features/lists/data/repos/lists_repo_impl.dart';
+import 'package:spark/features/lists/domain/repos/lists_repo.dart';
+import 'package:spark/features/lists/domain/usecases/get_user_lists_usecase.dart';
+import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
 class MainBinding extends Bindings {
@@ -50,9 +56,22 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<ListsRemoteDataSource>(
+      () => ListsRemoteDataSourceImpl(
+        firebaseAuth: Get.find(),
+        firebaseFirestore: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<HomeRepo>(
       () => HomeRepoImpl(
         homeRemoteDataSource: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<ListsRepo>(
+      () => ListsRepoImpl(
+        listsRemoteDataSource: Get.find(),
       ),
       fenix: true,
     );
@@ -110,6 +129,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetUserListsUsecase>(
+      () => GetUserListsUsecase(
+        listsRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -151,6 +176,12 @@ class MainBinding extends Bindings {
     Get.lazyPut<PicksForYouController>(
       () => PicksForYouController(
         getPicksForYouUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<GetUserListsController>(
+      () => GetUserListsController(
+        getUserListsUsecase: Get.find(),
       ),
       fenix: true,
     );
