@@ -29,6 +29,7 @@ import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dart';
 
 extension TrendingMovieX on MovieMiniResult {
   MovieMiniResultEntity toEntity() {
@@ -178,6 +179,7 @@ extension MovieResultX on MovieResult {
       duration: formatTime(runtime ?? 0),
       showType: ShowType.Movie,
       totalReviewsNumber: movieReviews?.totalResults,
+      voteCount: voteCount,
     );
   }
 }
@@ -208,6 +210,7 @@ extension TVResultX on TvResult {
       duration: '${numberOfEpisodes ?? 0} eps',
       showType: ShowType.TV,
       totalReviewsNumber: tvReviews?.totalResults,
+      voteCount: voteCount,
     );
   }
 }
@@ -255,6 +258,21 @@ extension MovieReviewsResultX on MovieReviewsResult {
       reviewDate: createdAt,
       userProfile: authorDetails?.avatarPath,
       userMail: authorDetails?.username,
+    );
+  }
+}
+
+extension ShowResultEntityX on ShowResultEntity {
+  ShowMiniResultEntity toShowMiniResultEntity() {
+    return ShowMiniResultEntity(
+      id: id,
+      name: name,
+      posterPath: posterUrl,
+      releaseDate: releaseDate,
+      genres: genreIds,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+      showType: showType,
     );
   }
 }

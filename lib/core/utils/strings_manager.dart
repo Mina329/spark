@@ -65,7 +65,7 @@ abstract class StringsManager {
   static const peopleOfTheWeek = 'People of the Week';
   static const rating = 'Rating';
   static const popularity = 'Popularity';
-  static const addToMyList = 'Add to My List';
+  static const addToMyList = 'Add to a List';
   static const addedTo = 'Added to';
   static const overview = 'Overview';
   static const details = 'Details';
@@ -148,4 +148,6 @@ abstract class StringsManager {
   static const addSomeShowsToTheList = 'Add Some Shows To The List';
   static const newListHasBeenCreated = 'New List Has Been Created';
   static const pleaseEnterAValidListName = 'Please Enter A Valid List Name';
+  static const showHasBeenAddedToYourList = 'Show has been Added To Your List';
+  static const showHasBeenRemovedFromYourList = 'Show has been Removed From Your List';
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
@@ -49,7 +47,6 @@ class CreateNewListController extends GetxController {
   }
 
   void Function()? onPressedCreate() {
-    log(controller!.text.toString());
     if (controller?.text != null && controller!.text.length >= 3) {
       final listTitle = controller!.text;
       createNewList(
@@ -59,6 +56,7 @@ class CreateNewListController extends GetxController {
           shows: [],
         ),
       );
+      Get.back();
     } else {
       Get.snackbar(
         StringsManager.operationFailed,

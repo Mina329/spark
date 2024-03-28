@@ -91,13 +91,10 @@ class AuthRepoImpl extends AuthRepo {
       await _firebaseAuth.signInWithCredential(facebookAuthCredential);
       return right(null);
     } on FirebaseAuthException catch (e) {
-      log(e.toString());
       return left(
         FirebaseAuthFailure.fromFirebaseAuthException(e),
       );
     } catch (e) {
-      log(e.toString());
-
       return left(
         Failure(
           message: e.toString(),

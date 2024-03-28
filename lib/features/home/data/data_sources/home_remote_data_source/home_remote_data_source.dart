@@ -5,6 +5,7 @@ import 'package:spark/features/home/domain/entities/person_result_entity.dart';
 import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<MovieMiniResultEntity>> getTredingMovies(int page);
@@ -22,4 +23,6 @@ abstract class HomeRemoteDataSource {
   Future<SeasonResultEntity> getSeasonDetails(int showId, int seasonNumber);
   Future<List<ReviewEntity>> getReviews(
       int page, int showId, ShowType showType);
+  Future<void> addShowToList(String listId, ShowMiniResultEntity show);
+  Future<void> removeShowFromList(String listId, int showId);
 }

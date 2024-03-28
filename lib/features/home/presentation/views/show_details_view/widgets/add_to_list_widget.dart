@@ -3,10 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
-import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/key_value_column.dart';
-import 'package:spark/features/home/presentation/views/show_details_view/widgets/list_button.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/lists_drop_down.dart';
 
 class AddToListWidget extends StatelessWidget {
@@ -16,8 +14,10 @@ class AddToListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       children: [
         Row(
@@ -44,25 +44,9 @@ class AddToListWidget extends StatelessWidget {
         const SizedBox(
           height: 15,
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: true
-              ? const ListsDropDown()
-              // ignore: dead_code
-              : ListButton(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        FontAwesomeIcons.check,
-                      ),
-                      Text(
-                        '${StringsManager.addedTo} List 1',
-                        style: StylesManager.styleLatoRegular18(context),
-                      ),
-                    ],
-                  ),
-                ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: ListsDropDown(),
         ),
       ],
     );

@@ -11,6 +11,7 @@ class ShowResultEntity {
   final String? name;
   final String? posterUrl;
   final double? voteAverage;
+  final int? voteCount;
   final double? popularity;
   final List<int>? genreIds;
   final DateTime? releaseDate;
@@ -26,6 +27,7 @@ class ShowResultEntity {
   final List<dynamic>? similarShows;
   final int? totalReviewsNumber;
   ShowResultEntity({
+    required this.voteCount,
     required this.id,
     required this.name,
     required this.posterUrl,
@@ -64,7 +66,8 @@ class ShowResultEntity {
       'youtubeKeys': youtubeKeys,
       'review': review?.map((x) => x.toJson()).toList(),
       'similarShows': _serializeSimilarShows(),
-      'totalReviewsNumber': totalReviewsNumber
+      'totalReviewsNumber': totalReviewsNumber,
+      'voteCount': voteCount
     };
   }
 
@@ -119,6 +122,7 @@ class ShowResultEntity {
           .toList(),
       similarShows: _deserializeSimilarShows(json['similarShows'], showType),
       totalReviewsNumber: json['totalReviewsNumber'],
+      voteCount: json['voteCount'],
     );
   }
 

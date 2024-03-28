@@ -21,6 +21,7 @@ import 'package:spark/features/home/domain/entities/review_entity.dart';
 import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
+import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dart';
 
 class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   final ApiService apiService;
@@ -248,5 +249,46 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       items.add(MovieReviewsResult.fromJson(item).toEntity());
     }
     return items;
+  }
+
+  @override
+  Future<void> addShowToList(String listId, ShowMiniResultEntity show) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(firebaseAuth.currentUser!.uid)
+        .collection('lists')
+        .doc(listId)
+        .update(
+      {
+        'shows': FieldValue.arrayUnion(
+          [
+            show.toJson(),
+          ],
+        )
+      },
+    );
+  }
+
+  @override
+  Future<void> removeShowFromList(String listId, int showId) async {
+    DocumentSnapshot<Map<String, dynamic>> listDocumentSnapshot =
+        await firebaseFirestore
+            .collection('users')
+            .doc(firebaseAuth.currentUser!.uid)
+            .collection('lists')
+            .doc(listId)
+            .get();
+
+    List<dynamic> shows = listDocumentSnapshot.get('shows');
+    int indexToRemove = shows.indexWhere((show) => show['id'] == showId);
+    if (indexToRemove != -1) {
+      shows.removeAt(indexToRemove);
+      await firebaseFirestore
+          .collection('users')
+          .doc(firebaseAuth.currentUser!.uid)
+          .collection('lists')
+          .doc(listId)
+          .update({'shows': shows});
+    }
   }
 }

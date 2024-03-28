@@ -19,8 +19,8 @@ class GetUserListsController extends GetxController {
   }
 
   void getUserLists() async {
-    loading.value = true;
     lists = [];
+    loading.value = true;
     var result = await getUserListsUsecase.execute();
     result.fold(
       (failure) => Get.snackbar(

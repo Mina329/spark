@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spark/core/errors/failure.dart';
@@ -15,6 +13,7 @@ import 'package:spark/features/home/domain/entities/season_result_entity.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 import 'package:spark/features/home/domain/repos/home_repo.dart';
+import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dart';
 
 class HomeRepoImpl extends HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
@@ -112,10 +111,8 @@ class HomeRepoImpl extends HomeRepo {
       var results = await homeRemoteDataSource.getPicksForYou(page);
       return right(results);
     } on DioException catch (e) {
-      log(e.toString());
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
-      log(e.toString());
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,
@@ -198,11 +195,8 @@ class HomeRepoImpl extends HomeRepo {
       var results = await homeRemoteDataSource.getShowDetails(id, showType);
       return right(results);
     } on DioException catch (e) {
-      log(e.toString());
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
-      log(e.toString());
-
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,
@@ -236,6 +230,40 @@ class HomeRepoImpl extends HomeRepo {
       var results =
           await homeRemoteDataSource.getReviews(page, showId, showType);
       return right(results);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addShowToList(
+      String listId, ShowMiniResultEntity show) async {
+    try {
+      await homeRemoteDataSource.addShowToList(listId, show);
+      return right(null);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> removeShowFromList(
+      String listId, int showId) async {
+    try {
+      await homeRemoteDataSource.removeShowFromList(listId, showId);
+      return right(null);
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
