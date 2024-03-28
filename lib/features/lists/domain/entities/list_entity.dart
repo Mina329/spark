@@ -4,10 +4,11 @@ part 'list_entity.g.dart';
 
 @JsonSerializable()
 class ListEntity {
+  final String id;
   final String? title;
   final List<ShowMiniResultEntity>? shows;
 
-  ListEntity({required this.title, required this.shows});
+  ListEntity({required this.id, required this.title, required this.shows});
   factory ListEntity.fromJson(Map<String, dynamic> json) =>
       _$ListEntityFromJson(json);
 

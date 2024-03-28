@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spark/core/errors/failure.dart';
@@ -21,7 +19,22 @@ class ListsRepoImpl extends ListsRepo {
     } on DioException catch (e) {
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
-      log(e.toString());
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> createNewList(ListEntity list) async {
+    try {
+      await listsRemoteDataSource.createNewList(list);
+      return right(null);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/features/lists/presentation/controllers/create_new_list_controller.dart';
 
 class CreateNewListModalBottomSheet extends StatelessWidget {
   const CreateNewListModalBottomSheet({
@@ -10,6 +12,7 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final createNewListController = Get.find<CreateNewListController>();
     return BottomSheet(
       builder: (BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -33,6 +36,7 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
               height: 5,
             ),
             TextField(
+              controller: createNewListController.controller,
               decoration: InputDecoration(
                 fillColor:
                     Color.lerp(ColorManager.primaryColor, Colors.black, 0.7),
@@ -60,7 +64,7 @@ class CreateNewListModalBottomSheet extends StatelessWidget {
             SizedBox(
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: createNewListController.onPressedCreate,
                 child: Text(
                   StringsManager.create,
                   style: StylesManager.styleLatoBold20(context)
