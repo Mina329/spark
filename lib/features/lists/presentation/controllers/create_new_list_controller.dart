@@ -8,7 +8,6 @@ import 'package:uuid/uuid.dart';
 
 class CreateNewListController extends GetxController {
   final CreateNewListUsecase createNewListUsecase;
-  RxBool loading = false.obs;
   TextEditingController? controller;
   CreateNewListController({required this.createNewListUsecase});
   @override
@@ -24,7 +23,6 @@ class CreateNewListController extends GetxController {
   }
 
   void createNewList(ListEntity list) async {
-    loading.value = true;
 
     var result = await createNewListUsecase.execute(list);
     result.fold(
@@ -40,10 +38,9 @@ class CreateNewListController extends GetxController {
           backgroundColor: Colors.green.withOpacity(0.5),
         );
         final getUserListsController = Get.find<GetUserListsController>();
-        getUserListsController.getUserLists();
+        getUserListsController.lists.add(list);
       },
     );
-    loading.value = false;
   }
 
   void Function()? onPressedCreate() {

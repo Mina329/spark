@@ -150,4 +150,5 @@ abstract class StringsManager {
   static const pleaseEnterAValidListName = 'Please Enter A Valid List Name';
   static const showHasBeenAddedToYourList = 'Show has been Added To Your List';
   static const showHasBeenRemovedFromYourList = 'Show has been Removed From Your List';
+  static const delete = 'Delete';
 }

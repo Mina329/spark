@@ -5,12 +5,15 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:spark/features/lists/presentation/views/widgets/lists_item.dart';
+import 'package:spark/features/lists/presentation/views/widgets/lists_view_shimmer.dart';
 
 class ListsViewBody extends StatelessWidget {
   const ListsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GetUserListsController getUserListsController =
+        Get.find<GetUserListsController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Stack(
@@ -45,18 +48,23 @@ class ListsViewBody extends StatelessWidget {
                   height: 10,
                 ),
               ),
-              GetBuilder<GetUserListsController>(
-                builder: (getUserListsController) {
-                  return SliverList.builder(
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      child: ListsItem(
-                        listEntity: getUserListsController.lists[index],
-                        index: index,
+              Obx(
+                () {
+                  if (getUserListsController.loading.isTrue) {
+                    return const SliverToBoxAdapter(
+                      child: ListsViewShimmer(),
+                    );
+                  } else {
+                    return SliverList.builder(
+                      itemBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: ListsItem(
+                          index: index,
+                        ),
                       ),
-                    ),
-                    itemCount: getUserListsController.lists.length,
-                  );
+                      itemCount: getUserListsController.lists.length,
+                    );
+                  }
                 },
               ),
               const SliverToBoxAdapter(

@@ -7,7 +7,6 @@ import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dar
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 
 class AddRemoveShowToListController extends GetxController {
-  RxBool loading = false.obs;
   final AddShowToListUsecase addShowToListUsecase;
   final RemoveShowFromListUsecase removeShowFromListUsecase;
 
@@ -19,7 +18,6 @@ class AddRemoveShowToListController extends GetxController {
       required this.addShowToListUsecase});
 
   void addShowToList(String listId, ShowMiniResultEntity show) async {
-    loading.value = true;
     var result = await addShowToListUsecase.execute((listId, show));
     result.fold(
       (failure) {
@@ -31,19 +29,16 @@ class AddRemoveShowToListController extends GetxController {
       },
       (success) {
         Get.snackbar(
-          StringsManager.operationFailed,
+          StringsManager.operationSuccess,
           StringsManager.showHasBeenAddedToYourList,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
         getUserListsController.getUserLists();
-        update();
       },
     );
-    loading.value = false;
   }
 
   void removeShowFromList(String listId, int showId) async {
-    loading.value = true;
     var result = await removeShowFromListUsecase.execute((listId, showId));
     result.fold(
       (failure) {
@@ -55,7 +50,7 @@ class AddRemoveShowToListController extends GetxController {
       },
       (success) {
         Get.snackbar(
-          StringsManager.operationFailed,
+          StringsManager.operationSuccess,
           StringsManager.showHasBeenRemovedFromYourList,
           backgroundColor: Colors.green.withOpacity(0.5),
         );
@@ -63,6 +58,5 @@ class AddRemoveShowToListController extends GetxController {
         update();
       },
     );
-    loading.value = false;
   }
 }

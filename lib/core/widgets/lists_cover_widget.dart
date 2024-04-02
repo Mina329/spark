@@ -38,7 +38,7 @@ class ListsCoverWidget extends StatelessWidget {
                       border: Border.all(
                         color: ColorManager.primaryColor,
                       ),
-                      borderRadius: BorderRadius.circular(5),
+                      borderRadius: BorderRadius.circular(2),
                     ),
                     child: CachedNetworkImage(
                       imageUrl:

@@ -6,6 +6,7 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/list_item.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
+import 'package:spark/features/lists/presentation/views/widgets/create_new_list_button.dart';
 
 class AddToListBottomSheet extends StatelessWidget {
   const AddToListBottomSheet({
@@ -58,6 +59,10 @@ class AddToListBottomSheet extends StatelessWidget {
                 }
               },
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            const CreateNewListButton()
           ],
         ),
       ),
