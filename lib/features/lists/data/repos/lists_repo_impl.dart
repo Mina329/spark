@@ -42,4 +42,20 @@ class ListsRepoImpl extends ListsRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteList(String listId) async {
+    try {
+      await listsRemoteDataSource.deleteList(listId);
+      return right(null);
+    } on DioException catch (e) {
+      return left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return left(
+        Failure(
+          message: StringsManager.somethingWentWrong,
+        ),
+      );
+    }
+  }
 }

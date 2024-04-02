@@ -9,6 +9,7 @@ import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/lists_cover_widget.dart';
+import 'package:spark/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 
 class ListsItem extends StatelessWidget {
@@ -21,6 +22,8 @@ class ListsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final GetUserListsController getUserListsController =
         Get.find<GetUserListsController>();
+    final DeleteListController deleteListController =
+        Get.find<DeleteListController>();
     return Stack(
       children: [
         GestureDetector(
@@ -120,7 +123,10 @@ class ListsItem extends StatelessWidget {
               ),
             ],
             onSelected: (selected) {
-              print(selected);
+              if (selected == 'delete') {
+                deleteListController
+                    .deleteList(getUserListsController.lists[index].id);
+              }
             },
             child: const Icon(
               FontAwesomeIcons.ellipsisVertical,

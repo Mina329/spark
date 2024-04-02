@@ -31,8 +31,10 @@ import 'package:spark/features/lists/data/data_sources/lists_remote_data_sources
 import 'package:spark/features/lists/data/repos/lists_repo_impl.dart';
 import 'package:spark/features/lists/domain/repos/lists_repo.dart';
 import 'package:spark/features/lists/domain/usecases/create_new_list_usecase.dart';
+import 'package:spark/features/lists/domain/usecases/delete_list_usecase.dart';
 import 'package:spark/features/lists/domain/usecases/get_user_lists_usecase.dart';
 import 'package:spark/features/lists/presentation/controllers/create_new_list_controller.dart';
+import 'package:spark/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
 
@@ -158,6 +160,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<DeleteListUsecase>(
+      () => DeleteListUsecase(
+        listsRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -218,6 +226,12 @@ class MainBinding extends Bindings {
       () => AddRemoveShowToListController(
         addShowToListUsecase: Get.find(),
         removeShowFromListUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => DeleteListController(
+        deleteListUsecase: Get.find(),
       ),
       fenix: true,
     );
