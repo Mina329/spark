@@ -5,7 +5,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
-import 'package:spark/features/explore/data/data_source/static.dart';
+import 'package:spark/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:spark/features/explore/presentation/views/widgets/explore_genre_item.dart';
 import 'package:spark/features/explore/presentation/views/widgets/explore_item.dart';
 
@@ -16,6 +16,8 @@ class TvShowSearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final exploreViewController = Get.find<ExploreViewController>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,21 +43,27 @@ class TvShowSearchSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              tvShowsExploreEvents.length,
+              exploreViewController.tvShowsExploreBanners.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: GestureDetector(
                   onTap: () => Get.toNamed(
                     AppRouter.kShowsSectionView,
                     arguments: {
-                      'title': tvShowsExploreTitles[index],
-                      'showType': ShowType.TV
+                      'title':
+                          exploreViewController.tvShowsExploreTitles[index],
+                      'showType': ShowType.TV,
+                      'sectionType': exploreViewController
+                          .tvShowsExploreSectionTypes[index],
+                      'showsList': exploreViewController.tvShowsExplore[index]
                     },
                     preventDuplicates: false,
                   ),
                   child: ExploreItem(
-                    exploreItemTitle: tvShowsExploreTitles[index],
-                    exploreItemBanners: tvShowsExploreEvents[index],
+                    exploreItemTitle:
+                        exploreViewController.tvShowsExploreTitles[index],
+                    exploreItemBanners:
+                        exploreViewController.tvShowsExploreBanners[index],
                   ),
                 ),
               ),
@@ -69,20 +77,23 @@ class TvShowSearchSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              tvShowsGenres.length,
+              exploreViewController.tvShowsGenres.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: GestureDetector(
                   onTap: () => Get.toNamed(
                     AppRouter.kShowsSectionView,
                     arguments: {
-                      'title': tvShowsGenres[index]['name'],
-                      'showType': ShowType.TV
+                      'title': exploreViewController.tvShowsGenres[index].name,
+                      'showType': ShowType.TV,
+                      'sectionType': SectionType.TvShowsCategory,
+                      'showsList': [],
+                      'category': exploreViewController.tvShowsGenres[index].id
                     },
                     preventDuplicates: false,
                   ),
                   child: ExploreGenreItem(
-                    name: tvShowsGenres[index]['name'],
+                    name: exploreViewController.tvShowsGenres[index].name,
                   ),
                 ),
               ),

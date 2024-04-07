@@ -6,6 +6,7 @@ import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_res
 import 'package:spark/features/home/data/models/person_mini_result/person_mini_result.dart';
 import 'package:spark/features/home/data/models/tv_show_mini_result/tv_show_mini_result.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class ExploreRemoteDataSourceImpl extends ExploreRemoteDataSource {
   final ApiService apiService;
@@ -59,6 +60,50 @@ class ExploreRemoteDataSourceImpl extends ExploreRemoteDataSource {
     List<MovieMiniResultEntity> items = [];
     for (var item in data['results']) {
       items.add(MovieMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
+
+  @override
+  Future<List<TvShowMiniResultEntity>> getAiringTodayTvShows(int page) async {
+    var data = await apiService.get(
+        endPoint: '/tv/airing_today?language=en-US&page=$page');
+    List<TvShowMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(TvShowMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
+
+  @override
+  Future<List<TvShowMiniResultEntity>> getOnTheAirTvShows(int page) async {
+    var data = await apiService.get(
+        endPoint: '/tv/on_the_air?language=en-US&page=$page');
+    List<TvShowMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(TvShowMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
+
+  @override
+  Future<List<TvShowMiniResultEntity>> getPopularTvShows(int page) async {
+    var data =
+        await apiService.get(endPoint: '/tv/popular?language=en-US&page=$page');
+    List<TvShowMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(TvShowMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
+
+  @override
+  Future<List<TvShowMiniResultEntity>> getTopRatedTvShows(int page) async {
+    var data = await apiService.get(
+        endPoint: '/tv/top_rated?language=en-US&page=$page');
+    List<TvShowMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(TvShowMiniResult.fromJson(item).toEntity());
     }
     return items;
   }

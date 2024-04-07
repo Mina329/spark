@@ -21,5 +21,10 @@ enum SectionType {
   TopRatedMovies,
   UpComingMovies,
   MoviesCategory,
+  AiringTodayTvShows,
+  OnTheAirTvShows,
+  PopularTvShows,
+  TopRatedTvShows,
+  TvShowsCategory,
   None,
 }
