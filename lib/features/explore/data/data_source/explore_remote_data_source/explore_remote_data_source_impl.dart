@@ -119,4 +119,30 @@ class ExploreRemoteDataSourceImpl extends ExploreRemoteDataSource {
     }
     return items;
   }
+
+  @override
+  Future<List<MovieMiniResultEntity>> getCategoryMovies(
+      int page, String categoryId) async {
+    var data = await apiService.get(
+        endPoint:
+            '/discover/movie?include_adult=false&include_video=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=2000&with_genres=$categoryId');
+    List<MovieMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(MovieMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
+
+  @override
+  Future<List<TvShowMiniResultEntity>> getCategoryTvShows(
+      int page, String categoryId) async {
+    var data = await apiService.get(
+        endPoint:
+            '/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=$page&sort_by=vote_average.desc&vote_count.gte=2000&with_genres=$categoryId');
+    List<TvShowMiniResultEntity> items = [];
+    for (var item in data['results']) {
+      items.add(TvShowMiniResult.fromJson(item).toEntity());
+    }
+    return items;
+  }
 }

@@ -13,4 +13,8 @@ abstract class ExploreRemoteDataSource {
   Future<List<TvShowMiniResultEntity>> getPopularTvShows(int page);
   Future<List<TvShowMiniResultEntity>> getTopRatedTvShows(int page);
   Future<List<PersonMiniResultEntity>> getPopularCelebrities(int page);
+  Future<List<MovieMiniResultEntity>> getCategoryMovies(
+      int page, String categoryId);
+  Future<List<TvShowMiniResultEntity>> getCategoryTvShows(
+      int page, String categoryId);
 }

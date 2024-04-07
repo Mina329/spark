@@ -8,6 +8,8 @@ import 'package:spark/features/explore/data/data_source/explore_remote_data_sour
 import 'package:spark/features/explore/data/repos/explore_repo_impl.dart';
 import 'package:spark/features/explore/domain/repos/explore_repo.dart';
 import 'package:spark/features/explore/domain/usecases/get_airing_today_tv_shows_usecase.dart';
+import 'package:spark/features/explore/domain/usecases/get_category_movies_usecase.dart';
+import 'package:spark/features/explore/domain/usecases/get_category_tv_shows_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_on_the_air_tv_shows_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_popular_celebrities_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_popular_movies_usecase.dart';
@@ -251,6 +253,18 @@ class MainBinding extends Bindings {
     );
     Get.lazyPut<GetPopularCelebritiesUsecase>(
       () => GetPopularCelebritiesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<GetCategoryMoviesUsecase>(
+      () => GetCategoryMoviesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<GetCategoryTvShowsUsecase>(
+      () => GetCategoryTvShowsUsecase(
         exploreRepo: Get.find(),
       ),
       fenix: true,

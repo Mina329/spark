@@ -14,6 +14,8 @@ abstract class ExploreRepo {
       int page);
   Future<Either<Failure, List<MovieMiniResultEntity>>> getUpComingMovies(
       int page);
+  Future<Either<Failure, List<MovieMiniResultEntity>>> getCategoryMovies(
+      int page, String categoryId);
   Future<Either<Failure, List<TvShowMiniResultEntity>>> getAiringTodayTvShows(
       int page);
   Future<Either<Failure, List<TvShowMiniResultEntity>>> getOnTheAirTvShows(
@@ -22,6 +24,8 @@ abstract class ExploreRepo {
       int page);
   Future<Either<Failure, List<TvShowMiniResultEntity>>> getTopRatedTvShows(
       int page);
+  Future<Either<Failure, List<TvShowMiniResultEntity>>> getCategoryTvShows(
+      int page, String categoryId);
   Future<Either<Failure, List<PersonMiniResultEntity>>> getPopularCelebrities(
       int page);
 }
