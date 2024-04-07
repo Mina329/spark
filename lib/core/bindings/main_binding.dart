@@ -3,6 +3,12 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/api_service.dart';
+import 'package:spark/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source.dart';
+import 'package:spark/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source_impl.dart';
+import 'package:spark/features/explore/data/repos/explore_repo_impl.dart';
+import 'package:spark/features/explore/domain/repos/explore_repo.dart';
+import 'package:spark/features/explore/domain/usecases/get_search_result_usecase.dart';
+import 'package:spark/features/explore/presentation/controllers/get_search_result_controller.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source_impl.dart';
 import 'package:spark/features/home/data/repos/home_repo_impl.dart';
@@ -70,6 +76,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<ExploreRemoteDataSource>(
+      () => ExploreRemoteDataSourceImpl(
+        apiService: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<HomeRepo>(
       () => HomeRepoImpl(
         homeRemoteDataSource: Get.find(),
@@ -79,6 +91,12 @@ class MainBinding extends Bindings {
     Get.lazyPut<ListsRepo>(
       () => ListsRepoImpl(
         listsRemoteDataSource: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<ExploreRepo>(
+      () => ExploreRepoImpl(
+        exploreRemoteDataSource: Get.find(),
       ),
       fenix: true,
     );
@@ -166,6 +184,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetSearchResultUsecase>(
+      () => GetSearchResultUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -232,6 +256,12 @@ class MainBinding extends Bindings {
     Get.lazyPut(
       () => DeleteListController(
         deleteListUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => GetSearchResultController(
+        getSearchResultUsecase: Get.find(),
       ),
       fenix: true,
     );

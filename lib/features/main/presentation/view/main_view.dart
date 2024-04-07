@@ -22,6 +22,7 @@ class MainView extends StatelessWidget {
       controller: bottomNavigationBarController.controller,
       screens: _buildScreens(),
       items: _buildNavBarsItems(context),
+      resizeToAvoidBottomInset: true,
       confineInSafeArea: true,
       backgroundColor: ColorManager.darkScaffoldColor,
       screenTransitionAnimation: const ScreenTransitionAnimation(

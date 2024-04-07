@@ -10,6 +10,7 @@ import 'package:spark/core/widgets/functions/parse_movie_similar_result_to_movie
 import 'package:spark/core/widgets/functions/parse_seasons_to_season_entity.dart';
 import 'package:spark/core/widgets/functions/parse_to_review.dart';
 import 'package:spark/core/widgets/functions/parse_tv_cast_and_crew_to_tv_show_mini_result.dart';
+import 'package:spark/features/explore/domain/entities/search_result_entity.dart';
 import 'package:spark/features/home/data/models/movie_mini_result/movie_mini_result.dart';
 import 'package:spark/features/home/data/models/movie_result/movie_backdrop.dart';
 import 'package:spark/features/home/data/models/movie_result/movie_poster.dart';
@@ -50,6 +51,26 @@ extension TrendingMovieX on MovieMiniResult {
   }
 }
 
+extension TrendingMovieXX on MovieMiniResult {
+  SearchResultEntity toSearchResultEntity() {
+    return SearchResultEntity(
+      id: id!,
+      posterPath: posterPath,
+      releaseDate: DateTime.tryParse(
+        releaseDate ?? '',
+      ),
+      genreIds: genreIds,
+      averageRating: voteAverage,
+      voteCount: voteCount,
+      name: title,
+      showType: ShowType.Movie,
+      personKnownFor: null,
+      personMostKnownForName: null,
+      personMostKnownForDate: null,
+    );
+  }
+}
+
 extension TrendingTvShowX on TvShowMiniResult {
   TvShowMiniResultEntity toEntity() {
     return TvShowMiniResultEntity(
@@ -65,6 +86,26 @@ extension TrendingTvShowX on TvShowMiniResult {
       showType: ShowType.TV,
       name: name,
       voteCount: voteCount,
+    );
+  }
+}
+
+extension TrendingTvShowXX on TvShowMiniResult {
+  SearchResultEntity toSearchResultEntity() {
+    return SearchResultEntity(
+      id: id!,
+      posterPath: posterPath,
+      releaseDate: DateTime.tryParse(
+        firstAirDate ?? '',
+      ),
+      genreIds: genreIds,
+      averageRating: voteAverage,
+      voteCount: voteCount,
+      name: name,
+      showType: ShowType.TV,
+      personKnownFor: null,
+      personMostKnownForName: null,
+      personMostKnownForDate: null,
     );
   }
 }
@@ -87,6 +128,42 @@ extension TrendingPersonX on PersonMiniResult {
               : knownFor![0].name ?? ''
           : '',
       mostKnownForDate: knownFor != null && knownFor!.isNotEmpty
+          ? knownFor![0].name == null
+              ? knownFor![0].releaseDate == null ||
+                      knownFor![0].releaseDate!.isEmpty
+                  ? null
+                  : DateTime.parse(
+                      knownFor![0].releaseDate!,
+                    )
+              : knownFor![0].firstAirDate == null ||
+                      knownFor![0].firstAirDate!.isEmpty
+                  ? null
+                  : DateTime.parse(
+                      knownFor![0].firstAirDate!,
+                    )
+          : null,
+    );
+  }
+}
+
+extension TrendingPersonXX on PersonMiniResult {
+  SearchResultEntity toSearchResultEntity() {
+    return SearchResultEntity(
+      id: id!,
+      posterPath: profilePath,
+      releaseDate: null,
+      genreIds: null,
+      averageRating: null,
+      voteCount: null,
+      name: name,
+      showType: ShowType.Person,
+      personKnownFor: knownForDepartment,
+      personMostKnownForName: knownFor != null && knownFor!.isNotEmpty
+          ? knownFor![0].name == null
+              ? knownFor![0].title ?? ''
+              : knownFor![0].name ?? ''
+          : '',
+      personMostKnownForDate: knownFor != null && knownFor!.isNotEmpty
           ? knownFor![0].name == null
               ? knownFor![0].releaseDate == null ||
                       knownFor![0].releaseDate!.isEmpty
