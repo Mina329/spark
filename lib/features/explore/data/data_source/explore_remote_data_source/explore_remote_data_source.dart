@@ -1,5 +1,6 @@
 import 'package:spark/features/explore/domain/entities/search_result_entity.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 abstract class ExploreRemoteDataSource {
@@ -11,4 +12,5 @@ abstract class ExploreRemoteDataSource {
   Future<List<TvShowMiniResultEntity>> getOnTheAirTvShows(int page);
   Future<List<TvShowMiniResultEntity>> getPopularTvShows(int page);
   Future<List<TvShowMiniResultEntity>> getTopRatedTvShows(int page);
+  Future<List<PersonMiniResultEntity>> getPopularCelebrities(int page);
 }

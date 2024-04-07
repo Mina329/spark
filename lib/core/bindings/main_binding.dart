@@ -9,6 +9,7 @@ import 'package:spark/features/explore/data/repos/explore_repo_impl.dart';
 import 'package:spark/features/explore/domain/repos/explore_repo.dart';
 import 'package:spark/features/explore/domain/usecases/get_airing_today_tv_shows_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_on_the_air_tv_shows_usecase.dart';
+import 'package:spark/features/explore/domain/usecases/get_popular_celebrities_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_popular_tv_shows_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_search_result_usecase.dart';
@@ -19,6 +20,7 @@ import 'package:spark/features/explore/presentation/controllers/airing_today_tv_
 import 'package:spark/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/get_search_result_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/on_the_air_tv_shows_controller.dart';
+import 'package:spark/features/explore/presentation/controllers/popular_celebrities_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/popular_movies_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/popular_tv_shows_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/top_rated_movies_controller.dart';
@@ -247,6 +249,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetPopularCelebritiesUsecase>(
+      () => GetPopularCelebritiesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -365,6 +373,12 @@ class MainBinding extends Bindings {
     Get.lazyPut(
       () => TopRatedTvShowsController(
         getTopRatedTvShowsUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => PopularCelebritiesController(
+        getPopularCelebritiesUsecase: Get.find(),
       ),
       fenix: true,
     );
