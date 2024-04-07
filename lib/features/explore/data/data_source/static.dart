@@ -1,55 +1,5 @@
 import 'package:spark/core/utils/strings_manager.dart';
 
-List<String> moviesNowPlaying = [
-  'https://image.tmdb.org/t/p/original/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg',
-  'https://image.tmdb.org/t/p/original/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
-  'https://image.tmdb.org/t/p/original/hhvMTxlTZtnCOe7YFhod9uz3m37.jpg',
-  'https://image.tmdb.org/t/p/original/1N7terrMeZPwK5qq31MUD0HQ3IG.jpg',
-  'https://image.tmdb.org/t/p/original/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
-];
-List<String> moviesTrending = [
-  'https://image.tmdb.org/t/p/original/sMp34cNKjIb18UBOCoAv4DpCxwY.jpg',
-  'https://image.tmdb.org/t/p/original/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
-  'https://image.tmdb.org/t/p/original/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg',
-  'https://image.tmdb.org/t/p/original/gavGnAMTXPkpoFgG0stwgIgKb64.jpg',
-  'https://image.tmdb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg',
-];
-List<String> moviesPopular = [
-  'https://image.tmdb.org/t/p/original/hu40Uxp9WtpL34jv3zyWLb5zEVY.jpg',
-  'https://image.tmdb.org/t/p/original/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
-  'https://image.tmdb.org/t/p/original/hhvMTxlTZtnCOe7YFhod9uz3m37.jpg',
-  'https://image.tmdb.org/t/p/original/1N7terrMeZPwK5qq31MUD0HQ3IG.jpg',
-  'https://image.tmdb.org/t/p/original/kCGlIMHnOm8JPXq3rXM6c5wMxcT.jpg',
-];
-List<String> moviesTopRated = [
-  'https://image.tmdb.org/t/p/original/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg',
-  'https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg',
-  'https://image.tmdb.org/t/p/original/hek3koDUyRQk7FIhPXsa6mT2Zc3.jpg',
-  'https://image.tmdb.org/t/p/original/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg',
-  'https://image.tmdb.org/t/p/original/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg',
-];
-List<String> moviesUpComing = [
-  'https://image.tmdb.org/t/p/original/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg',
-  'https://image.tmdb.org/t/p/original/lYwjlcBjokC9EhfzfAOkTMQd5Ku.jpg',
-  'https://image.tmdb.org/t/p/original/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg',
-  'https://image.tmdb.org/t/p/original/A7EByudX0eOzlkQ2FIbogzyazm2.jpg',
-  'https://image.tmdb.org/t/p/original/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg',
-];
-List<String> moviesExploreTitles = [
-  StringsManager.nowPlaying,
-  StringsManager.etrendingMovies,
-  StringsManager.popularMovies,
-  StringsManager.topRatedMovies,
-  StringsManager.upComingMovies
-];
-
-List<List<String>> moviesExploreEvents = [
-  moviesNowPlaying,
-  moviesTrending,
-  moviesPopular,
-  moviesTopRated,
-  moviesUpComing,
-];
 List<Map<String, dynamic>> moviesGenres = [
   {"id": 28, "name": "Action"},
   {"id": 12, "name": "Adventure"},

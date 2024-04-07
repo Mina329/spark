@@ -7,8 +7,15 @@ import 'package:spark/features/explore/data/data_source/explore_remote_data_sour
 import 'package:spark/features/explore/data/data_source/explore_remote_data_source/explore_remote_data_source_impl.dart';
 import 'package:spark/features/explore/data/repos/explore_repo_impl.dart';
 import 'package:spark/features/explore/domain/repos/explore_repo.dart';
+import 'package:spark/features/explore/domain/usecases/get_popular_movies_usecase.dart';
 import 'package:spark/features/explore/domain/usecases/get_search_result_usecase.dart';
+import 'package:spark/features/explore/domain/usecases/get_top_rated_movies_usecase.dart';
+import 'package:spark/features/explore/domain/usecases/get_up_coming_movies_usecase.dart';
+import 'package:spark/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:spark/features/explore/presentation/controllers/get_search_result_controller.dart';
+import 'package:spark/features/explore/presentation/controllers/popular_movies_controller.dart';
+import 'package:spark/features/explore/presentation/controllers/top_rated_movies_controller.dart';
+import 'package:spark/features/explore/presentation/controllers/upcoming_movies_controller.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source.dart';
 import 'package:spark/features/home/data/data_sources/home_remote_data_source/home_remote_data_source_impl.dart';
 import 'package:spark/features/home/data/repos/home_repo_impl.dart';
@@ -190,6 +197,24 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetPopularMoviesUsecase>(
+      () => GetPopularMoviesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<GetTopRatedMoviesUsecase>(
+      () => GetTopRatedMoviesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<GetUpComingMoviesUsecase>(
+      () => GetUpComingMoviesUsecase(
+        exploreRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -262,6 +287,28 @@ class MainBinding extends Bindings {
     Get.lazyPut(
       () => GetSearchResultController(
         getSearchResultUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => ExploreViewController(),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => PopularMoviesController(
+        getPopularMoviesUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => TopRatedMoviesController(
+        getTopRatedMoviesUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => UpComingMoviesController(
+        getUpComingMoviesUsecase: Get.find(),
       ),
       fenix: true,
     );

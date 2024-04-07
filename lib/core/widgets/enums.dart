@@ -16,5 +16,10 @@ enum SectionType {
   TrendingTvShows,
   PicksForYou,
   PeopleOfTheWeek,
+  NowPlayingMovies,
+  PopularMovies,
+  TopRatedMovies,
+  UpComingMovies,
+  MoviesCategory,
   None,
 }

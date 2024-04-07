@@ -6,7 +6,7 @@ import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
-import 'package:spark/features/explore/data/data_source/static.dart';
+import 'package:spark/features/explore/presentation/controllers/explore_view_controller.dart';
 import 'package:spark/features/explore/presentation/views/widgets/explore_genre_item.dart';
 import 'package:spark/features/explore/presentation/views/widgets/explore_item.dart';
 
@@ -15,6 +15,7 @@ class MoviesSearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final exploreViewController = Get.find<ExploreViewController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,21 +41,26 @@ class MoviesSearchSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              moviesExploreEvents.length,
+              exploreViewController.moviesExploreBanners.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: 15),
                 child: GestureDetector(
                   onTap: () => Get.toNamed(
                     AppRouter.kShowsSectionView,
                     arguments: {
-                      'title': moviesExploreTitles[index],
-                      'showType': ShowType.Movie
+                      'title': exploreViewController.moviesExploreTitles[index],
+                      'showType': ShowType.Movie,
+                      'sectionType': exploreViewController
+                          .moviesExploreSectionTypes[index],
+                      'showsList': exploreViewController.moviesExplore[index]
                     },
                     preventDuplicates: false,
                   ),
                   child: ExploreItem(
-                    exploreItemTitle: moviesExploreTitles[index],
-                    exploreItemBanners: moviesExploreEvents[index],
+                    exploreItemTitle:
+                        exploreViewController.moviesExploreTitles[index],
+                    exploreItemBanners:
+                        exploreViewController.moviesExploreBanners[index],
                   ),
                 ),
               ),
@@ -68,20 +74,23 @@ class MoviesSearchSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              moviesGenres.length,
+              exploreViewController.moviesGenres.length,
               (index) => Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: GestureDetector(
                   onTap: () => Get.toNamed(
                     AppRouter.kShowsSectionView,
                     arguments: {
-                      'title': moviesGenres[index]['name'],
-                      'showType': ShowType.Movie
+                      'title': exploreViewController.moviesGenres[index].name,
+                      'showType': ShowType.Movie,
+                      'sectionType': SectionType.MoviesCategory,
+                      'showsList': [],
+                      'category': exploreViewController.moviesGenres[index].id
                     },
                     preventDuplicates: false,
                   ),
                   child: ExploreGenreItem(
-                    name: moviesGenres[index]['name'],
+                    name: exploreViewController.moviesGenres[index].name,
                   ),
                 ),
               ),
