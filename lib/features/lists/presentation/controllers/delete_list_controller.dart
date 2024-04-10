@@ -26,8 +26,7 @@ class DeleteListController extends GetxController {
           backgroundColor: Colors.green.withOpacity(0.5),
         );
         final getUserListsController = Get.find<GetUserListsController>();
-        getUserListsController.lists
-            .removeWhere((element) => element.id == listId);
+        getUserListsController.getUserLists();
       },
     );
     loading.value = false;
