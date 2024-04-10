@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/core/widgets/functions/extensions.dart';
 import 'package:spark/features/home/domain/entities/show_result_entity.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/add_remove_show_to_list_controller.dart';
 import 'package:spark/features/lists/domain/entities/list_entity.dart';

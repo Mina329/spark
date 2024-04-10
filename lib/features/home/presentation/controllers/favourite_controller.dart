@@ -5,6 +5,9 @@ import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/usecases/add_favourite_usecase.dart';
 import 'package:spark/features/home/domain/usecases/check_favourite_usecase.dart';
 import 'package:spark/features/home/domain/usecases/delete_favourite_usecase.dart';
+import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
+import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
+import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';
 
 class FavouriteController extends GetxController {
   RxBool loading = false.obs;
@@ -51,6 +54,16 @@ class FavouriteController extends GetxController {
         );
       },
       (success) {
+        if (showType == ShowType.Movie) {
+          final controller = Get.find<FavouriteMoviesController>();
+          controller.getUserFavouriteMovies();
+        } else if (showType == ShowType.TV) {
+          final controller = Get.find<FavouriteTvShowsController>();
+          controller.getUserFavouriteTvShows();
+        } else if (showType == ShowType.Person) {
+          final controller = Get.find<FavouriteCelebritiesController>();
+          controller.getUserFavouriteCelebrities();
+        }
         favourite = true;
         Get.snackbar(
           StringsManager.operationSuccess,
@@ -76,6 +89,16 @@ class FavouriteController extends GetxController {
         );
       },
       (success) {
+        if (showType == ShowType.Movie) {
+          final controller = Get.find<FavouriteMoviesController>();
+          controller.getUserFavouriteMovies();
+        } else if (showType == ShowType.TV) {
+          final controller = Get.find<FavouriteTvShowsController>();
+          controller.getUserFavouriteTvShows();
+        } else if (showType == ShowType.Person) {
+          final controller = Get.find<FavouriteCelebritiesController>();
+          controller.getUserFavouriteCelebrities();
+        }
         favourite = false;
         Get.snackbar(
           StringsManager.operationSuccess,

@@ -2,7 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spark/core/errors/failure.dart';
 import 'package:spark/core/errors/firebase_auth_failure.dart';
-import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
+import 'package:spark/features/lists/domain/entities/show_mini_result_entity.dart';
 import 'package:spark/features/profile/data/data_sources/profile_remote_data_source/profile_remote_data_source.dart';
 import 'package:spark/features/profile/domain/entities/user_info_entity.dart';
 import 'package:spark/features/profile/domain/repos/profile_repo.dart';
@@ -30,8 +31,59 @@ class ProfileRepoImpl extends ProfileRepo {
   }
 
   @override
-  Future<Either<Failure, List<MovieMiniResultEntity>>> getUserFavouriteMovies() {
-    // TODO: implement getUserFavouriteMovies
-    throw UnimplementedError();
+  Future<Either<Failure, List<ShowMiniResultEntity>>>
+      getUserFavouriteMovies() async {
+    try {
+      var result = await profileRemoteDataSource.getUserFavouriteMovies();
+      return right(result);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    } catch (e) {
+      return left(
+        Failure(
+          message: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ShowMiniResultEntity>>>
+      getUserFavouriteTvShows() async {
+    try {
+      var result = await profileRemoteDataSource.getUserFavouriteTvShows();
+      return right(result);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    } catch (e) {
+      return left(
+        Failure(
+          message: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<PersonMiniResultEntity>>>
+      getUserFavouriteCelebrities() async {
+    try {
+      var result = await profileRemoteDataSource.getUserFavouriteCelebrities();
+      return right(result);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    } catch (e) {
+      return left(
+        Failure(
+          message: e.toString(),
+        ),
+      );
+    }
   }
 }

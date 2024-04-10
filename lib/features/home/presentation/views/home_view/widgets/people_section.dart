@@ -16,36 +16,33 @@ class PeopleSection extends StatelessWidget {
       required this.showAllOnTap});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              Text(
-                sectionTitle,
-                style: StylesManager.styleLatoBold20(context),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          children: [
+            Text(
+              sectionTitle,
+              style: StylesManager.styleLatoBold20(context),
+            ),
+            const Spacer(),
+            GestureDetector(
+              onTap: showAllOnTap,
+              child: Text(
+                StringsManager.showAll,
+                style: StylesManager.styleLatoRegular16(context)
+                    .copyWith(color: ColorManager.primaryColor),
               ),
-              const Spacer(),
-              GestureDetector(
-                onTap: showAllOnTap,
-                child: Text(
-                  StringsManager.showAll,
-                  style: StylesManager.styleLatoRegular16(context)
-                      .copyWith(color: ColorManager.primaryColor),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          PeopleListView(
-            people: people,
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        PeopleListView(
+          people: people,
+        ),
+      ],
     );
   }
 }
