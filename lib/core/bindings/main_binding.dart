@@ -62,6 +62,12 @@ import 'package:spark/features/lists/presentation/controllers/create_new_list_co
 import 'package:spark/features/lists/presentation/controllers/delete_list_controller.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/main/presentation/controllers/bottom_navigation_bar_controller.dart';
+import 'package:spark/features/profile/data/data_sources/profile_remote_data_source/profile_remote_data_source.dart';
+import 'package:spark/features/profile/data/data_sources/profile_remote_data_source/profile_remote_data_source_impl.dart';
+import 'package:spark/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:spark/features/profile/domain/repos/profile_repo.dart';
+import 'package:spark/features/profile/domain/usecases/get_user_info_usecase.dart';
+import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/user_info_controller.dart';
 
 class MainBinding extends Bindings {
   @override
@@ -101,6 +107,13 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(
+        firebaseAuth: Get.find(),
+        firebaseFirestore: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<HomeRepo>(
       () => HomeRepoImpl(
         homeRemoteDataSource: Get.find(),
@@ -116,6 +129,12 @@ class MainBinding extends Bindings {
     Get.lazyPut<ExploreRepo>(
       () => ExploreRepoImpl(
         exploreRemoteDataSource: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut<ProfileRepo>(
+      () => ProfileRepoImpl(
+        profileRemoteDataSource: Get.find(),
       ),
       fenix: true,
     );
@@ -269,6 +288,12 @@ class MainBinding extends Bindings {
       ),
       fenix: true,
     );
+    Get.lazyPut<GetUserInfoUsecase>(
+      () => GetUserInfoUsecase(
+        profileRepo: Get.find(),
+      ),
+      fenix: true,
+    );
     Get.lazyPut<BottomNavigationBarController>(
       () => BottomNavigationBarController(),
       fenix: true,
@@ -393,6 +418,12 @@ class MainBinding extends Bindings {
     Get.lazyPut(
       () => PopularCelebritiesController(
         getPopularCelebritiesUsecase: Get.find(),
+      ),
+      fenix: true,
+    );
+    Get.lazyPut(
+      () => UserInfoController(
+        getUserInfoUsecase: Get.find(),
       ),
       fenix: true,
     );
