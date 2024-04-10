@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spark/core/errors/failure.dart';
@@ -144,8 +146,12 @@ class HomeRepoImpl extends HomeRepo {
       var results = await homeRemoteDataSource.addFavourite(show, showType);
       return right(results);
     } on DioException catch (e) {
+      log(e.toString());
+
       return left(ServerFailure.fromDioException(e));
     } catch (e) {
+      log(e.toString());
+
       return left(
         Failure(
           message: StringsManager.somethingWentWrong,

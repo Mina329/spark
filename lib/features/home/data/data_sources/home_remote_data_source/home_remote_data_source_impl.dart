@@ -173,12 +173,21 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
         : showType == ShowType.Movie
             ? 'favourite_movies'
             : 'favourite_tv_shows';
-    await firebaseFirestore
-        .collection('users')
-        .doc(firebaseAuth.currentUser!.uid)
-        .collection(showTypeText)
-        .doc(show.id.toString())
-        .set(show.toJson());
+    if (showType == ShowType.Person) {
+      await firebaseFirestore
+          .collection('users')
+          .doc(firebaseAuth.currentUser!.uid)
+          .collection(showTypeText)
+          .doc(show.id.toString())
+          .set(show.toPersonMiniResultEntity().toJson());
+    } else {
+      await firebaseFirestore
+          .collection('users')
+          .doc(firebaseAuth.currentUser!.uid)
+          .collection(showTypeText)
+          .doc(show.id.toString())
+          .set(show.toShowMiniResultEntity().toJson());
+    }
   }
 
   @override

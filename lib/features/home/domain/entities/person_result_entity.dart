@@ -1,5 +1,7 @@
+import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/image_entity.dart';
 import 'package:spark/features/home/domain/entities/movie_mini_result_entity.dart';
+import 'package:spark/features/home/domain/entities/person_mini_result_entity.dart';
 import 'package:spark/features/home/domain/entities/tv_show_mini_result_entity.dart';
 
 class PersonResultEntity {
@@ -73,6 +75,17 @@ class PersonResultEntity {
               .map((tvShowJson) => TvShowMiniResultEntity.fromJson(tvShowJson))
               .toList()
           : null,
+    );
+  }
+  PersonMiniResultEntity toPersonMiniResultEntity() {
+    return PersonMiniResultEntity(
+      id: id,
+      name: name,
+      profilePath: profileUrl,
+      showType: ShowType.Person,
+      role: role,
+      mostKnownForName: null,
+      mostKnownForDate: null,
     );
   }
 }
