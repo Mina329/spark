@@ -11,4 +11,5 @@ abstract class ProfileRepo {
   Future<Either<Failure, List<PersonMiniResultEntity>>>
       getUserFavouriteCelebrities();
   Future<Either<Failure, void>> changeUserName(String name);
+  Future<Either<Failure, void>> signOut();
 }

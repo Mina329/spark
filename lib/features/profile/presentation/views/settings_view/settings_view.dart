@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/widgets/loading_overlay.dart';
 import 'package:spark/features/profile/presentation/controllers/settings_view_controller/change_user_name_controller.dart';
+import 'package:spark/features/profile/presentation/controllers/settings_view_controller/sign_out_controller.dart';
 import 'package:spark/features/profile/presentation/views/settings_view/widgets/settings_view_body.dart';
 
 class SettingsView extends StatelessWidget {
@@ -11,9 +12,17 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final ChangeUserNameController changeUserNameController =
         Get.find<ChangeUserNameController>();
+    final SignOutController signOutController = Get.find<SignOutController>();
     return Scaffold(
       body: Stack(
         children: [
+          Obx(() {
+            if (signOutController.loading.isTrue) {
+              return const LoadingOverlay();
+            } else {
+              return const SizedBox.shrink();
+            }
+          }),
           Obx(() {
             if (changeUserNameController.loading.isTrue) {
               return const LoadingOverlay();

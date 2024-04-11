@@ -8,4 +8,5 @@ abstract class ProfileRemoteDataSource {
   Future<List<ShowMiniResultEntity>> getUserFavouriteTvShows();
   Future<List<PersonMiniResultEntity>> getUserFavouriteCelebrities();
   Future<void> changeUserName(String newName);
+  Future<void> signOut();
 }
