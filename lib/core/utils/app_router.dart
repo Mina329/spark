@@ -11,6 +11,7 @@ import 'package:spark/core/bindings/onboarding_binding.dart';
 import 'package:spark/core/bindings/person_details_binding.dart';
 import 'package:spark/core/bindings/season_details_binding.dart';
 import 'package:spark/core/bindings/section_binding.dart';
+import 'package:spark/core/bindings/settings_binding.dart';
 import 'package:spark/core/bindings/show_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart';
@@ -137,6 +138,7 @@ class AppRouter {
     GetPage(
       name: kSettingsView,
       page: () => const SettingsView(),
+      binding: SettingsBinding(),
       transition: Transition.fadeIn,
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),

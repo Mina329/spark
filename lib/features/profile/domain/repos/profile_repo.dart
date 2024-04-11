@@ -10,4 +10,5 @@ abstract class ProfileRepo {
   Future<Either<Failure, List<ShowMiniResultEntity>>> getUserFavouriteTvShows();
   Future<Either<Failure, List<PersonMiniResultEntity>>>
       getUserFavouriteCelebrities();
+  Future<Either<Failure, void>> changeUserName(String name);
 }

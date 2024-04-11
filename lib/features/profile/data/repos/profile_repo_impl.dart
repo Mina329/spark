@@ -86,4 +86,22 @@ class ProfileRepoImpl extends ProfileRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> changeUserName(String name) async {
+    try {
+      var result = await profileRemoteDataSource.changeUserName(name);
+      return right(result);
+    } on FirebaseAuthException catch (e) {
+      return left(
+        FirebaseAuthFailure.fromFirebaseAuthException(e),
+      );
+    } catch (e) {
+      return left(
+        Failure(
+          message: e.toString(),
+        ),
+      );
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/features/profile/presentation/controllers/settings_view_controller/change_user_name_controller.dart';
 
 class ChangeAccountNameWidget extends StatelessWidget {
   const ChangeAccountNameWidget({
@@ -12,6 +13,8 @@ class ChangeAccountNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ChangeUserNameController changeUserNameController =
+        Get.find<ChangeUserNameController>();
     return InkWell(
       onTap: () => Get.bottomSheet(
         BottomSheet(
@@ -37,6 +40,7 @@ class ChangeAccountNameWidget extends StatelessWidget {
                   height: 5,
                 ),
                 TextField(
+                  controller: changeUserNameController.controller,
                   decoration: InputDecoration(
                     fillColor: Color.lerp(
                         ColorManager.primaryColor, Colors.black, 0.7),
@@ -64,7 +68,7 @@ class ChangeAccountNameWidget extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: changeUserNameController.onSubmitPressed,
                     child: Text(
                       StringsManager.submit,
                       style: StylesManager.styleLatoBold20(context)
