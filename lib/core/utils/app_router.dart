@@ -12,6 +12,7 @@ import 'package:spark/core/bindings/person_details_binding.dart';
 import 'package:spark/core/bindings/season_details_binding.dart';
 import 'package:spark/core/bindings/section_binding.dart';
 import 'package:spark/core/bindings/settings_binding.dart';
+import 'package:spark/core/bindings/show_bimding.dart';
 import 'package:spark/core/bindings/show_details_binding.dart';
 import 'package:spark/core/bindings/splash_binding.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/auth_view.dart';
@@ -23,6 +24,7 @@ import 'package:spark/features/home/presentation/views/person_details_view/perso
 import 'package:spark/features/home/presentation/views/season_details_view/season_details_view.dart';
 import 'package:spark/features/home/presentation/views/section_view/section_view.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/show_details_view.dart';
+import 'package:spark/features/home/presentation/views/show_view/show_view.dart';
 import 'package:spark/features/main/presentation/view/main_view.dart';
 import 'package:spark/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:spark/features/profile/presentation/views/settings_view/settings_view.dart';
@@ -42,6 +44,7 @@ class AppRouter {
   static const kMediaView = '/media';
   static const kSettingsView = '/settings';
   static const kSeasonDetailsView = '/seasondetails';
+  static const kShowView = '/show';
 
   static List<GetPage<dynamic>>? getPages = [
     GetPage(
@@ -150,6 +153,14 @@ class AppRouter {
       curve: Curves.easeInOut,
       transitionDuration: const Duration(milliseconds: 500),
       binding: SeasonDetailsBinding(),
+    ),
+    GetPage(
+      name: kShowView,
+      page: () => const ShowView(),
+      transition: Transition.fadeIn,
+      curve: Curves.easeInOut,
+      transitionDuration: const Duration(milliseconds: 500),
+      binding: ShowBinding(),
     ),
   ];
 }

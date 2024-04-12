@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/cache/cache_helper.dart';
@@ -9,11 +10,12 @@ import 'package:spark/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
-  CacheData.casheIntialization();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Future.wait([
+    dotenv.load(),
+    CacheData.casheIntialization(),
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+  ]);
   runApp(const MyApp());
 }
 
