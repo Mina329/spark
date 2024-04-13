@@ -14,12 +14,13 @@ class ShowDetailsBinding extends Bindings {
       ),
       fenix: true,
     );
-   
+
     Get.lazyPut(
       () => ShowDetailsController(
         getShowDetailsUsecase: Get.find(),
       ),
       tag: uniqueTag,
+      fenix: true,
     );
     Get.lazyPut(
       () => FavouriteController(
@@ -30,6 +31,5 @@ class ShowDetailsBinding extends Bindings {
       fenix: true,
       tag: uniqueTag,
     );
-   
   }
 }

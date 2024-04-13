@@ -28,14 +28,15 @@ class ShowDetailsController extends GetxController {
   ShowResultEntity? showResultEntity;
   List<YoutubePlayerController> videosControllers = [];
   RxBool loading = true.obs;
-
+  ShowType? showType;
+  int? id;
   ShowDetailsController({required this.getShowDetailsUsecase});
   @override
   void onInit() async {
     super.onInit();
-    final int id = Get.arguments['id'];
-    final ShowType showType = Get.arguments['showType'];
-    await getShowDetails(id, showType);
+    id = Get.arguments['id'];
+    showType = Get.arguments['showType'];
+    await getShowDetails(id!, showType!);
     _initVideos();
   }
 
