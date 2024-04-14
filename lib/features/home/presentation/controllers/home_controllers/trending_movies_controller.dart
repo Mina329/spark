@@ -9,6 +9,7 @@ class TrendingMoviesController extends GetxController {
 
   List<MovieMiniResultEntity> movies = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   TrendingMoviesController({required this.getTrendingMoviesUsecase});
 
@@ -23,11 +24,15 @@ class TrendingMoviesController extends GetxController {
 
     var result = await getTrendingMoviesUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+        error = true;
+      },
       (moviesList) {
         movies.addAll(moviesList);
         update();

@@ -16,6 +16,7 @@ class GetSearchResultController extends GetxController {
   String savedQuery = '';
   RxBool showSuffixIcon = false.obs;
   RxBool paginationLoading = false.obs;
+  bool error = false;
 
   @override
   void onInit() {
@@ -27,11 +28,14 @@ class GetSearchResultController extends GetxController {
   void getSearchResult() async {
     var result = await getSearchResultUsecase.execute((page, savedQuery));
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (showsList) {
         page++;
         shows.addAll(showsList);

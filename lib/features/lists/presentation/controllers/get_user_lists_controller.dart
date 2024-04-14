@@ -8,6 +8,7 @@ import 'package:spark/features/lists/domain/usecases/get_user_lists_usecase.dart
 class GetUserListsController extends GetxController {
   final GetUserListsUsecase getUserListsUsecase;
   RxBool loading = false.obs;
+  bool error = false;
   RxList lists = [].obs;
   RxList banners = [].obs;
   GetUserListsController({required this.getUserListsUsecase});
@@ -20,11 +21,15 @@ class GetUserListsController extends GetxController {
   Future getUserLists() async {
     var result = await getUserListsUsecase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error) return;
+        error = true;
+      },
       (listsList) {
         lists.value = [];
         banners.value = [];

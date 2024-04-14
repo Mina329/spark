@@ -3,7 +3,10 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/picks_for_you_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_people_controller.dart';
@@ -21,6 +24,13 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final nowPlayingMoviesController = Get.find<NowPlayingMoviesController>();
+    final trendingMoviesController = Get.find<TrendingMoviesController>();
+    final trendingTvShowsController = Get.find<TrendingTvShowsController>();
+    final trendingPeopleController = Get.find<TrendingPeopleController>();
+    final movieTrailersController = Get.find<MovieTrailersController>();
+    final picksForYouController = Get.find<PicksForYouController>();
+
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(
@@ -32,20 +42,56 @@ class HomeViewBody extends StatelessWidget {
           child: CustomHomeAppBar(),
         ),
         const SliverToBoxAdapter(
-          child: HomeTrendingShows(),
-        ),
-        const SliverToBoxAdapter(
           child: SizedBox(
             height: 10,
           ),
         ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              StringsManager.featuredToday,
-              style: StylesManager.styleLatoBold34(context),
+        const SliverToBoxAdapter(
+          child: HomeTrendingShows(),
+        ),
+        if (nowPlayingMoviesController.error &&
+            trendingMoviesController.error &&
+            trendingTvShowsController.error &&
+            trendingPeopleController.error &&
+            movieTrailersController.error &&
+            picksForYouController.error)
+          const SliverFillRemaining(
+            hasScrollBody: false,
+            child: Center(
+              child: CustomErrorWidget(),
             ),
+          ),
+        SliverToBoxAdapter(
+          child: GetBuilder<TrendingMoviesController>(
+            builder: (trendingMoviesController) {
+              return GetBuilder<TrendingTvShowsController>(
+                builder: (trendingTvShowsController) {
+                  return GetBuilder<PicksForYouController>(
+                    builder: (picksForYouController) {
+                      return GetBuilder<TrendingPeopleController>(
+                        builder: (trendingPeopleController) {
+                          if (trendingMoviesController.movies.isEmpty &&
+                              trendingTvShowsController.tvShows.isEmpty &&
+                              picksForYouController.shows.isEmpty &&
+                              trendingPeopleController.people.isEmpty) {
+                            return const SizedBox.shrink();
+                          } else {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Text(
+                                StringsManager.featuredToday,
+                                style: StylesManager.styleLatoBold34(context),
+                              ),
+                            );
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+              );
+            },
           ),
         ),
         const SliverToBoxAdapter(

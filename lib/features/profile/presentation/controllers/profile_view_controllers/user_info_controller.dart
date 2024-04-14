@@ -10,6 +10,7 @@ class UserInfoController extends GetxController {
   UserInfoController({required this.getUserInfoUsecase});
   RxBool loading = false.obs;
   UserInfoEntity? userInfo;
+  bool error = false;
 
   @override
   void onInit() {
@@ -21,11 +22,14 @@ class UserInfoController extends GetxController {
     loading.value = true;
     var result = await getUserInfoUsecase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (userInfoEntity) {
         userInfo = userInfoEntity;
         update();

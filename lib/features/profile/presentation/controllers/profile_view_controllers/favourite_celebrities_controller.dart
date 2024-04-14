@@ -8,6 +8,7 @@ class FavouriteCelebritiesController extends GetxController {
   final GetUserFavouriteCelebritiesUsecase getUserFavouriteCelebritiesUsecase;
 
   RxBool loading = false.obs;
+  bool error = false;
   List<PersonMiniResultEntity> favouriteCelebrities = [];
 
   FavouriteCelebritiesController(
@@ -22,11 +23,14 @@ class FavouriteCelebritiesController extends GetxController {
   Future getUserFavouriteCelebrities() async {
     var result = await getUserFavouriteCelebritiesUsecase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (celebrities) {
         favouriteCelebrities = [];
         favouriteCelebrities.addAll(celebrities);

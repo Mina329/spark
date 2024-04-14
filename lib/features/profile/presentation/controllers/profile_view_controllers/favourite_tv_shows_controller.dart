@@ -8,6 +8,8 @@ class FavouriteTvShowsController extends GetxController {
   final GetUserFavouriteTvShowsUsecase getUserFavouriteTvShowsUsecase;
 
   RxBool loading = false.obs;
+  bool error = false;
+
   List<ShowMiniResultEntity> favouriteTvShows = [];
 
   FavouriteTvShowsController({required this.getUserFavouriteTvShowsUsecase});
@@ -21,11 +23,14 @@ class FavouriteTvShowsController extends GetxController {
   Future getUserFavouriteTvShows() async {
     var result = await getUserFavouriteTvShowsUsecase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (tvShows) {
         favouriteTvShows = [];
         favouriteTvShows.addAll(tvShows);

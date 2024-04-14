@@ -8,6 +8,8 @@ class FavouriteMoviesController extends GetxController {
   final GetUserFavouriteMoviesUsecase getUserFavouriteShowsUsecase;
 
   RxBool loading = false.obs;
+  bool error = false;
+
   List<ShowMiniResultEntity> favouriteMovies = [];
 
   FavouriteMoviesController({required this.getUserFavouriteShowsUsecase});
@@ -21,11 +23,14 @@ class FavouriteMoviesController extends GetxController {
   Future getUserFavouriteMovies() async {
     var result = await getUserFavouriteShowsUsecase.execute();
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (movies) {
         favouriteMovies = [];
         favouriteMovies.addAll(movies);
@@ -36,7 +41,7 @@ class FavouriteMoviesController extends GetxController {
 
   void getUserFavouriteMoviesFirst() async {
     loading.value = true;
-  await  getUserFavouriteMovies();
+    await getUserFavouriteMovies();
     loading.value = false;
   }
 }

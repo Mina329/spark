@@ -8,6 +8,7 @@ class SeasonDetailsController extends GetxController {
   final GetSeasonDetailsUsecase getSeasonDetailsUsecase;
   SeasonResultEntity? seasonResultEntity;
   RxBool loading = true.obs;
+  bool error = false;
   SeasonDetailsController({required this.getSeasonDetailsUsecase});
   @override
   void onInit() {
@@ -26,6 +27,8 @@ class SeasonDetailsController extends GetxController {
           failure.message,
           backgroundColor: Colors.red.withOpacity(0.5),
         );
+        if (error == true) return;
+        error = true;
       },
       (season) {
         seasonResultEntity = season;

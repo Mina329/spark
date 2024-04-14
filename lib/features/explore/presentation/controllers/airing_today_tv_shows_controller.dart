@@ -9,6 +9,7 @@ class AiringTodayTvShowsController extends GetxController {
 
   List<TvShowMiniResultEntity> shows = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   AiringTodayTvShowsController({required this.getAiringTodayTvShowsUsecase});
 
@@ -16,11 +17,14 @@ class AiringTodayTvShowsController extends GetxController {
     loading.value = true;
     var result = await getAiringTodayTvShowsUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (showsList) {
         shows.addAll(showsList);
       },

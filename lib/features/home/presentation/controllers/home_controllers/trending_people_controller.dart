@@ -9,9 +9,9 @@ class TrendingPeopleController extends GetxController {
 
   List<PersonMiniResultEntity> people = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   TrendingPeopleController({required this.getTrendingPeopleUsecase});
-
 
   @override
   void onInit() {
@@ -24,13 +24,17 @@ class TrendingPeopleController extends GetxController {
 
     var result = await getTrendingPeopleUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+        error = true;
+      },
       (tvList) {
-        people.addAll(tvList); 
+        people.addAll(tvList);
         update();
       },
     );

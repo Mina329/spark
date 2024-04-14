@@ -9,19 +9,22 @@ class PopularMoviesController extends GetxController {
 
   List<MovieMiniResultEntity> movies = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   PopularMoviesController({required this.getPopularMoviesUsecase});
-
 
   Future getPopularMovies() async {
     loading.value = true;
     var result = await getPopularMoviesUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (moviesList) {
         movies.addAll(moviesList);
       },

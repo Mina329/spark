@@ -75,6 +75,10 @@ class ExploreViewController extends GetxController {
   final List<List<PersonMiniResultEntity>> peoplesExplore = [];
 
   RxBool loading = true.obs;
+  bool moviesError = false;
+  bool tvShowsError = false;
+  bool celebritiesError = false;
+  bool error = false;
 
   @override
   void onInit() async {
@@ -84,6 +88,7 @@ class ExploreViewController extends GetxController {
       initTvShowsSection(),
       initCelebritiesSection(),
     ]);
+    error = moviesError && tvShowsError && celebritiesError;
     loading.value = false;
   }
 
@@ -118,6 +123,12 @@ class ExploreViewController extends GetxController {
     moviesExploreBanners
         .add(getBanners(upComingMoviesController.movies.take(5).toList()));
     moviesExplore.add(upComingMoviesController.movies);
+
+    moviesError = nowPlayingMoviesController.error &&
+        trendingMoviesController.error &&
+        popularMoviesController.error &&
+        topRatedMoviesController.error &&
+        upComingMoviesController.error;
   }
 
   Future<void> initTvShowsSection() async {
@@ -154,6 +165,12 @@ class ExploreViewController extends GetxController {
     tvShowsExploreBanners
         .add(getBanners(topRatedTvShowsController.shows.take(5).toList()));
     tvShowsExplore.add(topRatedTvShowsController.shows);
+
+    tvShowsError = airingTodayTvShowsController.error &&
+        onTheAirTvShowsController.error &&
+        trendingTvShowsController.error &&
+        popularTvShowsController.error &&
+        topRatedTvShowsController.error;
   }
 
   Future<void> initCelebritiesSection() async {
@@ -170,6 +187,9 @@ class ExploreViewController extends GetxController {
     peoplesExploreBanners
         .add(getProfiles(trendingPeopleController.people.take(5).toList()));
     peoplesExplore.add(trendingPeopleController.people);
+
+    celebritiesError =
+        popularCelebritiesController.error && trendingPeopleController.error;
   }
 
   List<String> getBanners(List shows) {

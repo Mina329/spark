@@ -12,6 +12,8 @@ class NowPlayingMoviesController extends GetxController {
 
   List<MovieMiniResultEntity> movies = [];
   RxBool loading = false.obs;
+  bool error = false;
+
   PageController pageController = PageController();
   Timer? autoScrollTimer;
   final MovieTrailersController movieTrailersController =
@@ -31,11 +33,15 @@ class NowPlayingMoviesController extends GetxController {
 
     var result = await getNowPlayingMoviesUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        if (error == true) return;
+        error = true;
+      },
       (moviesList) {
         movies.addAll(moviesList);
         update();

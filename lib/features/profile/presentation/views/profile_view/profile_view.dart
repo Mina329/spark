@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';
@@ -28,6 +29,12 @@ class ProfileView extends StatelessWidget {
             favouriteCelebritiesController.loading.isTrue) {
           return const ProfileViewShimmer();
         } else {
+          if (userInfoController.error &&
+              favouriteTvShowsController.error &&
+              favouriteMoviesController.error &&
+              favouriteCelebritiesController.error) {
+            return const CustomErrorWidget();
+          }
           return const ProfileViewBody();
         }
       }),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/lists/presentation/views/widgets/create_new_list_button.dart';
 import 'package:spark/features/lists/presentation/views/widgets/lists_item.dart';
@@ -55,15 +56,23 @@ class ListsViewBody extends StatelessWidget {
                       child: ListsViewShimmer(),
                     );
                   } else {
-                    return SliverList.builder(
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: ListsItem(
-                          index: index,
-                        ),
-                      ),
-                      itemCount: getUserListsController.lists.length,
-                    );
+                    return getUserListsController.error
+                        ? const SliverFillRemaining(
+                            fillOverscroll: false,
+                            hasScrollBody: false,
+                            child: Center(
+                              child: CustomErrorWidget(),
+                            ),
+                          )
+                        : SliverList.builder(
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.only(bottom: 15),
+                              child: ListsItem(
+                                index: index,
+                              ),
+                            ),
+                            itemCount: getUserListsController.lists.length,
+                          );
                   }
                 },
               ),

@@ -155,4 +155,6 @@ abstract class StringsManager {
   static const listHasBeenDeleted = 'List has been Deleted';
   static const anonymous = 'Anonymous';
   static const userNameChangedSuccessfully = 'User Name Changed Successfully';
+  static const somethingWentWrongPleaseTryAgainLater =
+      'Something Went Wrong\n Please Try Again Later';
 }

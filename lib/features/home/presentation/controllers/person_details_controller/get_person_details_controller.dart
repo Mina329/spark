@@ -8,6 +8,7 @@ class GetPersonDetailsController extends GetxController {
   final GetPersonDetailsUsecase getPersonDetailsUsecase;
   PersonResultEntity? personResultEntity;
   RxBool loading = true.obs;
+  bool error = false;
 
   GetPersonDetailsController({required this.getPersonDetailsUsecase});
 
@@ -27,6 +28,8 @@ class GetPersonDetailsController extends GetxController {
           failure.message,
           backgroundColor: Colors.red.withOpacity(0.5),
         );
+        if (error == true) return;
+        error = true;
       },
       (personDetails) {
         personResultEntity = personDetails;

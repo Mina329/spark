@@ -28,6 +28,7 @@ class ShowDetailsController extends GetxController {
   ShowResultEntity? showResultEntity;
   List<YoutubePlayerController> videosControllers = [];
   RxBool loading = true.obs;
+  bool error = false;
   ShowType? showType;
   int? id;
   ShowDetailsController({required this.getShowDetailsUsecase});
@@ -70,6 +71,8 @@ class ShowDetailsController extends GetxController {
           failure.message,
           backgroundColor: Colors.red.withOpacity(0.5),
         );
+        if (error == true) return;
+        error = true;
       },
       (showDetails) {
         showResultEntity = showDetails;

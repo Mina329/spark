@@ -9,6 +9,7 @@ class PopularCelebritiesController extends GetxController {
 
   List<PersonMiniResultEntity> people = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   PopularCelebritiesController({required this.getPopularCelebritiesUsecase});
 
@@ -16,11 +17,14 @@ class PopularCelebritiesController extends GetxController {
     loading.value = true;
     var result = await getPopularCelebritiesUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (peopleList) {
         people.addAll(peopleList);
       },

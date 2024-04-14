@@ -9,6 +9,7 @@ class OnTheAirTvShowsController extends GetxController {
 
   List<TvShowMiniResultEntity> shows = [];
   RxBool loading = false.obs;
+  bool error = false;
 
   OnTheAirTvShowsController({required this.getOnTheAirTvShowsUsecase});
 
@@ -16,11 +17,14 @@ class OnTheAirTvShowsController extends GetxController {
     loading.value = true;
     var result = await getOnTheAirTvShowsUsecase.execute(1);
     result.fold(
-      (failure) => Get.snackbar(
-        StringsManager.operationFailed,
-        failure.message,
-        backgroundColor: Colors.red.withOpacity(0.5),
-      ),
+      (failure) {
+        Get.snackbar(
+          StringsManager.operationFailed,
+          failure.message,
+          backgroundColor: Colors.red.withOpacity(0.5),
+        );
+        error = true;
+      },
       (showsList) {
         shows.addAll(showsList);
       },
