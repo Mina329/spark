@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/core/widgets/custom_search_field.dart';
 import 'package:spark/features/explore/presentation/controllers/explore_view_controller.dart';
@@ -120,11 +121,18 @@ class ExploreViewBody extends StatelessWidget {
                           ),
                         );
                       }
-                      return SliverToBoxAdapter(
-                        child: SearchResultList(
-                          shows: getSearchResultController.shows,
-                        ),
-                      );
+                      return getSearchResultController.shows.isEmpty
+                          ? const SliverFillRemaining(
+                              hasScrollBody: false,
+                              child: Center(
+                                child: CustomEmptyWidget(),
+                              ),
+                            )
+                          : SliverToBoxAdapter(
+                              child: SearchResultList(
+                                shows: getSearchResultController.shows,
+                              ),
+                            );
                     },
                   );
                 }

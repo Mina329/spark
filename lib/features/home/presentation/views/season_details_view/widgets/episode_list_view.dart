@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/features/home/presentation/controllers/season_details_controllers.dart/season_details_controller.dart';
 import 'package:spark/features/home/presentation/views/season_details_view/widgets/episode_item.dart';
 
@@ -41,6 +42,9 @@ class EpisodeListView extends StatelessWidget {
               ),
             ],
           )
-        : const SizedBox();
+        : const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          );
   }
 }

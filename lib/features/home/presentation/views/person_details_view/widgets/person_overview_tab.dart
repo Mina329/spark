@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 
 class PersonOverviewTab extends StatelessWidget {
@@ -109,6 +110,19 @@ class PersonOverviewTab extends StatelessWidget {
                 height: 30,
               ),
             ],
+          ),
+        if ((getPersonDetailsController.personResultEntity?.biography == null ||
+                getPersonDetailsController
+                    .personResultEntity!.biography!.isEmpty) &&
+            getPersonDetailsController.personResultEntity?.birthDate == null &&
+            (getPersonDetailsController.personResultEntity?.birthLocation ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!.birthLocation!.isEmpty) &&
+            getPersonDetailsController.personResultEntity?.deathDate == null)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
           ),
       ],
     );

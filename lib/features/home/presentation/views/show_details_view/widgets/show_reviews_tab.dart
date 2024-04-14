@@ -4,6 +4,7 @@ import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 import 'package:spark/features/home/presentation/views/show_details_view/widgets/review_card.dart';
@@ -82,6 +83,9 @@ class ShowReviewsTab extends StatelessWidget {
               ),
             ],
           )
-        : const SizedBox();
+        : const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          );
   }
 }

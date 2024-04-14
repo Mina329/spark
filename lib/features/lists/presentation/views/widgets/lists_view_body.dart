@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 import 'package:spark/features/lists/presentation/views/widgets/create_new_list_button.dart';
@@ -56,23 +57,35 @@ class ListsViewBody extends StatelessWidget {
                       child: ListsViewShimmer(),
                     );
                   } else {
-                    return getUserListsController.error
-                        ? const SliverFillRemaining(
-                            fillOverscroll: false,
-                            hasScrollBody: false,
-                            child: Center(
-                              child: CustomErrorWidget(),
+                    if (getUserListsController.error) {
+                      return const SliverFillRemaining(
+                        fillOverscroll: false,
+                        hasScrollBody: false,
+                        child: Center(
+                          child: CustomErrorWidget(),
+                        ),
+                      );
+                    } else {
+                      if (getUserListsController.lists.isEmpty) {
+                        return const SliverFillRemaining(
+                          hasScrollBody: false,
+                          fillOverscroll: false,
+                          child: Center(
+                            child: CustomEmptyWidget(),
+                          ),
+                        );
+                      } else {
+                        return SliverList.builder(
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: ListsItem(
+                              index: index,
                             ),
-                          )
-                        : SliverList.builder(
-                            itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.only(bottom: 15),
-                              child: ListsItem(
-                                index: index,
-                              ),
-                            ),
-                            itemCount: getUserListsController.lists.length,
-                          );
+                          ),
+                          itemCount: getUserListsController.lists.length,
+                        );
+                      }
+                    }
                   }
                 },
               ),

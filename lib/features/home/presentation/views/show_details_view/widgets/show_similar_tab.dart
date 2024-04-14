@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_card.dart';
 
@@ -10,8 +11,10 @@ class ShowSimilarTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return showDetailsController.showResultEntity?.similarShows != null &&
             showDetailsController.showResultEntity!.similarShows!.isNotEmpty
         ? Column(
@@ -56,6 +59,9 @@ class ShowSimilarTab extends StatelessWidget {
               )
             ],
           )
-        : const SizedBox();
+        : const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          );
   }
 }

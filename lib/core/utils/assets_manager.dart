@@ -45,6 +45,10 @@ class Assets {
   /// assets/images/email_verification.svg
   static const String assetsImagesEmailVerification = "assets/images/email_verification.svg";
 
+  /// Assets for assetsImagesEmpty
+  /// assets/images/empty.svg
+  static const String assetsImagesEmpty = "assets/images/empty.svg";
+
   /// Assets for assetsImagesError
   /// assets/images/error.svg
   static const String assetsImagesError = "assets/images/error.svg";

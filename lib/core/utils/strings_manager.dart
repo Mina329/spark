@@ -157,4 +157,5 @@ abstract class StringsManager {
   static const userNameChangedSuccessfully = 'User Name Changed Successfully';
   static const somethingWentWrongPleaseTryAgainLater =
       'Something Went Wrong\n Please Try Again Later';
+  static const emptyMessage = "Uh-oh! Looks like there's nothing to show here.";
 }

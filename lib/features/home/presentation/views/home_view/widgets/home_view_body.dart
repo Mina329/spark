@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
@@ -74,7 +75,21 @@ class HomeViewBody extends StatelessWidget {
                               trendingTvShowsController.tvShows.isEmpty &&
                               picksForYouController.shows.isEmpty &&
                               trendingPeopleController.people.isEmpty) {
-                            return const SizedBox.shrink();
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Text(
+                                    StringsManager.featuredToday,
+                                    style:
+                                        StylesManager.styleLatoBold34(context),
+                                  ),
+                                ),
+                                const CustomEmptyWidget()
+                              ],
+                            );
                           } else {
                             return Padding(
                               padding:

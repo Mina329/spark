@@ -5,6 +5,7 @@ import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/build_genre_id_values_row.dart';
 import 'package:spark/features/home/data/data_sources/static.dart';
@@ -16,13 +17,16 @@ class ShowOverviewTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ShowDetailsController showDetailsController =
-        Get.find<ShowDetailsController>(tag: "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
+    final ShowDetailsController showDetailsController = Get.find<
+            ShowDetailsController>(
+        tag:
+            "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        if (showDetailsController.showResultEntity?.overview != null ||
+        if ((showDetailsController.showResultEntity?.overview != null &&
+                showDetailsController.showResultEntity!.overview!.isNotEmpty) ||
             (showDetailsController.showResultEntity?.genreIds != null &&
                 showDetailsController.showResultEntity!.genreIds!.isNotEmpty))
           Column(
@@ -33,7 +37,8 @@ class ShowOverviewTab extends StatelessWidget {
                 StringsManager.overview,
                 style: StylesManager.styleLatoBold20(context),
               ),
-              if (showDetailsController.showResultEntity?.overview != null)
+              if (showDetailsController.showResultEntity?.overview != null &&
+                  showDetailsController.showResultEntity!.overview!.isNotEmpty)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -98,8 +103,8 @@ class ShowOverviewTab extends StatelessWidget {
                           'title': StringsManager.castAndCrew,
                           'showType': ShowType.Person,
                           'sectionType': SectionType.None,
-                          'showsList':
-                              showDetailsController.showResultEntity!.castAndCrew
+                          'showsList': showDetailsController
+                              .showResultEntity!.castAndCrew
                         },
                         preventDuplicates: false,
                       );
@@ -122,6 +127,16 @@ class ShowOverviewTab extends StatelessWidget {
                     [],
               ),
             ],
+          ),
+        if ((showDetailsController.showResultEntity?.overview == null ||
+                showDetailsController.showResultEntity!.overview!.isEmpty) &&
+            (showDetailsController.showResultEntity?.genreIds == null ||
+                showDetailsController.showResultEntity!.genreIds!.isEmpty) &&
+            (showDetailsController.showResultEntity?.castAndCrew == null ||
+                showDetailsController.showResultEntity!.castAndCrew!.isEmpty))
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
           ),
         const SizedBox(
           height: 30,

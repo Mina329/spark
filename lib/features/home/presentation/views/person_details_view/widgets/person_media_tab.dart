@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/controllers/person_details_controller/get_person_details_controller.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_section.dart';
@@ -100,6 +101,21 @@ class PersonMediaTab extends StatelessWidget {
               ),
             ],
           ),
+        if ((getPersonDetailsController.personResultEntity?.images == null ||
+                getPersonDetailsController
+                    .personResultEntity!.images!.isEmpty) &&
+            (getPersonDetailsController.personResultEntity?.relatedMovies ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!.relatedMovies!.isEmpty) &&
+            (getPersonDetailsController.personResultEntity?.relatedTvShows ==
+                    null ||
+                getPersonDetailsController
+                    .personResultEntity!.relatedTvShows!.isEmpty))
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CustomEmptyWidget(),
+          )
       ],
     );
   }
