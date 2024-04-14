@@ -8,6 +8,7 @@ import 'package:spark/features/home/presentation/controllers/home_controllers/tr
 import 'package:spark/features/home/presentation/controllers/home_controllers/trending_tv_shows_controller.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/home_view_body.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/home_view_shimmer.dart';
+import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -20,7 +21,7 @@ class HomeView extends StatelessWidget {
     final trendingPeopleController = Get.find<TrendingPeopleController>();
     final movieTrailersController = Get.find<MovieTrailersController>();
     final picksForYouController = Get.find<PicksForYouController>();
-
+    final getUserListsController = Get.find<GetUserListsController>();
     return Scaffold(
       body: Obx(
         () {
@@ -29,7 +30,8 @@ class HomeView extends StatelessWidget {
               trendingTvShowsController.loading.isTrue ||
               trendingPeopleController.loading.isTrue ||
               movieTrailersController.loading.isTrue ||
-              picksForYouController.loading.isTrue) {
+              picksForYouController.loading.isTrue ||
+              getUserListsController.loading.isTrue) {
             return const HomeViewShimmer();
           } else {
             return const HomeViewBody();

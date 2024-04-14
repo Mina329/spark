@@ -9,4 +9,9 @@ class HomeController extends GetxController
     bottomNavigationBarController.controller.jumpToTab(2);
     return null;
   }
+
+  void Function()? goToLists() {
+    bottomNavigationBarController.controller.jumpToTab(1);
+    return null;
+  }
 }

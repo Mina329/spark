@@ -6,6 +6,7 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
+import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/movie_trailers_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/now_playing_movies_controller.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/picks_for_you_controller.dart';
@@ -17,6 +18,7 @@ import 'package:spark/features/home/presentation/views/home_view/widgets/home_tr
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_section.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/show_section.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/trailers_list_view.dart';
+import 'package:spark/features/lists/presentation/controllers/get_user_lists_controller.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
@@ -26,12 +28,8 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final nowPlayingMoviesController = Get.find<NowPlayingMoviesController>();
-    final trendingMoviesController = Get.find<TrendingMoviesController>();
-    final trendingTvShowsController = Get.find<TrendingTvShowsController>();
-    final trendingPeopleController = Get.find<TrendingPeopleController>();
     final movieTrailersController = Get.find<MovieTrailersController>();
-    final picksForYouController = Get.find<PicksForYouController>();
-
+    final homeController = Get.find<HomeController>();
     return CustomScrollView(
       slivers: [
         const SliverToBoxAdapter(
@@ -47,23 +45,13 @@ class HomeViewBody extends StatelessWidget {
             height: 10,
           ),
         ),
-        const SliverToBoxAdapter(
-          child: HomeTrendingShows(),
-        ),
-        if (nowPlayingMoviesController.error &&
-            trendingMoviesController.error &&
-            trendingTvShowsController.error &&
-            trendingPeopleController.error &&
-            movieTrailersController.error &&
-            picksForYouController.error)
-          const SliverFillRemaining(
-            hasScrollBody: false,
-            child: Center(
-              child: CustomErrorWidget(),
-            ),
-          ),
         SliverToBoxAdapter(
-          child: GetBuilder<TrendingMoviesController>(
+          child: nowPlayingMoviesController.movies.isEmpty
+              ? const SizedBox()
+              : const HomeTrendingShows(),
+        ),
+        GetBuilder<GetUserListsController>(builder: (getUserListsController) {
+          return GetBuilder<TrendingMoviesController>(
             builder: (trendingMoviesController) {
               return GetBuilder<TrendingTvShowsController>(
                 builder: (trendingTvShowsController) {
@@ -71,32 +59,41 @@ class HomeViewBody extends StatelessWidget {
                     builder: (picksForYouController) {
                       return GetBuilder<TrendingPeopleController>(
                         builder: (trendingPeopleController) {
+                          if (nowPlayingMoviesController.error &&
+                              trendingMoviesController.error &&
+                              trendingTvShowsController.error &&
+                              trendingPeopleController.error &&
+                              movieTrailersController.error &&
+                              picksForYouController.error &&
+                              getUserListsController.error) {
+                            return const SliverFillRemaining(
+                              hasScrollBody: false,
+                              child: Center(
+                                child: CustomErrorWidget(),
+                              ),
+                            );
+                          }
                           if (trendingMoviesController.movies.isEmpty &&
                               trendingTvShowsController.tvShows.isEmpty &&
                               picksForYouController.shows.isEmpty &&
-                              trendingPeopleController.people.isEmpty) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Text(
-                                    StringsManager.featuredToday,
-                                    style:
-                                        StylesManager.styleLatoBold34(context),
-                                  ),
-                                ),
-                                const CustomEmptyWidget()
-                              ],
+                              trendingPeopleController.people.isEmpty &&
+                              getUserListsController.shows.isEmpty) {
+                            return const SliverFillRemaining(
+                              hasScrollBody: false,
+                              fillOverscroll: false,
+                              child: Center(
+                                child: CustomEmptyWidget(),
+                              ),
                             );
                           } else {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              child: Text(
-                                StringsManager.featuredToday,
-                                style: StylesManager.styleLatoBold34(context),
+                            return SliverToBoxAdapter(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: Text(
+                                  StringsManager.featuredToday,
+                                  style: StylesManager.styleLatoBold34(context),
+                                ),
                               ),
                             );
                           }
@@ -107,8 +104,8 @@ class HomeViewBody extends StatelessWidget {
                 },
               );
             },
-          ),
-        ),
+          );
+        }),
         const SliverToBoxAdapter(
           child: SizedBox(
             height: 30,
@@ -242,6 +239,29 @@ class HomeViewBody extends StatelessWidget {
                       ],
                     );
             },
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: GetBuilder<GetUserListsController>(
+              builder: (getUserListsController) {
+                return getUserListsController.shows.isEmpty
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          ShowSection(
+                            sectionTitle: StringsManager.fromYourLists,
+                            showAllOnTap: homeController.goToLists,
+                            items: getUserListsController.shows,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      );
+              },
+            ),
           ),
         ),
       ],
