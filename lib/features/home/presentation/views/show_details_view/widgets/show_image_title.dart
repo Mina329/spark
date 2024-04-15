@@ -7,7 +7,6 @@ import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/core/widgets/functions/build_cover_image.dart';
 import 'package:spark/core/widgets/functions/build_cover_overlay.dart';
-import 'package:spark/features/home/presentation/controllers/favourite_controller.dart';
 import 'package:spark/features/home/presentation/controllers/show_details_controllers/show_details_controller.dart';
 
 class ShowImageTitle extends StatelessWidget {
@@ -45,42 +44,6 @@ class ShowImageTitle extends StatelessWidget {
                   '${showDetailsController.showResultEntity?.releaseDate?.year ?? ''}${showDetailsController.showResultEntity?.releaseDate == null || showDetailsController.showResultEntity?.duration == null ? "" : " | "}${showDetailsController.showResultEntity?.duration ?? ''}',
                   style: StylesManager.styleLatoRegular16(context),
                 ),
-              ],
-            ),
-          ),
-          Positioned(
-            top: 30,
-            left: 20,
-            right: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () => Get.back(),
-                  icon: const Icon(FontAwesomeIcons.angleLeft),
-                  color: ColorManager.primaryColor,
-                ),
-                GetBuilder<FavouriteController>(
-                  tag:
-                      "${Get.arguments['id'].toString()}_${Get.arguments['showType'].toString()}",
-                  builder: (favouriteController) {
-                    return IconButton(
-                      onPressed: () {
-                        favouriteController.favouriteOnPressed(
-                          showDetailsController.showResultEntity,
-                          showDetailsController.showResultEntity?.showType ??
-                              ShowType.Movie,
-                        );
-                      },
-                      icon: Icon(
-                        favouriteController.favourite
-                            ? FontAwesomeIcons.solidHeart
-                            : FontAwesomeIcons.heart,
-                        color: ColorManager.primaryColor,
-                      ),
-                    );
-                  },
-                )
               ],
             ),
           ),
