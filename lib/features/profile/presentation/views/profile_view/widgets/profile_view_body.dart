@@ -1,7 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
+import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/custom_empty_widget.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_section.dart';
@@ -9,6 +13,7 @@ import 'package:spark/features/home/presentation/views/home_view/widgets/show_se
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_celebrities_controller.dart';
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_movies_controller.dart';
 import 'package:spark/features/profile/presentation/controllers/profile_view_controllers/favourite_tv_shows_controller.dart';
+import 'package:spark/features/profile/presentation/controllers/settings_view_controller/sign_out_controller.dart';
 import 'package:spark/features/profile/presentation/views/profile_view/widgets/profile_card.dart';
 import 'package:spark/features/profile/presentation/views/profile_view/widgets/settings_button.dart';
 
@@ -17,6 +22,8 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final signOutController = Get.find<SignOutController>();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: CustomScrollView(
@@ -136,6 +143,42 @@ class ProfileViewBody extends StatelessWidget {
                 builder: (favouriteTvShowsController) {
               return GetBuilder<FavouriteCelebritiesController>(
                 builder: (favouriteCelebritiesController) {
+                  final firebaseAuth = Get.find<FirebaseAuth>();
+                  if (firebaseAuth.currentUser!.isAnonymous) {
+                    return SliverFillRemaining(
+                      fillOverscroll: false,
+                      hasScrollBody: false,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.assetsImagesAccessDenied,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              StringsManager.accessDenied,
+                              style: StylesManager.styleLatoMedium20(context),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: signOutController.signOutUser,
+                              child: Text(
+                                StringsManager.goToLogIn,
+                                style: StylesManager.styleLatoRegular18(context)
+                                    .copyWith(color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
                   if (favouriteMoviesController.favouriteMovies.isEmpty &&
                       favouriteTvShowsController.favouriteTvShows.isEmpty &&
                       favouriteCelebritiesController

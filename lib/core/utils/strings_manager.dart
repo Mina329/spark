@@ -158,4 +158,8 @@ abstract class StringsManager {
   static const somethingWentWrongPleaseTryAgainLater =
       'Something Went Wrong\n Please Try Again Later';
   static const emptyMessage = "Uh-oh! Looks like there's nothing to show here.";
+  static const accessDenied = "Access Denied";
+  static const loginToUseThisFeature = "Login To Use This Feature";
+  static const goToLogIn = "Go To Log In";
+  static const cancel = "Cancel";
 }

@@ -11,6 +11,7 @@ class SignOutController extends GetxController {
   SignOutController({required this.signOutUsecase});
 
   void signOutUser() async {
+    if (loading.value == true) return;
     loading.value = true;
     var result = await signOutUsecase.execute();
     result.fold(
