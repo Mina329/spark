@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/widgets/custom_error_widget.dart';
 import 'package:spark/features/home/presentation/controllers/season_details_controllers.dart/season_details_controller.dart';
-import 'package:spark/features/home/presentation/views/person_details_view/widgets/person_details_view_shimmer.dart';
 import 'package:spark/features/home/presentation/views/season_details_view/widgets/season_details_view_body.dart';
+import 'package:spark/features/home/presentation/views/season_details_view/widgets/season_view_shimmer.dart';
 
 class SeasonDetailsView extends StatelessWidget {
   const SeasonDetailsView({super.key});
@@ -19,7 +19,7 @@ class SeasonDetailsView extends StatelessWidget {
       body: Obx(
         () {
           if (seasonDetailsController.loading.isTrue) {
-            return const PersonDetailsViewShimmer();
+            return const SeasonViewShimmer();
           } else {
             return seasonDetailsController.error
                 ? Column(
