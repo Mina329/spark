@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/cache/cache_helper.dart';
+import 'package:spark/core/cache/cache_keys_values.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/theme_manager.dart';
 import 'package:spark/firebase_options.dart';
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
       getPages: AppRouter.getPages,
       theme: ThemeManager.lightThemeData,
       darkTheme: ThemeManager.darkThemeData,
-      themeMode: ThemeMode.dark,
+      themeMode:
+          CacheData.getData(key: CacheKeys.kLIGHTTHEME) == CacheValues.LIGHT
+              ? ThemeMode.light
+              : ThemeMode.dark,
     );
   }
 }

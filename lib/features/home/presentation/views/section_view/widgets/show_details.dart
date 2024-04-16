@@ -45,7 +45,9 @@ class ShowDetails extends StatelessWidget {
                 Text(
                   show.releaseDate.year.toString(),
                   style: StylesManager.styleLatoRegular16(context).copyWith(
-                    color: Colors.grey,
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey[800]
+                        : Colors.grey,
                   ),
                 ),
                 const SizedBox(
@@ -62,7 +64,9 @@ class ShowDetails extends StatelessWidget {
                   ids: show.genres ?? [],
                   idToValueMap: idsToGenres,
                   context: context,
-                  textColor: Colors.grey,
+                  textColor: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey,
                 ),
                 const SizedBox(
                   height: 5,

@@ -35,8 +35,10 @@ class ImagesSection extends StatelessWidget {
             ),
             Text(
               '${images.length}',
-              style: StylesManager.styleLatoBold20(context)
-                  .copyWith(color: Colors.grey),
+              style: StylesManager.styleLatoBold20(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey),
             ),
             const Spacer(),
             GestureDetector(

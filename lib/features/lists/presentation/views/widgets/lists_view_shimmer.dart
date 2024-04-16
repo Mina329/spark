@@ -8,8 +8,12 @@ class ListsViewShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[800]!,
-      highlightColor: Colors.grey[600]!,
+      baseColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.grey[400]!
+          : Colors.grey[800]!,
+      highlightColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.grey[300]!
+          : Colors.grey[600]!,
       child: SingleChildScrollView(
         child: Column(
           children: List.generate(

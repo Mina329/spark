@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:spark/core/cache/cache_helper.dart';
+import 'package:spark/core/cache/cache_keys_values.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
@@ -32,8 +34,10 @@ class ChangeAppThemeWidget extends StatelessWidget {
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(5),
-                  onTap: () {
+                  onTap: () async {
                     Get.changeThemeMode(ThemeMode.light);
+                    await CacheData.setData(
+                        key: CacheKeys.kLIGHTTHEME, value: CacheValues.LIGHT);
                     Get.back();
                   },
                   child: Container(
@@ -50,8 +54,10 @@ class ChangeAppThemeWidget extends StatelessWidget {
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(5),
-                  onTap: () {
+                  onTap: () async {
                     Get.changeThemeMode(ThemeMode.dark);
+                    await CacheData.setData(
+                        key: CacheKeys.kLIGHTTHEME, value: CacheValues.DARK);
                     Get.back();
                   },
                   child: Container(
@@ -70,8 +76,9 @@ class ChangeAppThemeWidget extends StatelessWidget {
             ),
           ),
           onClosing: () {},
-          backgroundColor:
-              Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
+          backgroundColor: Theme.of(context).brightness == Brightness.light
+              ? Colors.white
+              : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
         ),
       ),
       child: Padding(

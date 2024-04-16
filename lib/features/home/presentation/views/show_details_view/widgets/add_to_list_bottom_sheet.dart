@@ -67,7 +67,9 @@ class AddToListBottomSheet extends StatelessWidget {
         ),
       ),
       onClosing: () {},
-      backgroundColor: Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? Colors.white
+          : Color.lerp(ColorManager.primaryColor, Colors.black, 0.9),
     );
   }
 }

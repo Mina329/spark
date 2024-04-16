@@ -64,7 +64,9 @@ class SearchResultItem extends StatelessWidget {
                   Text(
                     show.releaseDate!.year.toString(),
                     style: StylesManager.styleLatoRegular16(context).copyWith(
-                      color: Colors.grey,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[800]
+                          : Colors.grey,
                     ),
                   ),
                 if (show.releaseDate != null)
@@ -77,7 +79,9 @@ class SearchResultItem extends StatelessWidget {
                   Text(
                     '${show.personKnownFor != null ? "${show.personKnownFor} , " : ''}${show.personMostKnownForName ?? ""} ${show.personMostKnownForDate != null ? "( ${show.personMostKnownForDate!.year.toString()} )" : ""}',
                     style: StylesManager.styleLatoRegular16(context).copyWith(
-                      color: Colors.grey,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[800]
+                          : Colors.grey,
                     ),
                   ),
                 if (show.personKnownFor != null ||
@@ -91,7 +95,9 @@ class SearchResultItem extends StatelessWidget {
                     ids: show.genreIds!,
                     idToValueMap: idsToGenres,
                     context: context,
-                    textColor: Colors.grey,
+                    textColor: Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey[800]
+                        : Colors.grey,
                   ),
                 if (show.genreIds != null && show.genreIds!.isNotEmpty)
                   const SizedBox(

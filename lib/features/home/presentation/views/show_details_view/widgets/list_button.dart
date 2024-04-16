@@ -12,9 +12,11 @@ class ListButton extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width * 0.45,
       height: 50,
-      decoration: const BoxDecoration(
-        color: ColorManager.genreColor,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        color: Theme.of(context).brightness == Brightness.light
+            ? ColorManager.primaryColor
+            : ColorManager.genreColor,
+        borderRadius: const BorderRadius.all(
           Radius.circular(10),
         ),
       ),

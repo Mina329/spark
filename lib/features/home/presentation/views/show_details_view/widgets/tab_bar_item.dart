@@ -13,8 +13,12 @@ class TabBarItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Text(
         title,
-        style: StylesManager.styleLatoRegular18(context)
-            .copyWith(color: active ? ColorManager.primaryColor : Colors.grey),
+        style: StylesManager.styleLatoRegular18(context).copyWith(
+            color: active
+                ? ColorManager.primaryColor
+                : Theme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : Colors.grey),
       ),
     );
   }

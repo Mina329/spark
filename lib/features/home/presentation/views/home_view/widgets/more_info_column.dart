@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
-import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/functions/build_genre_id_values_row.dart';
@@ -49,7 +48,7 @@ class MoreInfoColumn extends StatelessWidget {
               child: Text(
                 StringsManager.moreInfo,
                 style: StylesManager.styleLatoBold20(context).copyWith(
-                  color: ColorManager.genreColor,
+                  color: Colors.black,
                 ),
               ),
             ),

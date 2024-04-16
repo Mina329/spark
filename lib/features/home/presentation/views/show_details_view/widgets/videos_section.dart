@@ -32,8 +32,10 @@ class VideosSection extends StatelessWidget {
             ),
             Text(
               showDetailsController.getYoutubeKeysCount.toString(),
-              style: StylesManager.styleLatoBold20(context)
-                  .copyWith(color: Colors.grey),
+              style: StylesManager.styleLatoBold20(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.grey),
             ),
             const Spacer(),
             GestureDetector(

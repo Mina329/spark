@@ -40,8 +40,10 @@ class SeasonOverview extends StatelessWidget {
                     collapseText: 'show less',
                     expandOnTextTap: true,
                     collapseOnTextTap: true,
-                    style: StylesManager.styleLatoRegular16(context)
-                        .copyWith(color: Colors.grey),
+                    style: StylesManager.styleLatoRegular16(context).copyWith(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.grey[800]
+                            : Colors.grey),
                     animation: true,
                     maxLines: 5,
                     linkColor: ColorManager.primaryColor,

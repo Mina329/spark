@@ -52,8 +52,11 @@ class ShowOverviewTab extends StatelessWidget {
                       collapseText: 'show less',
                       expandOnTextTap: true,
                       collapseOnTextTap: true,
-                      style: StylesManager.styleLatoRegular16(context)
-                          .copyWith(color: Colors.grey),
+                      style: StylesManager.styleLatoRegular16(context).copyWith(
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.black
+                                  : Colors.grey),
                       animation: true,
                       maxLines: 5,
                       linkColor: ColorManager.primaryColor,
@@ -73,7 +76,10 @@ class ShowOverviewTab extends StatelessWidget {
                       ids: showDetailsController.showResultEntity!.genreIds!,
                       idToValueMap: idsToGenres,
                       context: context,
-                      textColor: Colors.grey,
+                      textColor:
+                          Theme.of(context).brightness == Brightness.light
+                              ? Colors.black
+                              : Colors.grey,
                     ),
                   ],
                 ),

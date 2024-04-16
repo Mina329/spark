@@ -25,7 +25,9 @@ class DotIndicator extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 color: onboardingController.pageIndex.value == index
                     ? ColorManager.primaryColor
-                    : Colors.white.withOpacity(0.2),
+                    : Theme.of(context).brightness == Brightness.light
+                        ? Colors.grey
+                        : Colors.white.withOpacity(0.2),
               ),
               width: onboardingController.pageIndex.value == index ? 30 : 10,
               height: 10,

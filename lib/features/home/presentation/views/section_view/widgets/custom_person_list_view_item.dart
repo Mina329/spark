@@ -54,7 +54,9 @@ class CustomPersonListViewItem extends StatelessWidget {
                   Text(
                     '${person.role == null ? '' : "${person.role}"}${person.role == null || person.mostKnownForName == null ? '' : ','} ${person.mostKnownForName ?? ""} ${person.mostKnownForDate == null ? "" : "( ${person.mostKnownForDate!.year.toString()} )"}',
                     style: StylesManager.styleLatoRegular16(context).copyWith(
-                      color: Colors.grey,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[800]
+                          : Colors.grey,
                     ),
                   ),
                 ],

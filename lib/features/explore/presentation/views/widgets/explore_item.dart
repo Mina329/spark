@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/lists_cover_widget.dart';
 
@@ -13,8 +14,13 @@ class ExploreItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey[800],
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : Colors.grey[800],
         borderRadius: BorderRadius.circular(5),
+        border: Theme.of(context).brightness == Brightness.light
+            ? Border.all(color: ColorManager.primaryColor)
+            : null,
       ),
       width: MediaQuery.of(context).size.width * 0.7,
       padding: const EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 10),

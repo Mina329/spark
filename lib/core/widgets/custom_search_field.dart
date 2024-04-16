@@ -17,17 +17,23 @@ class CustomSearchField extends StatelessWidget {
     return TextField(
       controller: getSearchResultController.controller,
       decoration: InputDecoration(
-        fillColor: ColorManager.geryColor,
+        fillColor: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : ColorManager.geryColor,
         filled: true,
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(
+        border: OutlineInputBorder(
+          borderSide: Theme.of(context).brightness == Brightness.light
+              ? const BorderSide()
+              : BorderSide.none,
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.all(
+        enabledBorder: OutlineInputBorder(
+          borderSide: Theme.of(context).brightness == Brightness.light
+              ? const BorderSide()
+              : BorderSide.none,
+          borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),
         ),

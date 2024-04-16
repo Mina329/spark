@@ -33,7 +33,9 @@ class RatingRow extends StatelessWidget {
         Text(
           '( $ratingCount )',
           style: StylesManager.styleLatoRegular16(context).copyWith(
-            color: Colors.grey,
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey[800]
+                : Colors.grey,
           ),
         ),
       ],

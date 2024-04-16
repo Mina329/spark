@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
+import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/home/domain/entities/review_entity.dart';
 
@@ -17,7 +18,12 @@ class ReviewCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: ColorManager.genreColor,
+        color: Theme.of(context).brightness == Brightness.light
+            ? Colors.white
+            : ColorManager.genreColor,
+        border: Border.all(
+          color: ColorManager.primaryColor,
+        ),
       ),
       padding: const EdgeInsets.only(right: 22, left: 22, top: 20, bottom: 15),
       child: Column(
@@ -53,7 +59,10 @@ class ReviewCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    reviewEntity.userName ?? '',
+                    reviewEntity.userName == null ||
+                            reviewEntity.userName!.isEmpty
+                        ? StringsManager.anonymous
+                        : reviewEntity.userName!,
                     style: StylesManager.styleLatoBold20(context),
                   ),
                   Text(

@@ -58,8 +58,10 @@ class AccessDeniedWidget extends StatelessWidget {
                 onPressed: () => Get.back(),
                 child: Text(
                   StringsManager.cancel,
-                  style: StylesManager.styleLatoRegular18(context)
-                      .copyWith(color: Colors.white),
+                  style: StylesManager.styleLatoRegular18(context).copyWith(
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white),
                 ),
               ),
             )

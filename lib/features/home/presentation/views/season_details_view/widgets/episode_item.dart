@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -91,7 +90,10 @@ class EpisodeItem extends StatelessWidget {
                                 .format(episode.episodeReleaseDate!),
                         style:
                             StylesManager.styleLatoRegular16(context).copyWith(
-                          color: Colors.grey,
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.grey[800]
+                                  : Colors.grey,
                         ),
                       ),
                       const SizedBox(

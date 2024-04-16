@@ -78,6 +78,6 @@ flutter_assets:
   filename: assets_manager.dart
 
 flutter_launcher_icons:
-  image_path: "assets/images/spark_logo.png"
+  image_path: "assets/images/playstore_logo.png"
   android: true # can specify file name here e.g. "ic_launcher"
   ios: true # can specify file name here e.g. "My-Launcher-Icon"

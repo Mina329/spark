@@ -24,7 +24,9 @@ class MainView extends StatelessWidget {
       items: _buildNavBarsItems(context),
       resizeToAvoidBottomInset: true,
       confineInSafeArea: true,
-      backgroundColor: ColorManager.darkScaffoldColor,
+      backgroundColor: Theme.of(context).brightness == Brightness.light
+          ? ColorManager.primaryColor
+          : ColorManager.darkScaffoldColor,
       screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,
@@ -39,25 +41,33 @@ class MainView extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.house),
         title: StringsManager.home,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.list),
         title: StringsManager.lists,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.circlePlay),
         title: StringsManager.explore,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(FontAwesomeIcons.user),
         title: StringsManager.profile,
-        activeColorPrimary: ColorManager.primaryColor,
+        activeColorPrimary: Theme.of(context).brightness == Brightness.light
+            ? Colors.black
+            : ColorManager.primaryColor,
         inactiveColorPrimary: Colors.white,
       ),
     ];
