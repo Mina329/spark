@@ -44,7 +44,7 @@ class CreateNewListController extends GetxController {
   }
 
   void Function()? onPressedCreate() {
-    if (controller?.text != null && controller!.text.length >= 3) {
+    if (controller?.text != null && controller!.text.length >= 3 && controller!.text.length < 15) {
       final listTitle = controller!.text;
       createNewList(
         ListEntity(

@@ -102,6 +102,7 @@ class SignUpForm extends StatelessWidget {
                     color: Theme.of(context).brightness == Brightness.dark
                         ? Colors.white.withOpacity(0.6)
                         : Colors.black.withOpacity(0.6),
+                    size: getResponsiveFontSize(context, fontSize: 24),
                   ),
                 ),
               ),

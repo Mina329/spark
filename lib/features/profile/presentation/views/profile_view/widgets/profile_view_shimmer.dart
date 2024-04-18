@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:spark/core/utils/color_manager.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/shimmer_container.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/people_section_shimmer.dart';
 import 'package:spark/features/home/presentation/views/home_view/widgets/section_shimmer.dart';
@@ -24,13 +25,14 @@ class ProfileViewShimmer extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            const Align(
+            Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Icon(
                   FontAwesomeIcons.gear,
                   color: ColorManager.primaryColor,
+                  size: getResponsiveFontSize(context, fontSize: 24),
                 ),
               ),
             ),
@@ -44,10 +46,10 @@ class ProfileViewShimmer extends StatelessWidget {
                 decoration: const BoxDecoration(
                   color: ColorManager.primaryColor,
                 ),
-                child: const Icon(
+                child: Icon(
                   FontAwesomeIcons.solidUser,
                   color: Colors.black,
-                  size: 50,
+                  size: getResponsiveFontSize(context, fontSize: 50),
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/shimmer_container.dart';
 
 class SeasonViewShimmer extends StatelessWidget {
@@ -25,9 +26,10 @@ class SeasonViewShimmer extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Icon(
+              Icon(
                 FontAwesomeIcons.angleLeft,
                 color: Colors.black,
+                size: getResponsiveFontSize(context, fontSize: 24),
               ),
               const SizedBox(
                 height: 20,

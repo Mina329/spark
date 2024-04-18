@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
-import 'package:spark/features/auth/presentation/views/auth_view/widgets/login_button.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/sign_in_form.dart';
 
 class SignInWidget extends StatelessWidget {
@@ -30,7 +29,6 @@ class SignInWidget extends StatelessWidget {
         const SizedBox(
           height: 25,
         ),
-        const LoginButton()
       ],
     );
   }

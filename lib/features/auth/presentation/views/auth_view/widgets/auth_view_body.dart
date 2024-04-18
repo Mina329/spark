@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
@@ -8,6 +9,8 @@ import 'package:spark/features/auth/presentation/views/auth_view/widgets/already
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/continue_as_guest_button.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/custom_login_provider_row.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/dont_have_account_widget.dart';
+import 'package:spark/features/auth/presentation/views/auth_view/widgets/login_button.dart';
+import 'package:spark/features/auth/presentation/views/auth_view/widgets/register_button.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/sign_in_widget.dart';
 import 'package:spark/features/auth/presentation/views/auth_view/widgets/sign_up_widget.dart';
 
@@ -42,44 +45,50 @@ class AuthViewBody extends StatelessWidget {
               },
             ),
           ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 40,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                StringsManager.orContinueWith,
-                style: StylesManager.styleRobotoRegular16(context)
-                    .copyWith(color: ColorManager.primaryColor),
-              ),
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: SizedBox(
-              height: 20,
-            ),
-          ),
-          const SliverToBoxAdapter(
-            child: CustomLoginProviderRow(),
-          ),
           SliverFillRemaining(
             hasScrollBody: false,
-            child: SizedBox(
-              height: 100,
-              child: GetBuilder<AuthController>(
-                builder: (authController) {
-                  return Center(
-                    child: authController.login
-                        ? const DontHaveAccountWidget()
-                        : const AlreadyHaveAccountWidget(),
-                  );
-                },
-              ),
+            fillOverscroll: false,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                GetBuilder<AuthController>(
+                  builder: (authController) {
+                    return authController.login
+                        ? const LoginButton()
+                        : const RegisterButton();
+                  },
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    StringsManager.orContinueWith,
+                    style: StylesManager.styleRobotoRegular16(context)
+                        .copyWith(color: ColorManager.primaryColor),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const CustomLoginProviderRow(),
+                SizedBox(
+                  height: 100,
+                  child: GetBuilder<AuthController>(
+                    builder: (authController) {
+                      return Center(
+                        child: authController.login
+                            ? const DontHaveAccountWidget()
+                            : const AlreadyHaveAccountWidget(),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );

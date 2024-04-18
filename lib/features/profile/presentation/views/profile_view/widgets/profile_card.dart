@@ -32,11 +32,11 @@ class ProfileCard extends StatelessWidget {
                 placeholder: (context, url) => Center(
                   child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
                 ),
-                errorWidget: (context, url, error) => const Center(
+                errorWidget: (context, url, error) => Center(
                   child: Icon(
                     FontAwesomeIcons.solidUser,
                     color: Colors.black,
-                    size: 50,
+                    size: getResponsiveFontSize(context, fontSize: 50),
                   ),
                 ),
                 fit: BoxFit.cover,

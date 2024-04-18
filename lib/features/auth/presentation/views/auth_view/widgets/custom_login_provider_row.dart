@@ -25,12 +25,12 @@ class CustomLoginProviderRow extends StatelessWidget {
             logInWithGoogleController.logInWithGoogle();
           },
         ),
-        CustomLoginProviderButton(
-          image: customLoginProviderImages[1],
-          onTap: () async {
-            logInWithFacebookController.logInWithFacebook();
-          },
-        ),
+        // CustomLoginProviderButton(
+        //   image: customLoginProviderImages[1],
+        //   onTap: () async {
+        //     logInWithFacebookController.logInWithFacebook();
+        //   },
+        // ),
       ],
     );
   }

@@ -138,8 +138,9 @@ class ListsItem extends StatelessWidget {
                     .deleteList(getUserListsController.lists[index].id);
               }
             },
-            child: const Icon(
+            child: Icon(
               FontAwesomeIcons.ellipsisVertical,
+              size: getResponsiveFontSize(context, fontSize: 24),
             ),
           ),
         )

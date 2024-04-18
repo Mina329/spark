@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/features/home/presentation/controllers/home_controllers/home_controller.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
@@ -26,9 +27,10 @@ class CustomHomeAppBar extends StatelessWidget {
               const Spacer(),
               IconButton(
                 onPressed: homeController.toggleSearch,
-                icon: const Icon(
+                icon: Icon(
                   FontAwesomeIcons.magnifyingGlass,
                   color: ColorManager.primaryColor,
+                  size: getResponsiveFontSize(context, fontSize: 24),
                 ),
               )
             ],

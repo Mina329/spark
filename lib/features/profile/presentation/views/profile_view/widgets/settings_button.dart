@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
+import 'package:spark/core/utils/styles_manager.dart';
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({
@@ -15,9 +16,10 @@ class SettingsButton extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: IconButton(
         onPressed: () => Get.toNamed(AppRouter.kSettingsView),
-        icon: const Icon(
+        icon: Icon(
           FontAwesomeIcons.gear,
           color: ColorManager.primaryColor,
+          size: getResponsiveFontSize(context, fontSize: 24),
         ),
       ),
     );

@@ -38,15 +38,17 @@ class ListsDropDown extends StatelessWidget {
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Icon(
+            Icon(
               FontAwesomeIcons.plus,
+              size: getResponsiveFontSize(context, fontSize: 24),
             ),
             Text(
               StringsManager.addToMyList,
               style: StylesManager.styleLatoRegular18(context),
             ),
-            const Icon(
+            Icon(
               FontAwesomeIcons.angleDown,
+              size: getResponsiveFontSize(context, fontSize: 24),
             ),
           ],
         ),

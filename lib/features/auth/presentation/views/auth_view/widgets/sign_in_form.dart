@@ -80,12 +80,14 @@ class SignInForm extends StatelessWidget {
                     color: Theme.of(context).brightness == Brightness.dark
                         ? Colors.white.withOpacity(0.6)
                         : Colors.black.withOpacity(0.6),
+                    size: getResponsiveFontSize(context, fontSize: 24),
                   ),
                 ),
               ),
               obscureText: authController.obsecure,
               validator: authController.passwordValidator,
-              onSaved: logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
+              onSaved:
+                  logInUserWithEmailAndPasswordController.loginPasswordOnSaved,
             ),
           ),
           const SizedBox(

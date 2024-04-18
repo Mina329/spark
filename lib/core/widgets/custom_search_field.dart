@@ -37,9 +37,10 @@ class CustomSearchField extends StatelessWidget {
             Radius.circular(10),
           ),
         ),
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           FontAwesomeIcons.magnifyingGlass,
           color: ColorManager.primaryColor,
+          size: getResponsiveFontSize(context, fontSize: 24),
         ),
         suffixIcon: Obx(
           () => InkWell(
@@ -52,11 +53,12 @@ class CustomSearchField extends StatelessWidget {
                   }
                 : null,
             child: getSearchResultController.showSuffixIcon.isTrue
-                ? const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Icon(
                       Icons.close,
                       color: ColorManager.primaryColor,
+                      size: getResponsiveFontSize(context, fontSize: 24),
                     ),
                   )
                 : const SizedBox.shrink(),

@@ -91,9 +91,10 @@ class ChangeAppThemeWidget extends StatelessWidget {
               StringsManager.changeAppTheme,
               style: StylesManager.styleLatoBold20(context),
             ),
-            const Icon(
+            Icon(
               FontAwesomeIcons.angleRight,
               color: ColorManager.primaryColor,
+              size: getResponsiveFontSize(context, fontSize: 24),
             )
           ],
         ),
