@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
@@ -73,10 +72,11 @@ class ImagesSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     child: CachedNetworkImage(
                       imageUrl:
-                          'https://image.tmdb.org/t/p/original${images[index].filePath}',
-                      placeholder: (context, url) => Center(
-                        child:
-                            Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                          'https://image.tmdb.org/t/p/w342${images[index].filePath}',
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(
+                          color: ColorManager.primaryColor,
+                        ),
                       ),
                       errorWidget: (context, url, error) => Center(
                         child: Image.asset(

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 
@@ -42,11 +41,7 @@ class ListsCoverWidget extends StatelessWidget {
                     ),
                     child: CachedNetworkImage(
                       imageUrl:
-                          'https://image.tmdb.org/t/p/original${banners[index]}',
-                      placeholder: (context, url) => Center(
-                        child:
-                            Lottie.asset(Assets.assetsAnimationsMovieLoading),
-                      ),
+                          'https://image.tmdb.org/t/p/w342/${banners[index]}',
                       errorWidget: (context, url, error) => Center(
                         child: Image.asset(
                           Assets.assetsImagesTv,

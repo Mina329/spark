@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/assets_manager.dart';
+import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/enums.dart';
 import 'package:spark/features/home/domain/entities/episode_entity.dart';
@@ -44,10 +44,12 @@ class EpisodeItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
                   imageUrl:
-                      'https://image.tmdb.org/t/p/original/${episode.episodePosterUrl}',
-                  placeholder: (context, url) => Center(
-                    child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
-                  ),
+                      'https://image.tmdb.org/t/p/w342/${episode.episodePosterUrl}',
+                  placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryColor,
+                      ),
+                    ),
                   errorWidget: (context, url, error) => Center(
                     child: Image.asset(
                       Assets.assetsImagesTv,

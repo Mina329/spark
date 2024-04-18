@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
@@ -29,8 +26,10 @@ class ProfileCard extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl: userInfoController.userInfo?.profileUrl ?? '',
-                placeholder: (context, url) => Center(
-                  child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                    color: ColorManager.primaryColor,
+                  ),
                 ),
                 errorWidget: (context, url, error) => Center(
                   child: Icon(

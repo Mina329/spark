@@ -59,11 +59,7 @@ class ImagesView extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             child: CachedNetworkImage(
                               imageUrl:
-                                  'https://image.tmdb.org/t/p/original/${mediaController.mediaList[index].filePath}',
-                              placeholder: (context, url) => Center(
-                                child: Lottie.asset(
-                                    Assets.assetsAnimationsMovieLoading),
-                              ),
+                                  'https://image.tmdb.org/t/p/w342/${mediaController.mediaList[index].filePath}',
                               errorWidget: (context, url, error) => Center(
                                 child: Image.asset(
                                   Assets.assetsImagesTv,

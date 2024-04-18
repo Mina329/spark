@@ -198,7 +198,7 @@ class ExploreViewController extends GetxController {
       banners.add(show.posterPath);
       precacheImage(
           CachedNetworkImageProvider(
-              'https://image.tmdb.org/t/p/original${show.posterPath}'),
+              'https://image.tmdb.org/t/p/w342${show.posterPath}'),
           Get.context!);
     }
     return banners;
@@ -210,7 +210,7 @@ class ExploreViewController extends GetxController {
       banners.add(show.profilePath);
       precacheImage(
           CachedNetworkImageProvider(
-              'https://image.tmdb.org/t/p/original${show.profilePath}'),
+              'https://image.tmdb.org/t/p/w342${show.profilePath}'),
           Get.context!);
     }
     return banners;

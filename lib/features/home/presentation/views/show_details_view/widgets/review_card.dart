@@ -3,7 +3,6 @@ import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
 import 'package:spark/core/utils/strings_manager.dart';
@@ -37,9 +36,11 @@ class ReviewCard extends StatelessWidget {
                 child: ClipOval(
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/original/${reviewEntity.userProfile}',
-                    placeholder: (context, url) => Center(
-                      child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                        'https://image.tmdb.org/t/p/w342/${reviewEntity.userProfile}',
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryColor,
+                      ),
                     ),
                     errorWidget: (context, url, error) => Center(
                       child: Image.asset(

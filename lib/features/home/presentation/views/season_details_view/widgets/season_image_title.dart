@@ -20,7 +20,7 @@ class SeasonImageTitle extends StatelessWidget {
       child: Stack(
         children: [
           buildCoverImage(
-              'https://image.tmdb.org/t/p/original/${seasonDetailsController.seasonResultEntity?.posterUrl}'),
+              'https://image.tmdb.org/t/p/w780/${seasonDetailsController.seasonResultEntity?.posterUrl}'),
           buildCoverOverlay(context),
           Positioned(
             bottom: 0,

@@ -25,7 +25,7 @@ class ShowImageTitle extends StatelessWidget {
       child: Stack(
         children: [
           buildCoverImage(
-              'https://image.tmdb.org/t/p/original${showDetailsController.showResultEntity?.posterUrl}'),
+              'https://image.tmdb.org/t/p/w780${showDetailsController.showResultEntity?.posterUrl}'),
           buildCoverOverlay(context),
           Positioned(
             bottom: 0,

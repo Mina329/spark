@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
 import 'package:spark/core/widgets/functions/build_genre_id_values_row.dart';
@@ -26,10 +24,7 @@ class SearchResultItem extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl:
-                    'https://image.tmdb.org/t/p/original/${show.posterPath}',
-                placeholder: (context, url) => Center(
-                  child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
-                ),
+                    'https://image.tmdb.org/t/p/w342/${show.posterPath}',
                 errorWidget: (context, url, error) => Center(
                   child: Image.asset(
                     Assets.assetsImagesTv,

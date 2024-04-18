@@ -29,7 +29,7 @@ class CustomShowListViewItem extends StatelessWidget {
           children: [
             ShowImage(
               imgUrl: show.posterPath != null
-                  ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
+                  ? 'https://image.tmdb.org/t/p/w342${show.posterPath}'
                   : '',
             ),
             const SizedBox(

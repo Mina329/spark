@@ -23,7 +23,7 @@ class PersonImageTitle extends StatelessWidget {
       child: Stack(
         children: [
           buildCoverImage(
-              'https://image.tmdb.org/t/p/original${getPersonDetailsController.personResultEntity?.profileUrl}'),
+              'https://image.tmdb.org/t/p/w780${getPersonDetailsController.personResultEntity?.profileUrl}'),
           buildCoverOverlay(context),
           Positioned(
             bottom: 0,

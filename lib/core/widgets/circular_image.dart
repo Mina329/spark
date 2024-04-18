@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
+import 'package:spark/core/utils/color_manager.dart';
 
 class CircularImage extends StatelessWidget {
   const CircularImage({
@@ -17,8 +17,10 @@ class CircularImage extends StatelessWidget {
       child: ClipOval(
         child: CachedNetworkImage(
           imageUrl: imageUrl,
-          placeholder: (context, url) => Center(
-            child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(
+              color: ColorManager.primaryColor,
+            ),
           ),
           errorWidget: (context, url, error) => Center(
             child: Image.asset(

@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/assets_manager.dart';
 import 'package:spark/core/utils/color_manager.dart';
@@ -40,10 +39,12 @@ class ShowCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
                     imageUrl: show.posterPath != null
-                        ? 'https://image.tmdb.org/t/p/original${show.posterPath}'
+                        ? 'https://image.tmdb.org/t/p/w342${show.posterPath}'
                         : '',
-                    placeholder: (context, url) => Center(
-                      child: Lottie.asset(Assets.assetsAnimationsMovieLoading),
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(
+                        color: ColorManager.primaryColor,
+                      ),
                     ),
                     errorWidget: (context, url, error) => Center(
                       child: Image.asset(

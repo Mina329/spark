@@ -30,6 +30,7 @@ class AddToListWidget extends StatelessWidget {
                       ?.toStringAsFixed(1) ??
                   '',
               iconColor: ColorManager.goldColor,
+              ratingCount: showDetailsController.showResultEntity?.voteCount,
             ),
             KeyValueColumn(
               icon: FontAwesomeIcons.bolt,

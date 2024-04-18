@@ -8,11 +8,13 @@ class KeyValueColumn extends StatelessWidget {
     required this.title,
     required this.value,
     required this.iconColor,
+    this.ratingCount,
   });
   final IconData icon;
   final String title;
   final String value;
   final Color iconColor;
+  final int? ratingCount;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -34,7 +36,20 @@ class KeyValueColumn extends StatelessWidget {
             Text(
               value,
               style: StylesManager.styleLatoRegular18(context),
-            )
+            ),
+            if (ratingCount != null)
+              const SizedBox(
+                width: 5,
+              ),
+            if (ratingCount != null)
+              Text(
+                '( $ratingCount )',
+                style: StylesManager.styleLatoRegular16(context).copyWith(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey[800]
+                      : Colors.grey,
+                ),
+              ),
           ],
         ),
         const SizedBox(
