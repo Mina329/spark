@@ -36,7 +36,7 @@ class HomeTrendingShows extends StatelessWidget {
     return Stack(
       children: [
         buildCoverImage(
-            'https://image.tmdb.org/t/p/original${movie.posterPath}'),
+            'https://image.tmdb.org/t/p/original/${movie.posterPath}'),
         buildCoverOverlay(context),
         MoreInfoColumn(
           movie: movie,

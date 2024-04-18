@@ -39,11 +39,14 @@ class ShowCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   child: CachedNetworkImage(
                     imageUrl: show.posterPath != null
-                        ? 'https://image.tmdb.org/t/p/w342${show.posterPath}'
+                        ? 'https://image.tmdb.org/t/p/w342/${show.posterPath}'
                         : '',
-                    placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(
-                        color: ColorManager.primaryColor,
+                    placeholder: (context, url) => FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Icon(
+                        FontAwesomeIcons.film,
+                        color: Colors.grey,
+                        size: getResponsiveFontSize(context, fontSize: 60),
                       ),
                     ),
                     errorWidget: (context, url, error) => Center(

@@ -35,7 +35,7 @@ class SeasonsGuideListView extends StatelessWidget {
                 Flexible(
                   child: ShowImage(
                     imgUrl:
-                        'https://image.tmdb.org/t/p/w342${seasons[index].seasonPoster}',
+                        'https://image.tmdb.org/t/p/w342/${seasons[index].seasonPoster}',
                   ),
                 ),
                 const SizedBox(

@@ -26,9 +26,12 @@ class ProfileCard extends StatelessWidget {
               ),
               child: CachedNetworkImage(
                 imageUrl: userInfoController.userInfo?.profileUrl ?? '',
-                placeholder: (context, url) => const Center(
-                  child: CircularProgressIndicator(
-                    color: ColorManager.primaryColor,
+                placeholder: (context, url) => FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Icon(
+                    FontAwesomeIcons.user,
+                    color: Colors.grey,
+                    size: getResponsiveFontSize(context, fontSize: 60),
                   ),
                 ),
                 errorWidget: (context, url, error) => Center(

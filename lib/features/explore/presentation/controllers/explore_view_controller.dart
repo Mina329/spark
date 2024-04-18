@@ -195,10 +195,11 @@ class ExploreViewController extends GetxController {
   List<String> getBanners(List shows) {
     List<String> banners = [];
     for (var show in shows) {
+      if (show.posterPath == null) continue;
       banners.add(show.posterPath);
       precacheImage(
           CachedNetworkImageProvider(
-              'https://image.tmdb.org/t/p/w342${show.posterPath}'),
+              'https://image.tmdb.org/t/p/w342/${show.posterPath}'),
           Get.context!);
     }
     return banners;
@@ -207,10 +208,11 @@ class ExploreViewController extends GetxController {
   List<String> getProfiles(List shows) {
     List<String> banners = [];
     for (var show in shows) {
+      if (show.profilePath == null) continue;
       banners.add(show.profilePath);
       precacheImage(
           CachedNetworkImageProvider(
-              'https://image.tmdb.org/t/p/w342${show.profilePath}'),
+              'https://image.tmdb.org/t/p/w342/${show.profilePath}'),
           Get.context!);
     }
     return banners;

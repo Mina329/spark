@@ -34,7 +34,7 @@ class PeopleListView extends StatelessWidget {
               children: [
                 CircularImage(
                     imageUrl:
-                        'https://image.tmdb.org/t/p/w342${people[index].profilePath}'),
+                        'https://image.tmdb.org/t/p/w342/${people[index].profilePath}'),
                 const SizedBox(
                   height: 10,
                 ),
