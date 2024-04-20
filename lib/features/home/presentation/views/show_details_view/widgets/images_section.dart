@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/assets_manager.dart';
@@ -62,41 +63,55 @@ class ImagesSection extends StatelessWidget {
         ),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.15,
-          child: ListView.builder(
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: GestureDetector(
-                onTap: () => showFullScreenImage(context, images[index]),
-                child: AspectRatio(
-                  aspectRatio: images[index].aspectRatio!,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          'https://image.tmdb.org/t/p/w342/${images[index].filePath}',
-                      placeholder: (context, url) => FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Icon(
-                          FontAwesomeIcons.film,
-                          color: Colors.grey,
-                          size: getResponsiveFontSize(context, fontSize: 60),
+          child: AnimationLimiter(
+            child: ListView.builder(
+              itemBuilder: (context, index) =>
+                  AnimationConfiguration.staggeredList(
+                position: index,
+                duration: const Duration(milliseconds: 375),
+                child: SlideAnimation(
+                  horizontalOffset: 50.0,
+                  child: FadeInAnimation(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: GestureDetector(
+                        onTap: () =>
+                            showFullScreenImage(context, images[index]),
+                        child: AspectRatio(
+                          aspectRatio: images[index].aspectRatio!,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  'https://image.tmdb.org/t/p/w342/${images[index].filePath}',
+                              placeholder: (context, url) => FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Icon(
+                                  FontAwesomeIcons.film,
+                                  color: Colors.grey,
+                                  size: getResponsiveFontSize(context,
+                                      fontSize: 60),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Center(
+                                child: Image.asset(
+                                  Assets.assetsImagesTv,
+                                  height: 80,
+                                  width: 80,
+                                ),
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
-                      errorWidget: (context, url, error) => Center(
-                        child: Image.asset(
-                          Assets.assetsImagesTv,
-                          height: 80,
-                          width: 80,
-                        ),
-                      ),
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
+              itemCount: images.length > 10 ? 10 : images.length,
+              scrollDirection: Axis.horizontal,
             ),
-            itemCount: images.length > 10 ? 10 : images.length,
-            scrollDirection: Axis.horizontal,
           ),
         )
       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
@@ -37,24 +38,35 @@ class PeoplesSection extends StatelessWidget {
               height: 30,
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => Column(
-                children: [
-                  CustomPersonListViewItem(
-                    person: peoples[index] as PersonMiniResultEntity,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  if (index != peoples.length - 1) const Divider(),
-                  if (index != peoples.length - 1)
-                    const SizedBox(
-                      height: 10,
+          AnimationLimiter(
+            child: SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) => AnimationConfiguration.staggeredList(
+                  position: index,
+                  duration: const Duration(milliseconds: 375),
+                  child: SlideAnimation(
+                    verticalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: Column(
+                        children: [
+                          CustomPersonListViewItem(
+                            person: peoples[index] as PersonMiniResultEntity,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          if (index != peoples.length - 1) const Divider(),
+                          if (index != peoples.length - 1)
+                            const SizedBox(
+                              height: 10,
+                            ),
+                        ],
+                      ),
                     ),
-                ],
+                  ),
+                ),
+                childCount: peoples.length,
               ),
-              childCount: peoples.length,
             ),
           ),
           SliverToBoxAdapter(

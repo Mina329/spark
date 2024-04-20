@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/app_router.dart';
 import 'package:spark/core/utils/color_manager.dart';
@@ -64,19 +65,30 @@ class ShowReviewsTab extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              Column(
-                children: List.generate(
-                  showDetailsController.showResultEntity!.review!.length > 5
-                      ? 5
-                      : showDetailsController.showResultEntity!.review!.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ReviewCard(
-                      reviewEntity: showDetailsController
-                          .showResultEntity!.review![index],
+              AnimationLimiter(
+                child: Column(
+                    children: AnimationConfiguration.toStaggeredList(
+                  duration: const Duration(milliseconds: 375),
+                  childAnimationBuilder: (widget) => SlideAnimation(
+                    verticalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: widget,
                     ),
                   ),
-                ),
+                  children: List.generate(
+                    showDetailsController.showResultEntity!.review!.length > 5
+                        ? 5
+                        : showDetailsController
+                            .showResultEntity!.review!.length,
+                    (index) => Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: ReviewCard(
+                        reviewEntity: showDetailsController
+                            .showResultEntity!.review![index],
+                      ),
+                    ),
+                  ),
+                )),
               ),
               const SizedBox(
                 height: 30,

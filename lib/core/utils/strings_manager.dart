@@ -7,7 +7,7 @@ abstract class StringsManager {
   static const onboardingDescription2 =
       'Keep track and save TV shows and movies into your own collections.';
   static const onboardingDescription3 =
-      'Never miss out on what\'s trending. Receive real-time alerts on new releases, upcoming trailers, and exclusive interviews with your favorite stars.';
+      'Never miss out on what\'s trending. Receive real-time alerts on new releases, upcoming trailers, and exclusive interviews with your favourite stars.';
   static const skip = "Skip";
   static const next = "Next";
   static const getStarted = "Get started";
@@ -84,7 +84,7 @@ abstract class StringsManager {
   static const relatedMovies = 'Related Movies';
   static const relatedTvShows = 'Related TV Shows';
   static const listsDescription =
-      'Save more of your favorites to your listing!';
+      'Save more of your favourites to your listing!';
   static const createNewList = 'Create New List';
   static const listTitle = 'List Title';
   static const create = 'Create';
@@ -104,9 +104,9 @@ abstract class StringsManager {
   static const celebrities = 'Celebrities';
   static const popularCelebrities = '⭐️ Popular Celebrities';
   static const trendingCelebrities = '⚡ Trending Celebrities';
-  static const favouriteTvShows = 'Favorite TV Shows';
-  static const favouriteMovies = 'Favorite Movies';
-  static const favouriteCelebrities = 'Favorite Celebrities';
+  static const favouriteTvShows = 'Favourite TV Shows';
+  static const favouriteMovies = 'Favourite Movies';
+  static const favouriteCelebrities = 'Favourite Celebrities';
   static const changeAccountName = 'Change Account Name';
   static const newName = 'New Name';
   static const submit = 'Submit';
@@ -143,7 +143,7 @@ abstract class StringsManager {
   static const movieAddedToFavourite = 'Movie Added To Favourite';
   static const movieRemovedFromFavourite = 'Movie Removed From Favourite';
   static const tvShowAddedToFavourite = 'TV Show Added To Favourite';
-  static const tvShowRemovedFromFavourite = 'TV Show Removed From Favorite';
+  static const tvShowRemovedFromFavourite = 'TV Show Removed From Favourite';
   static const episodesGuide = 'Episodes Guide';
   static const addSomeShowsToTheList = 'Add Some Shows To The List';
   static const newListHasBeenCreated = 'New List Has Been Created';

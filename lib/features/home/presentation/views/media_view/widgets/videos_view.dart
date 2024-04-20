@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
@@ -36,33 +37,46 @@ class VideosView extends StatelessWidget {
           ),
           GetBuilder<MediaController>(
             builder: (mediaController) {
-              return SliverList.builder(
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: YoutubePlayer(
-                      controller: mediaController.videosControllers[index],
-                      showVideoProgressIndicator: true,
-                      progressIndicatorColor: ColorManager.primaryColor,
-                      bottomActions: [
-                        const SizedBox(width: 14.0),
-                        CurrentPosition(),
-                        const SizedBox(width: 8.0),
-                        ProgressBar(
-                          isExpanded: true,
-                          colors: const ProgressBarColors(
-                            playedColor: ColorManager.primaryColor,
-                            handleColor: ColorManager.primaryColor,
+              return AnimationLimiter(
+                child: SliverList.builder(
+                  itemBuilder: (context, index) =>
+                      AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                      verticalOffset: 50.0,
+                      child: FadeInAnimation(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: YoutubePlayer(
+                              controller:
+                                  mediaController.videosControllers[index],
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: ColorManager.primaryColor,
+                              bottomActions: [
+                                const SizedBox(width: 14.0),
+                                CurrentPosition(),
+                                const SizedBox(width: 8.0),
+                                ProgressBar(
+                                  isExpanded: true,
+                                  colors: const ProgressBarColors(
+                                    playedColor: ColorManager.primaryColor,
+                                    handleColor: ColorManager.primaryColor,
+                                  ),
+                                ),
+                                RemainingDuration(),
+                                const PlaybackSpeedButton(),
+                              ],
+                            ),
                           ),
                         ),
-                        RemainingDuration(),
-                        const PlaybackSpeedButton(),
-                      ],
+                      ),
                     ),
                   ),
+                  itemCount: mediaController.videosControllers.length,
                 ),
-                itemCount: mediaController.videosControllers.length,
               );
             },
           ),

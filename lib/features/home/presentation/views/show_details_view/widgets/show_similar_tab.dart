@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
@@ -36,20 +37,32 @@ class ShowSimilarTab extends StatelessWidget {
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.3 / 0.6,
-                    child: ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemBuilder: (context, index) => Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: ShowCard(
-                          show: showDetailsController
-                                  .showResultEntity?.similarShows?[index] ??
-                              [],
+                    child: AnimationLimiter(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) =>
+                            AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: SlideAnimation(
+                            horizontalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: ShowCard(
+                                  show: showDetailsController.showResultEntity
+                                          ?.similarShows?[index] ??
+                                      [],
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
+                        itemCount: showDetailsController
+                                .showResultEntity?.similarShows?.length ??
+                            0,
+                        scrollDirection: Axis.horizontal,
                       ),
-                      itemCount: showDetailsController
-                              .showResultEntity?.similarShows?.length ??
-                          0,
-                      scrollDirection: Axis.horizontal,
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/color_manager.dart';
@@ -42,33 +43,43 @@ class TvShowSearchSection extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              exploreViewController.tvShowsExploreBanners.length,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: 15),
-                child: GestureDetector(
-                  onTap: () => Get.toNamed(
-                    AppRouter.kShowsSectionView,
-                    arguments: {
-                      'title':
+          child: AnimationLimiter(
+            child: Row(
+                children: AnimationConfiguration.toStaggeredList(
+              duration: const Duration(milliseconds: 375),
+              childAnimationBuilder: (widget) => SlideAnimation(
+                horizontalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: widget,
+                ),
+              ),
+              children: List.generate(
+                exploreViewController.tvShowsExploreBanners.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: GestureDetector(
+                    onTap: () => Get.toNamed(
+                      AppRouter.kShowsSectionView,
+                      arguments: {
+                        'title':
+                            exploreViewController.tvShowsExploreTitles[index],
+                        'showType': ShowType.TV,
+                        'sectionType': exploreViewController
+                            .tvShowsExploreSectionTypes[index],
+                        'showsList': exploreViewController.tvShowsExplore[index]
+                      },
+                      preventDuplicates: false,
+                    ),
+                    child: ExploreItem(
+                      exploreItemTitle:
                           exploreViewController.tvShowsExploreTitles[index],
-                      'showType': ShowType.TV,
-                      'sectionType': exploreViewController
-                          .tvShowsExploreSectionTypes[index],
-                      'showsList': exploreViewController.tvShowsExplore[index]
-                    },
-                    preventDuplicates: false,
-                  ),
-                  child: ExploreItem(
-                    exploreItemTitle:
-                        exploreViewController.tvShowsExploreTitles[index],
-                    exploreItemBanners:
-                        exploreViewController.tvShowsExploreBanners[index],
+                      exploreItemBanners:
+                          exploreViewController.tvShowsExploreBanners[index],
+                    ),
                   ),
                 ),
               ),
-            ),
+            )),
           ),
         ),
         const SizedBox(
@@ -76,29 +87,41 @@ class TvShowSearchSection extends StatelessWidget {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: List.generate(
-              exploreViewController.tvShowsGenres.length,
-              (index) => Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: GestureDetector(
-                  onTap: () => Get.toNamed(
-                    AppRouter.kShowsSectionView,
-                    arguments: {
-                      'title': exploreViewController.tvShowsGenres[index].name,
-                      'showType': ShowType.TV,
-                      'sectionType': SectionType.TvShowsCategory,
-                      'showsList': [],
-                      'category': exploreViewController.tvShowsGenres[index].id
-                    },
-                    preventDuplicates: false,
-                  ),
-                  child: ExploreGenreItem(
-                    name: exploreViewController.tvShowsGenres[index].name,
+          child: AnimationLimiter(
+            child: Row(
+                children: AnimationConfiguration.toStaggeredList(
+              duration: const Duration(milliseconds: 375),
+              childAnimationBuilder: (widget) => SlideAnimation(
+                horizontalOffset: 50.0,
+                child: FadeInAnimation(
+                  child: widget,
+                ),
+              ),
+              children: List.generate(
+                exploreViewController.tvShowsGenres.length,
+                (index) => Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: GestureDetector(
+                    onTap: () => Get.toNamed(
+                      AppRouter.kShowsSectionView,
+                      arguments: {
+                        'title':
+                            exploreViewController.tvShowsGenres[index].name,
+                        'showType': ShowType.TV,
+                        'sectionType': SectionType.TvShowsCategory,
+                        'showsList': [],
+                        'category':
+                            exploreViewController.tvShowsGenres[index].id
+                      },
+                      preventDuplicates: false,
+                    ),
+                    child: ExploreGenreItem(
+                      name: exploreViewController.tvShowsGenres[index].name,
+                    ),
                   ),
                 ),
               ),
-            ),
+            )),
           ),
         ),
       ],

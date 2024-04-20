@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:spark/core/utils/strings_manager.dart';
 import 'package:spark/core/utils/styles_manager.dart';
@@ -77,14 +78,26 @@ class ListsViewBody extends StatelessWidget {
                           ),
                         );
                       } else {
-                        return SliverList.builder(
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 15),
-                            child: ListsItem(
-                              index: index,
+                        return AnimationLimiter(
+                          child: SliverList.builder(
+                            itemBuilder: (context, index) =>
+                                AnimationConfiguration.staggeredList(
+                              position: index,
+                              duration: const Duration(milliseconds: 375),
+                              child: SlideAnimation(
+                                verticalOffset: 50.0,
+                                child: FadeInAnimation(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 15),
+                                    child: ListsItem(
+                                      index: index,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
+                            itemCount: getUserListsController.lists.length,
                           ),
-                          itemCount: getUserListsController.lists.length,
                         );
                       }
                     }

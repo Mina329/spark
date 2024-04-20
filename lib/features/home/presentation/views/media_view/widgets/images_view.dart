@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:spark/core/utils/assets_manager.dart';
@@ -39,35 +40,48 @@ class ImagesView extends StatelessWidget {
           SliverToBoxAdapter(
             child: GetBuilder<MediaController>(
               builder: (mediaController) {
-                return Wrap(
-                  spacing: 5,
-                  runSpacing: 5,
-                  children: List.generate(
-                    mediaController.mediaList.length,
-                    (index) => GestureDetector(
-                      onTap: () => showFullScreenImage(
-                          context, mediaController.mediaList[index]),
-                      child: SizedBox(
-                        width:
-                            (MediaQuery.of(context).size.width - 40 - 10) / 2,
-                        child: AspectRatio(
-                          aspectRatio:
-                              mediaController.mediaList[index].aspectRatio > 1
-                                  ? 1.7
-                                  : 0.667,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://image.tmdb.org/t/p/w342/${mediaController.mediaList[index].filePath}',
-                              errorWidget: (context, url, error) => Center(
-                                child: Image.asset(
-                                  Assets.assetsImagesTv,
-                                  height: 80,
-                                  width: 80,
+                return AnimationLimiter(
+                  child: Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: AnimationConfiguration.toStaggeredList(
+                      duration: const Duration(milliseconds: 375),
+                      childAnimationBuilder: (widget) => SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: widget,
+                        ),
+                      ),
+                      children: List.generate(
+                        mediaController.mediaList.length,
+                        (index) => GestureDetector(
+                          onTap: () => showFullScreenImage(
+                              context, mediaController.mediaList[index]),
+                          child: SizedBox(
+                            width:
+                                (MediaQuery.of(context).size.width - 40 - 10) /
+                                    2,
+                            child: AspectRatio(
+                              aspectRatio:
+                                  mediaController.mediaList[index].aspectRatio >
+                                          1
+                                      ? 1.7
+                                      : 0.667,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://image.tmdb.org/t/p/w342/${mediaController.mediaList[index].filePath}',
+                                  errorWidget: (context, url, error) => Center(
+                                    child: Image.asset(
+                                      Assets.assetsImagesTv,
+                                      height: 80,
+                                      width: 80,
+                                    ),
+                                  ),
+                                  fit: BoxFit.cover,
                                 ),
                               ),
-                              fit: BoxFit.cover,
                             ),
                           ),
                         ),
