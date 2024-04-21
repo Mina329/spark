@@ -43,10 +43,14 @@ class AccessDeniedWidget extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: signOutController.signOutUser,
-                child: Text(
-                  StringsManager.goToLogIn,
-                  style: StylesManager.styleLatoRegular18(context)
-                      .copyWith(color: Colors.black),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    StringsManager.goToLogIn,
+                    style: StylesManager.styleLatoRegular18(context)
+                        .copyWith(color: Colors.black),
+                    maxLines: 1,
+                  ),
                 ),
               ),
             ),
