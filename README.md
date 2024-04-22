@@ -30,6 +30,7 @@ Welcome to Spark, your one-stop destination for exploring the world of movies, T
 </p>
 
 ## Demo 🚀
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/qhEpL7Bwe-w/0.jpg)](https://www.youtube.com/watch?v=qhEpL7Bwe-w)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png" alt="-----------------------------------------------------" style="width: 100%; height: auto;">
